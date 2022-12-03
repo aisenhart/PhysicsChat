@@ -1,27 +1,33 @@
-//express
+//external modules  
 const { Configuration, OpenAIApi } = require("openai");
+require('dotenv').config();
+
+//internal modules
+const { Order } = require("./classes/Order");
+const { User } = require("./classes/User");
+const { Ban } = require("./classes/Ban");
+const { Warning } = require("./classes/Warning");
+
+
+//web server variables
 const express = require('express');
 const app = express();
 const port = 3000;
 
-//parse .env file
-require('dotenv').config();
-
+//openai variables
 const configuration = new Configuration({
     apiKey: process.env.API_KEY,
 });  
 const openai = new OpenAIApi(configuration);
 
-
 //body-parser
 app.use(express.static('public'));
 app.use(express.json());
 
-
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
-
+/*
 app.post('/api', async (req, res) => {
     console.log(req.body.prompt);
     try {
@@ -46,8 +52,14 @@ app.post('/api', async (req, res) => {
         }
       }
 });
-
+*/
 //listen
+
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/public/login/login.html');
+});
+
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
     }
