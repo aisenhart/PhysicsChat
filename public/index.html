@@ -10,21 +10,22 @@
         <title>Write</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="index.css">
+        <script
+        src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/index.css">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <!-- Title that says Write Anything with a big text box below -->
-        <h1>Write Anything</h1>
+        <h1>We Told You Anything</h1>
         <div class="card">
             <textarea id="text-box" rows="10" cols="50" placeholder="Ask me anything, Literally!"></textarea>
             <textarea id="read-only" rows="10" cols="50" readonly></textarea>
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
             <div class="break"></div>
-            <button id="clear" onclick="clearText();">Clear</button>
-            <button id="submit" onclick="sendJSON();">Submit</button>
+            <button class="submission" id="clear" onclick="clearText();"><p class="submission">Clear</p></button>
+            <button class="submission" id="submit" onclick="sendJSON();"><p class="submission">Submit</p></button>
         </div>
-        <script src="index.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
