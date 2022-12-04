@@ -26,17 +26,6 @@ class User{
     #adsWatched;
     #adsClicked;
     #banned;
-    
-    makeid(length) {
-        let result           = '';
-        let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let charactersLength = characters.length;
-        for ( let i = 0; i < length; i++ ) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
-    
 
     //base information needed to create an account
     constructor(ip,email,password,firstName,lastName,tier){
@@ -46,9 +35,18 @@ class User{
         this.#firstName = firstName;
         this.#lastName = lastName;
         this.#tier = tier;
-        this.token = makeid(32);
+        this.token = this.makeid(32);
     }
 
+    makeid(length) {
+        let result           = '';
+        let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
 
     //get methods
     getIp(){
@@ -151,5 +149,12 @@ class User{
     setRefeshToken(){
         this.#refreshToken = this.makeid(32);
     }
+    getAll(){
+        return (this.#ip,this.#email,this.#password,this.#firstName,this.#lastName,this.#tier,this.token);
+    }
 
 }
+
+module.exports = {
+    User
+};

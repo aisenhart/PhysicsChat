@@ -74,3 +74,7 @@ class Warning{
     }
     
 }
+
+module.exports = {
+    Warning
+};
