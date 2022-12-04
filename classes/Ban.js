@@ -71,3 +71,7 @@ class Ban{
     }
     
 }
+
+module.exports = {
+    Ban
+};

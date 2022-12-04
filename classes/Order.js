@@ -61,3 +61,6 @@ class Order{
         this.#completed = completed;
     }
 }
+module.exports = {
+    Order
+};
