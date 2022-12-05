@@ -26,17 +26,7 @@ class User{
     #adsWatched;
     #adsClicked;
     #banned;
-
-    //base information needed to create an account
-    constructor(ip,email,password,firstName,lastName,tier){
-        this.#ip = ip;
-        this.#email = email;
-        this.#password = password;
-        this.#firstName = firstName;
-        this.#lastName = lastName;
-        this.#tier = tier;
-        this.token = this.makeid(32);
-    }
+    #balance;
 
     makeid(length) {
         let result           = '';
@@ -48,6 +38,21 @@ class User{
         return result;
     }
 
+    //base information needed to create an account
+    constructor(ip,email,password,firstName,lastName,tier){
+        this.UID = ""
+        this.#ip = ip;
+        this.#email = email;
+        this.#password = password;
+        this.#firstName = firstName;
+        this.#lastName = lastName;
+        this.#tier = tier;
+        this.#token = ""
+        this.#refreshToken = ""
+        this.#balance=0;
+    }
+
+    
     //get methods
     getIp(){
         return this.#ip;
@@ -96,6 +101,15 @@ class User{
     }
     getAuthTokens(){
         return {"token":this.#token,"refreshToken":this.#refreshToken};
+    }
+    getToken(){
+        return this.#token;
+    }
+    getRefreshToken(){
+        return this.#refreshToken;
+    }
+    getBalance(){
+        return this.#balance;
     }
     //set methods
     setIp(ip){
@@ -146,11 +160,14 @@ class User{
     setAuthToken(){
         this.#token = this.makeid(32);
     }
-    setRefeshToken(){
+    setRefreshToken(){
         this.#refreshToken = this.makeid(32);
     }
     getAll(){
-        return (this.#ip,this.#email,this.#password,this.#firstName,this.#lastName,this.#tier,this.token);
+        return ({"token":this.#token,"refreshToken":this.#refreshToken,ip:this.#ip,email:this.#email,password:this.#password,firstName:this.#firstName,lastName:this.#lastName,tier:this.#tier,UID:this.#UID,warnings:this.#warnings,completionsCount:this.#completionsCount,usedTokens:this.#usedTokens,Orders:this.#Orders,accountCreatedAt:this.#accountCreatedAt,adsWatched:this.#adsWatched,adsClicked:this.#adsClicked,banned:this.#banned});
+    }
+    setBalance(balance){
+        this.#balance = balance;
     }
 
 }
@@ -158,3 +175,5 @@ class User{
 module.exports = {
     User
 };
+
+
