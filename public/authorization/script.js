@@ -16,7 +16,26 @@ $(function() {
   $(".form-signup-left").toggleClass("form-signup-down");
   $(".success").toggleClass("success-left"); 
   $(".frame").toggleClass("frame-short");
-  $("#submitSignUp").submit();
+  let email = document.getElementsByName("email")[1].value;
+  let password = document.getElementsByName("password")[1].value;
+  let confirmPassword= document.getElementsByName("confirmpassword")[0].value;
+  let fullName = document.getElementsByName("fullname")[0].value;
+
+  console.log(email);
+  console.log(password);
+  $.ajax({
+    url: "/register",
+    type: "POST",
+    data: {email: email, password: password,fullname: fullName,confirmpassword: confirmPassword},
+    success: function(data){
+      console.log(data);
+      if(data.success){
+        console.log("success");
+      } else{
+        console.log("error");
+      }
+    }
+	});
 	});
 });
 
@@ -35,6 +54,23 @@ $(function() {
   $(".profile-photo").toggleClass("profile-photo-down");
   $(".btn-goback").toggleClass("btn-goback-up");
   $(".forgot").toggleClass("forgot-fade");
-  $("#submitLogin").submit();
+  
+  let email = document.getElementsByName("email")[0].value;
+  let password = document.getElementsByName("password")[0].value;
+  console.log(email);
+  console.log(password);
+  $.ajax({
+    url: "/login",
+    type: "POST",
+    data: {email: email, password: password},
+    success: function(data){
+      console.log(data);
+      if(data.success){
+        console.log("success");
+      } else{
+        console.log("error");
+      }
+    }
+	});
 	});
 });

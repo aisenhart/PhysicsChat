@@ -18,8 +18,6 @@ CREATE TABLE users (
     adsWatched int,
     adsClicked int,
     banned LONGTEXT,
-    token varchar(255),
-    refreshToken varchar(255)
 );
 ```
 remember sudo mysql -u root -p

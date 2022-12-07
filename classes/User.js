@@ -12,10 +12,6 @@ class User{
     #lastName;
     #email; 
     #password; 
-    //auth
-    #token;
-    #refreshToken;
-    //
     #UID;
     #warnings;
     #completionsCount;
@@ -47,8 +43,6 @@ class User{
         this.#firstName = firstName;
         this.#lastName = lastName;
         this.#tier = tier;
-        this.#token = ""
-        this.#refreshToken = ""
         this.#balance=0;
     }
 
@@ -99,15 +93,6 @@ class User{
     getBanned(){
         return this.#banned;
     }
-    getAuthTokens(){
-        return {"token":this.#token,"refreshToken":this.#refreshToken};
-    }
-    getToken(){
-        return this.#token;
-    }
-    getRefreshToken(){
-        return this.#refreshToken;
-    }
     getBalance(){
         return this.#balance;
     }
@@ -157,14 +142,8 @@ class User{
     setBanned(banned){
         this.#banned = banned;
     }
-    setAuthToken(){
-        this.#token = this.makeid(32);
-    }
-    setRefreshToken(){
-        this.#refreshToken = this.makeid(32);
-    }
     getAll(){
-        return ({"token":this.#token,"refreshToken":this.#refreshToken,ip:this.#ip,email:this.#email,password:this.#password,firstName:this.#firstName,lastName:this.#lastName,tier:this.#tier,UID:this.#UID,warnings:this.#warnings,completionsCount:this.#completionsCount,usedTokens:this.#usedTokens,Orders:this.#Orders,accountCreatedAt:this.#accountCreatedAt,adsWatched:this.#adsWatched,adsClicked:this.#adsClicked,banned:this.#banned});
+        return ({ip:this.#ip,email:this.#email,password:this.#password,firstName:this.#firstName,lastName:this.#lastName,tier:this.#tier,UID:this.#UID,warnings:this.#warnings,completionsCount:this.#completionsCount,usedTokens:this.#usedTokens,Orders:this.#Orders,accountCreatedAt:this.#accountCreatedAt,adsWatched:this.#adsWatched,adsClicked:this.#adsClicked,banned:this.#banned});
     }
     setBalance(balance){
         this.#balance = balance;
