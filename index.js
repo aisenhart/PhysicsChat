@@ -11,6 +11,7 @@ const { User } = require("./classes/User");
 const { Ban } = require("./classes/Ban");
 const { Warning } = require("./classes/Warning");
 const { Database } = require("./classes/Database");
+const crypto = require('crypto');
 
 //connect to database and setup class
 const db = new Database();
@@ -34,60 +35,105 @@ const configuration = new Configuration({
 });  
 const openai = new OpenAIApi(configuration);
 
-app.get('/', authenticateToken,(req, res) => {
+app.get('/',verify,(req, res) => {
   res.sendFile(__dirname + '/public/homepage.html');
 });
 
-app.post('/loginform', async (req, res) => {
-  console.log('RECEIVED LOGIN REQUEST');
-  console.log(req.body);
+app.get('/beta', verify,(req, res) => {
+  res.sendFile(__dirname + '/public/app/beta.html');
+});
+
+
+app.post('/login', (req, res) => {
+  if(req.body.email.length==0){
+    res.status(400).json({"error": "email cannot be empty"});
+    return;
+  }
   const email = req.body.email;
-  user = db.getUser(email, (user) => {
-    user = user[0];
-    console.log(user);
-    if(user == undefined){
-      res.status(400).send("User not found");
-    }
-    try{
-      if(bcrypt.compare(req.body.password, user.password)){
-        console.log("PASSWORDS MATCH");
-        //const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-        //res.json({accessToken: accessToken});
-      } else{
-        res.status(400).send("Wrong password");
+  console.log(email);
+  db.getUser(email, (user) => {
+    if(user[0] == undefined){
+      res.status(400).json({"error": "user does not exist"});
+      return;
+    } else{
+      user = user[0];
+      let userCleaned = JSON.parse(JSON.stringify(user));
+      delete userCleaned.password;
+      delete userCleaned.ip;
+      try{
+        if(bcrypt.compareSync(req.body.password, user.password)){
+          const accessToken = jwt.sign(userCleaned, process.env.ACCESS_TOKEN_SECRET);
+          res.cookie('authorization', accessToken, {secure: true}).send(accessToken);
+        } else{
+          res.status(400).json({"error": "passwords do not match"});
+        }
+      } catch(err){
+        console.log(err);
+        res.status(500).send();
       }
     }
-    catch(err){
-      res.status(500).send()
-    }
-    //const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-    //res.json({ accessToken: accessToken });
   });
-  res.redirect('/');
 
 
 });
 
 app.post('/register', (req, res) => {
-  let user = newUser(req.ip,req.body.email,req.body.password,req.body.fullname);
-  if(user == undefined){
-    res.status(400).send("User already exists");
-  } else{
-    console.log("USER CREATED");
-  }
-});
+  db.getUser(req.body.email, (user) => {
 
-app.get('/stop', (req, res) => {
-  res.send('Server stopped');
-  db.end();
-  process.exit();
-});
+    if(req.body.email.indexOf("@") == -1){
+      res.status(400).json({"error":"invalid email"});
+      return;
+    }
+    if(req.body.password.length < 8){
+      res.status(400).json({"error":"password must be at least 8 characters"});
+      return;
+    }
+    if(req.body.fullname.length < 3){
+      res.status(400).json({"error":"full name must be at least 3 characters"});
+      return;
+    }
 
+    if(user[0]!=undefined){res.status(400).json({"error":"user already exists"}); return;}
+    let returnValue = newUser(req.ip,req.body.email,req.body.password,req.body.fullname);
+    if(returnValue.UID!=undefined){
+      console.log(returnValue);
+      let userCleaned = JSON.parse(JSON.stringify(returnValue));
+      delete userCleaned.password;
+      delete userCleaned.ip;
+      const accessToken = jwt.sign(userCleaned, process.env.ACCESS_TOKEN_SECRET);
+
+
+      res.cookie('authorization', accessToken, {secure: true}).json({"success":"user created"});
+    }
+    else{
+      res.status(400).json({"error":"unknown error"});
+    }
+  });
+  
+});
 
 
 app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/authorization/index.html');
 });
+
+app.get('/userinfo/:email', verify,(req, res) => {
+  db.getUser(req.params.email, (user) => {
+
+    //important!! if not logged in as requested user, return error
+    if(jwt.decode(req.cookies.authorization).email != req.params.email){
+      res.status(400).json({"error": "not logged in as requested user"});
+      return;
+    } else{
+      user = user[0];
+      let userCleaned = JSON.parse(JSON.stringify(user));
+      delete userCleaned.password;
+      delete userCleaned.ip;
+      res.json(userCleaned);
+    }
+  });
+});
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
@@ -96,11 +142,6 @@ app.listen(port, () => {
 
 // Path: classes/User.js
 function newUser(ip,email,password,fullName){
-  let checkUser = db.getUser(email, (user) => {});
-  if(checkUser.length > 0){
-    return undefined;
-  } 
-
   const hashedPassword = bcrypt.hashSync(password, 10);
   let tier = 0; //free tier 
   //(ip,email,password,firstName,lastName,tier)
@@ -116,31 +157,33 @@ function newUser(ip,email,password,fullName){
   let u1 = new User(ip,email,hashedPassword,firstName,lastName,tier);
   u1.setFirstName(firstName);
   u1.setLastName(lastName);
-  u1.setAuthToken();
-  u1.setRefreshToken();
   u1.setAccountCreatedAt(new Date().toISOString().slice(0, 19).replace("T", " "));
   u1.setAdsClicked(0);
   u1.setAdsWatched(0);
   u1.setBanned(JSON.stringify({banned: false, reason: "", date: ""}));
   u1.setCompletionsCount(0);
   u1.setOrders(JSON.stringify({}));
-  u1.setUID(u1.getAccountCreatedAt());
+  u1.setUID(crypto.randomUUID());
   u1.setUsedTokens(0);
   u1.setWarnings(JSON.stringify({}));
   db.newUser(u1, (result) => {
-    //console.log(result);
   });
-  return u1;
+  return u1.getAll();
+  
+
 }
 
-function authenticateToken(req,res,next){
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  if(token == null) return res.sendStatus(401);
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err,user) => {
-    if(err) return res.sendStatus(403);
-    req.user = user;
+function verify(req,res,next){
+  const token = req.cookies.authorization;
+  if(!token) return res.status(401).json({"error":"Access Denied"});
+  try{
+    const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    req.user = verified;
     next();
-  });
+  }
+  catch(err){
+    res.status(400).json({"error":"Invalid Token"});
+  }
 }
+
   
