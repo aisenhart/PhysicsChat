@@ -72,7 +72,18 @@ class Warning{
     setWarningIP(warningIP){
         this.#warningIP = warningIP;
     }
-    
+    toJson(){
+        return {
+            UID: this.#UID,
+            warningID: this.#warningID,
+            warningDatetime: this.#warningDatetime,
+            warningBy: this.#warningBy,
+            warningReason: this.#warningReason,
+            warningUntil: this.#warningUntil,
+            warning: this.#warning,
+            warningIP: this.#warningIP
+        };
+    }
 }
 
 module.exports = {

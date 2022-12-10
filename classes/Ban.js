@@ -69,6 +69,17 @@ class Ban{
     setBannedIP(bannedIP){
         this.#bannedIP = bannedIP;
     }
+    toJson(){
+        return {
+            UID: this.#UID,
+            bannedAt: this.#bannedAt,
+            bannedBy: this.#bannedBy,
+            reason: this.#reason,
+            bannedUntil: this.#bannedUntil,
+            banned: this.#banned,
+            bannedIP: this.#bannedIP
+        }
+    }
     
 }
 
