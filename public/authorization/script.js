@@ -20,9 +20,9 @@ $(function() {
   let password = document.getElementsByName("password")[1].value;
   let confirmPassword= document.getElementsByName("confirmpassword")[0].value;
   let fullName = document.getElementsByName("fullname")[0].value;
-
   console.log(email);
   console.log(password);
+
   $.ajax({
     url: "/register",
     type: "POST",
