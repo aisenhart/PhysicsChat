@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const GPT3Tokenizer = require('gpt3-tokenizer');
 const express = require('express');
 //internal modules
 const { Order } = require("./classes/Order");
@@ -57,6 +56,14 @@ app.get('/',verify,(req, res) => {
   res.sendFile(__dirname + '/public/homepage.html');
 });
 
+app.get('/admin', verify,(req, res) => {
+  if(jwt.decode(req.cookies.Authorization).tier != "admin"){
+    res.status(400).json({"error": "not logged in as authorized user"});
+    return;
+  } else{
+    res.sendFile('/private/admin.html');
+  }
+});
 
 app.get('/beta', verify,(req, res) => {
   res.sendFile(__dirname + '/public/app/beta.html');
