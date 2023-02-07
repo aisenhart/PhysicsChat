@@ -23,7 +23,7 @@ const db = new Database();
 db.connect();
 //web server variables
 const app = express();
-const port = 8080;
+const port = 3000;
 
 //body-parser
 app.use(express.static('public'));
