@@ -253,12 +253,6 @@ font-weight: 400;
 }
 
 
-
-
-
-
-
-
 .success {
   width: 80%;
   height: 150px;
@@ -266,8 +260,15 @@ font-weight: 400;
   position: relative;
   top: -890px;
   left: 450px;
-  opacity: .0;
+  opacity: 1000;
   transition: all .8s .4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+
 }
 
 .success-left {
@@ -283,6 +284,10 @@ font-weight: 400;
   padding-left: 37px;
   padding-right: 37px;
 }
+
+
+
+
 
 .form-signin input, .form-signup input {
   color: #ffffff;
@@ -318,6 +323,34 @@ label {
     padding-right: 40px;
     transition: background .5s ease;
  }
+
+.btn-go{
+  position: relative;
+  margin-right: auto;
+  top: -400px;
+  float: left;
+  padding: 8px;
+  width: 83%;
+  margin-left: 37px;
+  margin-right: 37px;
+  height: 35px;
+	border-radius: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: center;
+  color: #1059FF;
+  margin-top: -8px;
+  opacity: 0;
+  border: solid 1px #1059FF;
+  transition: top 1.5s ease 0.35s, opacity .75s ease .5s;
+  pointer-events: none;
+}
+.btn-go-up {
+  top: -1080px;
+  opacity: 1;
+  pointer-events: all;
+}
 
 .btn-signup {
   float: left;
@@ -434,27 +467,21 @@ a.btn-signup:hover, a.btn-signin:hover {
     url(/authorization/essay.jpeg);
   background-size: cover;
   opacity: 0;
-  transition: all 1.5s ease 0.55s;
+  transition: all 1.5s ease 0.55s;  
+  position: relative;
+  text-align: center;
 }
 
+.premium-status-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 50px;
+}
 .cover-photo-down {
   top: -575px;
   opacity: 1;
-}
-
-.profile-photo {
-  height: 125px;
-  width: 125px;
-  position: relative;
-  border-radius: 70px;
-  left: 155px;
-  top: -1000px;
-  background: url(/authorization/essay.jpeg);
-  background-size: 100% 135%;
-  background-position: 100% 100%;
-  opacity: 0;
-  transition: top 1.5s ease 0.35s, opacity .75s ease .5s;
-  border: solid 3px #ffffff;
 }
 
 .profile-photo-down {
@@ -469,71 +496,31 @@ h1 {
   text-align: center;
 }
 
-.btn-goback {
-  position: relative;
-  margin-right: auto;
-  top: -400px;
-  float: left;
-  padding: 8px;
-  width: 83%;
-  margin-left: 37px;
-  margin-right: 37px;
-  height: 35px;
-	border-radius: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 13px;
-  text-align: center;
-  color: #1059FF;
-  margin-top: -8px;
-  border: solid 1px #1059FF;
-  opacity: 0;
-  transition: top 1.5s ease 0.35s, opacity .75s ease .5s;
-}
 
 #continue{
-  border: none;
+  border: 1px;
   outline: none;
   background: none;
   color: white;
 }
 
-
-
-.btn-goback-up {
-  top: -1080px;
-  opacity: 1;
+#check path {
+  stroke: #ffffff;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: .85px;
+  stroke-dasharray: 60px 300px;
+  stroke-dashoffset: -166px;
+  fill: rgba(255,255,255,.0);
+  transition: stroke-dashoffset 2s ease .5s, fill 1.5s ease 1.0s;
+}
+#check.checked path {
+  stroke-dashoffset: 33px;
+  fill: rgba(255,255,255,.03);
 }
 
-a.btn-goback:hover {
-    cursor: pointer; 
-    background-color: #0F4FE6;
-    transition: all .5s; 
-    color: #ffffff;
-}
-
-/* refresh button styling */
-
-#refresh {
-    position: fixed;
-    bottom: 20px;
-    right: 20px; 
-    background-color: #ffffff;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    box-shadow: 0px 2px 7px rgba(0,0,0,0.1);
-    padding: 13px 0 0 13px;
-}
-
-.refreshicon {
-    fill: #d3d3d3;
-    transform: rotate(0deg);
-    transition: fill .25s ease, transform .25s ease;
-}
-
-.refreshicon:hover {
-  cursor: pointer;
-  fill: #1059FF;
-  transform: rotate(180deg);
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
