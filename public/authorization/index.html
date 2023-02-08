@@ -5,12 +5,11 @@
   <meta charset="UTF-8">
   <title>PhysicsChat Login</title>
   <link rel="stylesheet" href="/authorization/style.css">
-
 </head>
 
 <body>
   <!-- partial:index.partial.html -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <link href="https://use.typekit.net/cir1tmq.css" rel="stylesheet" type="text/css">
 
   <header>
     <nav>
@@ -58,7 +57,9 @@
           <div class="btn-animate" id="signin-btn">
             <a class="btn-signin">Sign in</a>
           </div>
-        </form>
+          
+        </form> 
+        <div class="forgot"><a href="/forgotmypassword">Forgot your password?</a></div>
 
         <form id="submitSignUp" class="form-signup" action="/register" method="post" name="form">
           <label for="fullname">Full name</label>
@@ -66,11 +67,9 @@
           <label for="email">Email</label>
           <input class="form-styling" type="text" name="email" placeholder="" required />
           <label for="password">Password</label>
-          <input class="form-styling" type="text" name="password" style="-webkit-text-security: disc" placeholder=""
-            required />
+          <input class="form-styling" type="text" name="password" style="-webkit-text-security: disc" placeholder=""required />
           <label for="confirmpassword">Confirm password</label>
-          <input class="form-styling" type="text" name="confirmpassword" style="-webkit-text-security: disc"
-            placeholder="" required />
+          <input class="form-styling" type="text" name="confirmpassword" style="-webkit-text-security: disc"placeholder="" required />
           <a ng-click="checked = !checked" class="btn-signup">Sign Up</a>
         </form>
 
@@ -95,13 +94,6 @@
         </div>
       </div>
 
-
-
-
-
-      <div class="forgot">
-        <a href="/forgotmypassword">Forgot your password?</a>
-      </div>
 
       <div>
         <div class="cover-photo">
