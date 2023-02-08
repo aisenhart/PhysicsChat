@@ -1,4 +1,10 @@
-html, body * { box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
+html, body * { 
+  box-sizing: border-box; 
+  font-family: 'Open Sans', sans-serif; 
+}
+html {
+  height: 100%;
+}
 
 body {
   background:
@@ -6,7 +12,7 @@ body {
     rgba(246,247,249,0.8),
     rgba(35,43,85,0.95)),
     url('/authorization/mountains.jpeg') no-repeat center center fixed;
-  background-size: cover;
+    background-size: cover;
 }
 
 .container {
@@ -16,7 +22,7 @@ body {
 }
 
 .frame {
-  height: 575px;
+  height: 545px;
   width: 430px;
   background:
     linear-gradient(
@@ -44,18 +50,20 @@ body {
 }
 
 header {
-  background-color: #58595b;
+  background: rgba(255,255,255,.2);
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
   align-items: center;
   justify-content: space-between;
-  background:rgba(35,43,85,0.75),
+  background: rgba(35,43,85,0.75);
+
+
+  
 }
+
 #logo {
-  height: 50px;
-  width: 50px;
-  margin-right: 20px;
+  width: 30px;
 }
 header nav ul {
   display: flex;
@@ -174,6 +182,82 @@ li {
   top: 0px;
   opacity: 0;
 }
+/*
+font-weight: 400;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding-left: 15px;
+  padding-bottom: 10px;
+  color: rgba(255,255,255,.7);
+  display: block;
+
+*/
+/*Create CSS for an unsuccessful password attempt that looks just like the labels*/
+.incorrect-container-hidden{
+  width: 100%;
+  transition: all .5s ease;
+  opacity: 0;
+  display: block;
+  position: relative;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s; 
+
+}
+.incorrect-container-show {
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  transition: all .5s ease;
+  display: block;
+  position: relative;
+  transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s; 
+
+}
+
+.incorrect-text {
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #ff0000;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: -35px;
+  margin-bottom: -20px;
+  top: -10px;
+  left: 0px;
+  transition: all .5s ease;
+}
+
+/*Button shake animation. Shake the btn-animate*/
+.btn-animate-shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+
+
+
+
+
 
 .success {
   width: 80%;
@@ -198,22 +282,6 @@ li {
   margin-top: -35px;
   padding-left: 37px;
   padding-right: 37px;
-}
-
-#check path {
-    stroke: #ffffff;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    stroke-width: .85px;
-    stroke-dasharray: 60px 300px;
-    stroke-dashoffset: -166px;
-    fill: rgba(255,255,255,.0);
-    transition: stroke-dashoffset 2s ease .5s, fill 1.5s ease 1.0s;
-}
-
-#check.checked path {
-    stroke-dashoffset: 33px;
-    fill: rgba(255,255,255,.03);
 }
 
 .form-signin input, .form-signup input {
@@ -250,91 +318,6 @@ label {
     padding-right: 40px;
     transition: background .5s ease;
  }
-
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-  position: absolute;
-  display: none;
-}
-
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
-  position: relative;
-  padding-left: 85px;
-  padding-top: 2px;
-  cursor: pointer;
-  margin-top: 8px;
-}
-
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before,
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: '';
-  position: absolute;
-}
-
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  width: 65px; 
-  height: 30px;
-  background: rgba(255,255,255,.2);
-  border-radius: 15px;
-  left: 0; 
-  top: -3px;
-  transition: all .2s ease;
-}
-
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  width: 10px; 
-  height: 10px;
-  background: rgba(255,255,255,.7);
-  border-radius: 50%;
-  top: 7px; 
-  left: 10px;
-  transition: all .2s ease;
-}
-
-/* on checked */
-[type="checkbox"]:checked + label:before {
-  background: #0F4FE6; 
-}
-
-[type="checkbox"]:checked + label:after {
-  background: #ffffff;
-  top: 7px; 
-  left: 45px;
-}
-
-[type="checkbox"]:checked + label .ui,
-[type="checkbox"]:not(:checked) + label .ui:before,
-[type="checkbox"]:checked + label .ui:after {
-  position: absolute;
-  left: 6px;
-  width: 65px;
-  border-radius: 15px;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 22px;
-  transition: all .2s ease;
-}
-
-[type="checkbox"]:not(:checked) + label .ui:before {
-  content: "no";
-  left: 32px;
-  color: rgba(255,255,255,.7);
-}
-
-[type="checkbox"]:checked + label .ui:after {
-  content: "yes";
-  color: #ffffff;
-}
-
-[type="checkbox"]:focus + label:before {
-  box-sizing: border-box;
-  margin-top: -1px;
-}
 
 .btn-signup {
   float: left;
@@ -380,6 +363,7 @@ label {
   top: 0px;
   transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s; 
 }
+
 
 .btn-animate-grow {
   width: 130%;

@@ -46,15 +46,7 @@ $(function() {
 });
 //i reused the go back button without renaming the classes because im lazy
 $(function() {
-	$(".btn-signin").click(function() {
-  $(".btn-animate").toggleClass("btn-animate-grow");
-  $(".welcome").toggleClass("welcome-left");
-  $(".cover-photo").toggleClass("cover-photo-down");
-  $(".frame").toggleClass("frame-short");
-  $(".profile-photo").toggleClass("profile-photo-down");
-  $(".btn-goback").toggleClass("btn-goback-up");
-  $(".forgot").toggleClass("forgot-fade");
-  
+  $(".btn-signin").click(function() {
   let email = document.getElementsByName("email")[0].value;
   let password = document.getElementsByName("password")[0].value;
   console.log(email);
@@ -64,13 +56,28 @@ $(function() {
     type: "POST",
     data: {email: email, password: password},
     success: function(data){
-      console.log(data);
-      if(data.success){
+      console.log(data.success);
+        //show the success message
+        $(".btn-animate").toggleClass("btn-animate-grow");
+        $(".welcome").toggleClass("welcome-left");
+        $(".cover-photo").toggleClass("cover-photo-down");
+        $(".frame").toggleClass("frame-short");
+        $(".profile-photo").toggleClass("profile-photo-down");
+        $(".btn-goback").toggleClass("btn-goback-up");
+        $(".forgot").toggleClass("forgot-fade");
+        $(".incorrect-container-show").toggleClass("incorrect-container-hidden");
+        $(".incorrect-container-hidden").removeClass("incorrect-container-show");
         console.log("success");
-      } else{
-        console.log("error");
-      }
-    }
+
+    },
+
+    error: function(data){
+    //show the Incorrect Password message
+     $(".incorrect-container-hidden").toggleClass("incorrect-container-show");
+     $(".incorrect-container-show").removeClass("incorrect-container-hidden");
+    //Make the button shake
+    $('.btn-animate').addClass('btn-animate-shake');
+}
 	});
-	});
+});
 });
