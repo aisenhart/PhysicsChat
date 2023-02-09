@@ -4,27 +4,59 @@
 <head>
   <meta charset="UTF-8" />
   <title>PhysicsChat Login</title>
-  <link rel="stylesheet" href="/authorization/style.css" />
+  <link rel="stylesheet" href="/authorization/login.css" />
 </head>
 
 <body>
-  <!-- partial:index.partial.html -->
 
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
-  <header>
-    <nav>
-      <ul>
-        <img src="/authorization/mainLogo@0.5x.jpeg" alt="Logo" id="logo" style="margin: 4px;" />
-        <li>
-          <a> <strong>Physics-Chat</strong> </a>
-        </li>
-        <li><a href="">About</a></li>
-        <li><a href="#">Bug Reports</a></li>
-        <li><a href="">Support</a></li>
-      </ul>
-    </nav>
-  </header>
+
+  <nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
+    <div class="container">
+    <img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
+      <a class="navbar-brand" href="homepage.html">Physics-Chat</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="ti-menu"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Home
+              <span><i class="ti-angle-down"></i></span>
+            </a>
+            <!-- Dropdown list -->
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/authorization/login.html">Sign Up</a></li>
+              <li><a class="dropdown-item" href="/authorization/login.html">Login</a></li>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown @@pages">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
+              <span><i class="ti-angle-down"></i></span>
+            </a>
+            <!-- Dropdown list -->
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item @@privacy" href="privacy-policy.html">Privacy</a></li>
+              <li><a class="dropdown-item @@faq" href="FAQ.html">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item @@contact">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
 
   <div class="container">
     <div class="frame">

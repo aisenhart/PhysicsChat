@@ -8,7 +8,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Open Sans", sans-serif;
-  color: #000;
+  color: #212121;
   font-weight: 300;
 }
 
@@ -104,7 +104,7 @@ ul.social-links li a {
 
 ul.social-links li a i {
   font-size: 20px;
-  color: #000;
+  color: #212121;
 }
 
 body {
@@ -161,7 +161,7 @@ a:hover {
 
 .section-title {
   text-align: center;
-  margin-bottom: 80px;
+
 }
 
 .section-title h2 {
@@ -184,71 +184,6 @@ a:hover {
   text-align: center;
 }
 
-.video {
-  position: relative;
-}
-
-.video:before {
-  border-radius: 3px;
-}
-
-.video img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.video .video-button {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.video .video-box a {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.video .video-box a i {
-  height: 125px;
-  width: 125px;
-  font-size: 40px;
-  background: #2e7eed;
-  border-radius: 100%;
-  color: #fff;
-  line-height: 125px;
-  text-align: center;
-}
-
-@media (max-width: 992px) {
-  .video .video-box a i {
-    height: 80px;
-    width: 80px;
-    line-height: 80px;
-    font-size: 22px;
-  }
-}
-
-.video .video-box a iframe {
-  width: 100%;
-  height: 100%;
-}
-
-.form-control.main {
-  background: #fff;
-  padding: 15px 20px;
-  height: 48px;
-  margin-bottom: 20px;
-  border: 1px solid #cccccc;
-  font-size: 14px;
-}
 
 .form-control.main:focus {
   border: 1px solid #2e7eed;
@@ -406,7 +341,7 @@ button:focus,
   font-size: 13px;
   text-transform: uppercase;
   font-weight: 600;
-  color: #000;
+  color: #212121;
   padding-left: 20px;
   padding-right: 20px;
   line-height: 45px;
@@ -654,7 +589,7 @@ button:focus,
 
 .footer-classic ul.social-icons li a i {
   font-size: 25px;
-  color: #000;
+  color: #212121;
 }
 
 .footer-classic ul.footer-links li a {
@@ -663,7 +598,7 @@ button:focus,
   font-weight: bold;
   text-transform: uppercase;
   font-size: 14px;
-  color: #000;
+  color: #212121;
 }
 
 .scroll-top-to {
@@ -762,7 +697,7 @@ button:focus,
 }
 
 .jd-modal .modal-content .modal-header .modal-title {
-  color: #000;
+  color: #212121;
 }
 
 .jd-modal .modal-content .modal-body .block-2 {
@@ -775,7 +710,7 @@ button:focus,
 }
 
 .jd-modal .modal-content .modal-body .block-2 .title p {
-  color: #000;
+  color: #212121;
 }
 
 .jd-modal .modal-content .modal-body .block-2 .details {
@@ -794,7 +729,7 @@ button:focus,
 
 .jd-modal .modal-content .modal-body .block-2 .details ul li span {
   padding-right: 5px;
-  color: #000;
+  color: #212121;
 }
 
 .jd-modal .modal-content .modal-body .form-title {
@@ -1467,7 +1402,7 @@ hr {
 
 .featured-article article.featured .content h2 a {
   font-size: 30px;
-  color: #000;
+  color: #212121;
   display: inline-block;
 }
 
@@ -1497,7 +1432,7 @@ hr {
 }
 
 .post-sm .post-title h3 a {
-  color: #000;
+  color: #212121;
   font-size: 20px;
 }
 
@@ -1539,7 +1474,7 @@ hr {
 }
 
 .blog-single .single-post .post-body .quote blockquote {
-  color: #000;
+  color: #212121;
   padding: 10px 0 10px 30px;
   text-align: left;
   font-size: 30px;
@@ -1833,7 +1768,7 @@ hr {
   line-height: 60px;
   height: 60px;
   width: 60px;
-  border: 1px solid #000;
+  border: 1px solid #212121;
   border-radius: 100%;
 }
 
@@ -1929,7 +1864,7 @@ hr {
 
 .faq .block .faq-item .item .item-link a {
   font-size: 20px;
-  color: #000;
+  color: #212121;
 }
 
 .faq .block .faq-item .item .item-link a span {
@@ -1989,7 +1924,7 @@ hr {
 }
 
 .privacy .privacy-nav ul li a.active {
-  color: #000;
+  color: #212121;
 }
 
 @media (max-width: 768px) {
@@ -2095,11 +2030,11 @@ hr {
 }
 
 .user-login .block .content .new-acount p a {
-  color: #000;
+  color: #212121;
 }
 
 .coming-soon {
-  color: #000;
+  color: #212121;
   padding: 120px 0;
   min-height: 100vh;
 }
@@ -2190,5 +2125,3 @@ hr {
     height: 350px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
