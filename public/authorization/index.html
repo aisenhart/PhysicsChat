@@ -2,31 +2,29 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>PhysicsChat Login</title>
-  <link rel="stylesheet" href="/authorization/style.css">
+  <link rel="stylesheet" href="/authorization/style.css" />
 </head>
 
 <body>
   <!-- partial:index.partial.html -->
-  <link href="https://use.typekit.net/cir1tmq.css" rel="stylesheet" type="text/css">
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
   <header>
     <nav>
       <ul>
-        <img src="/authorization/mainLogo@0.5x.jpeg" alt="Logo" id="logo">
+        <img src="/authorization/mainLogo@0.5x.jpeg" alt="Logo" id="logo" style="margin: 4px;" />
         <li>
-          <a> <strong>PhysicsChat</strong> </a>
+          <a> <strong>Physics-Chat</strong> </a>
         </li>
         <li><a href="">About</a></li>
         <li><a href="#">Bug Reports</a></li>
         <li><a href="">Support</a></li>
-
-
       </ul>
     </nav>
   </header>
-
 
   <div class="container">
     <div class="frame">
@@ -44,22 +42,17 @@
           <input class="form-styling" type="text" name="password" style="-webkit-text-security: disc" placeholder=""
             required />
 
-
-
           <div class="incorrect-container-hidden">
             <p class="incorrect-text">Incorrect email or password</p>
           </div>
 
-
-
-
-
           <div class="btn-animate" id="signin-btn">
             <a class="btn-signin">Sign in</a>
           </div>
-          
-        </form> 
-        <div class="forgot"><a href="/forgotmypassword">Forgot your password?</a></div>
+        </form>
+        <div class="forgot">
+          <a href="/forgotmypassword">Forgot your password?</a>
+        </div>
 
         <form id="submitSignUp" class="form-signup" action="/register" method="post" name="form">
           <label for="fullname">Full name</label>
@@ -67,18 +60,13 @@
           <label for="email">Email</label>
           <input class="form-styling" type="text" name="email" placeholder="" required />
           <label for="password">Password</label>
-          <input class="form-styling" type="text" name="password" style="-webkit-text-security: disc" placeholder=""required />
+          <input class="form-styling" type="text" name="password" style="-webkit-text-security: disc" placeholder=""
+            required />
           <label for="confirmpassword">Confirm password</label>
-          <input class="form-styling" type="text" name="confirmpassword" style="-webkit-text-security: disc"placeholder="" required />
+          <input class="form-styling" type="text" name="confirmpassword" style="-webkit-text-security: disc"
+            placeholder="" required />
           <a ng-click="checked = !checked" class="btn-signup">Sign Up</a>
         </form>
-
-
-
-
-
-
-
 
         <div class="success">
           <svg width="270" height="270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -87,32 +75,34 @@
                       c3.894-6.28,11.169-10.243,19.283-9.348c9.258,1.021,16.694,8.542,17.622,17.81c1.232,12.295-8.683,22.607-20.849,22.042
                       c-9.9-0.46-18.128-8.344-18.972-18.218c-0.292-3.416,0.276-6.673,1.51-9.578" />
           </svg>
-            <div class="successtext">
-              <p>Thanks for signing up!</p>
-            </div>
-            <button id="continue">Continue</button>
+          <div class="successtext">
+            <p>Thanks for signing up!</p>
+          </div>
+          <button id="continue">Continue</button>
         </div>
       </div>
-
 
       <div>
         <div class="cover-photo">
 
           <div class="premium-status-container">
-            <a>Premium Status</a>
+            <a>Premium</a>
           </div>
 
         </div>
         <h1 class="welcome">Welcome, {user}</h1>
-        <a class="btn-go" href="/beta">Go!</a>
+        <a class="btn-go" href="/beta">LETSSS GOOO!!!</a>
       </div>
+
     </div>
+
+
+
   </div>
   <!-- partial -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
   <script src="/authorization/script.js"></script>
-
 </body>
 
 </html>

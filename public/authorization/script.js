@@ -6,6 +6,8 @@ $(function() {
     $(".signup-inactive").toggleClass("signup-active");
     $(".signin-active").toggleClass("signin-inactive");
     $(".forgot").toggleClass("forgot-left");   
+    $(".premium-status-container").toggleClass("premium-status-container-left");
+    $(".cover-photo").toggleClass("cover-photo-left");
     $(this).removeClass("idle").addClass("active");
 	});
 });
@@ -95,6 +97,7 @@ $(function () {
         $(".profile-photo").toggleClass("profile-photo-down");
         $(".btn-go").toggleClass("btn-go-up");
         $(".forgot").toggleClass("forgot-fade");
+        $(".forgot").toggleClass("forgot-left");   
         $(".incorrect-container-show").toggleClass(
           "incorrect-container-hidden"
         );

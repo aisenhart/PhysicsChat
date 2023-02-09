@@ -74,9 +74,10 @@ header nav ul {
 }
 
 header nav a {
+  text-transform: none;
   color: #fff;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
 }
 header nav a:hover {
   border-bottom: solid 3px #1059FF;
@@ -342,12 +343,13 @@ label {
   color: #1059FF;
   margin-top: -8px;
   opacity: 0;
-  border: solid 1px #1059FF;
-  transition: top 1.5s ease 0.35s, opacity .75s ease .5s;
+  border: solid 3px #1059FF;
+  transition: top 1.5s, ease 2.2s, opacity 1s ease 2s;
   pointer-events: none;
+  text-decoration: none;
 }
 .btn-go-up {
-  top: -1080px;
+  top: -1200px;
   opacity: 1;
   pointer-events: all;
 }
@@ -435,6 +437,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 
 .forgot-fade {
   opacity: 0;
+  height: 0px;
 }
 
 .forgot a {
@@ -450,13 +453,14 @@ a.btn-signup:hover, a.btn-signin:hover {
   position: relative;
   color: rgba(35,43,85,0.75);
   opacity: 0;
-  transition: transform 1.5s ease .25s, opacity .1s ease 1s;
+  transition: transform 1.5s ease .5s, opacity .1s ease 1s;
 }
 
 .welcome-left {
-  transform: translateY(-780px);
+  transform: translateY(-1240px);
   opacity: 1; 
 }
+
 
 .cover-photo {
   height: 150px;
@@ -469,25 +473,40 @@ a.btn-signup:hover, a.btn-signin:hover {
     url(/authorization/essay.jpeg);
   background-size: cover;
   opacity: 0;
-  transition: all 1.5s ease 0.55s;  
+  transition: top 1.5s, ease 2.2s, opacity 1s ease 2s;
   position: relative;
   text-align: center;
 }
-
+.cover-photo-left {
+  transform: translateX(-400px);
+  opacity: 0;
+}
+.premium-status-container-left {
+  transform: translateX(-400px);
+  opacity: 0;
+}
 .premium-status-container {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   padding: 50px;
+  
 }
-.cover-photo-down {
-  top: -575px;
-  opacity: 1;
-}
+.premium-status-container a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  }
 
-.profile-photo-down {
-  top: -636px;
+.cover-photo-down {
+  top: -1286px;
   opacity: 1;
 }
 
