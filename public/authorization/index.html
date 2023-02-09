@@ -42,7 +42,7 @@
           <input class="form-styling" type="text" name="password" style="-webkit-text-security: disc" placeholder=""
             required />
 
-          <div class="incorrect-container-hidden">
+          <div class="signin-incorrect-hidden">
             <p class="incorrect-text">Incorrect email or password</p>
           </div>
 
@@ -53,6 +53,18 @@
         <div class="forgot">
           <a href="/forgotmypassword">Forgot your password?</a>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
         <form id="submitSignUp" class="form-signup" action="/register" method="post" name="form">
           <label for="fullname">Full name</label>
@@ -65,8 +77,24 @@
           <label for="confirmpassword">Confirm password</label>
           <input class="form-styling" type="text" name="confirmpassword" style="-webkit-text-security: disc"
             placeholder="" required />
+            <div class="signup-incorrect-hidden">
+              <p class="incorrect-text">ERROR</p>
+            </div>
           <a ng-click="checked = !checked" class="btn-signup">Sign Up</a>
         </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="success">
           <svg width="270" height="270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

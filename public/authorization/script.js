@@ -1,75 +1,66 @@
-$(function() {
-	$(".btn").click(function() {
-		$(".form-signin").toggleClass("form-signin-left");
+$(function () {
+  $(".btn").click(function () {
+    $(".form-signin").toggleClass("form-signin-left");
     $(".form-signup").toggleClass("form-signup-left");
     $(".frame").toggleClass("frame-long");
     $(".signup-inactive").toggleClass("signup-active");
     $(".signin-active").toggleClass("signin-inactive");
-    $(".forgot").toggleClass("forgot-left");   
+    $(".forgot").toggleClass("forgot-left");
     $(".premium-status-container").toggleClass("premium-status-container-left");
     $(".cover-photo").toggleClass("cover-photo-left");
     $(this).removeClass("idle").addClass("active");
-	});
+  });
 });
 
 $(function () {
   $(".btn-signup").click(function () {
-    $(".nav").toggleClass("nav-up");
-    $(".form-signup-left").toggleClass("form-signup-down");
-    $(".success").toggleClass("success-left");
-    $(".frame").toggleClass("frame-short");
     let email = document.getElementsByName("email")[1].value;
     let password = document.getElementsByName("password")[1].value;
-    let confirmPassword = document.getElementsByName("confirmpassword")[0].value;
+    let confirmPassword =
+      document.getElementsByName("confirmpassword")[0].value;
     let fullName = document.getElementsByName("fullname")[0].value;
     console.log(email);
     console.log(password);
 
-    $.ajax({
-      url: "/register",
-      type: "POST",
-      data: {
-        email: email,
-        password: password,
-        fullname: fullName,
-        confirmpassword: confirmPassword,
-      },
-      //success function
-      success: function (data) {
-        console.log(data);
-        if (data.success) {
-          console.log("success");
-        } else {
-          console.log("error");
-        }
-      },
+    if (password != confirmPassword) {
+      $(".signup-incorrect-hidden").toggleClass("signup-incorrect-show");
+      $(".signup-incorrect-show").removeClass("signup-incorrect-hidden");
+      $(".incorrect-text").text("Passwords do not match");
+    } else {
+      $.ajax({
+        url: "/register",
+        type: "POST",
+        data: {
+          email: email,
+          password: password,
+          fullname: fullName,
+          confirmpassword: confirmPassword,
+        },
 
-      //error function
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
-      },
-    });
+        //success function
+        success: function (data) {
+          $(".nav").toggleClass("nav-up");
+          $(".form-signup-left").toggleClass("form-signup-down");
+          $(".success").toggleClass("success-left");
+          $(".frame").toggleClass("frame-short");
+          console.log(data);
+        },
+
+        //error function
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log("error-");
+          //Set text of error message:
+          $(".signup-incorrect-hidden").toggleClass("signup-incorrect-show");
+          $(".signup-incorrect-show").removeClass("signup-incorrect-hidden");
+          $(".incorrect-text").text(jqXHR.responseJSON.error);
+          console.log(jqXHR.responseJSON.error);
+          //Make the button shake
+          $(".btn-signup").addClass("btn-animate-shake");
+        },
+      });
+    }
   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 $(function () {
   $("#continue").click(function () {
@@ -97,24 +88,16 @@ $(function () {
         $(".profile-photo").toggleClass("profile-photo-down");
         $(".btn-go").toggleClass("btn-go-up");
         $(".forgot").toggleClass("forgot-fade");
-        $(".forgot").toggleClass("forgot-left");   
-        $(".incorrect-container-show").toggleClass(
-          "incorrect-container-hidden"
-        );
-        $(".incorrect-container-hidden").removeClass(
-          "incorrect-container-show"
-        );
+        $(".forgot").toggleClass("forgot-left");
+        $(".signin-incorrect-show").toggleClass("signin-incorrect-hidden");
+        $(".signin-incorrect-hidden").removeClass("signin-incorrect-show");
         console.log("success");
       },
 
       error: function (data) {
         //show the Incorrect Password message
-        $(".incorrect-container-hidden").toggleClass(
-          "incorrect-container-show"
-        );
-        $(".incorrect-container-show").removeClass(
-          "incorrect-container-hidden"
-        );
+        $(".signin-incorrect-hidden").toggleClass("signin-incorrect-show");
+        $(".signin-incorrect-show").removeClass("signin-incorrect-hidden");
         //Make the button shake
         $(".btn-animate").addClass("btn-animate-shake");
       },

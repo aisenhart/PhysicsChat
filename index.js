@@ -52,7 +52,7 @@ GET REQUESTS
 */
 
 
-app.get('/',verify,(req, res) => {
+app.get('/',(req, res) => {
   res.sendFile(__dirname + '/public/homepage.html');
 });
 

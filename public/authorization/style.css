@@ -194,7 +194,7 @@ font-weight: 400;
 
 */
 /*Create CSS for an unsuccessful password attempt that looks just like the labels*/
-.incorrect-container-hidden{
+.signin-incorrect-hidden{
   width: 100%;
   transition: all .5s ease;
   opacity: 0;
@@ -205,7 +205,7 @@ font-weight: 400;
   transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s; 
 
 }
-.incorrect-container-show {
+.signin-incorrect-show {
   width: 100%;
   margin-top: 25px;
   margin-bottom: 20px;
@@ -215,6 +215,33 @@ font-weight: 400;
   transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s; 
 
 }
+
+.signup-incorrect-hidden{
+  width: 100%;
+  transition: all .5s ease;
+  opacity: 0;
+  display: block;
+  position: relative;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s; 
+
+}
+.signup-incorrect-show {
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  transition: all .5s ease;
+  display: block;
+  position: relative;
+  transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s; 
+
+}
+
+
+
+
+
 
 .incorrect-text {
   text-align: center;
