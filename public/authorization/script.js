@@ -62,12 +62,12 @@ $(function () {
   });
 });
 
-$(function () {
+/*$(function () {
   $("#continue").click(function () {
-    window.location.href = "/";
+    window.location.href = "/beta.html";
   });
-});
-//i reused the go back button without renaming the classes because im lazy
+
+}); */
 $(function () {
   $(".btn-signin").click(function () {
     let email = document.getElementsByName("email")[0].value;
