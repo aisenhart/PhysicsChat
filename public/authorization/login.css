@@ -15,7 +15,7 @@ body {
   background:
     linear-gradient(
     rgba(246,247,249,0.8),
-    rgba(35,43,85,0.95)),
+    rgba(40, 68, 159, 0.85)),
     url("mountains.jpeg") no-repeat center center fixed;
     background-size: cover;
 }
@@ -30,10 +30,10 @@ body {
   height: 545px;
   width: 430px;
   background:
-    linear-gradient(
+     linear-gradient(
     rgba(35,43,85,0.75),
-    rgba(35,43,85,0.95)),
-    url(mountains.jpeg) no-repeat center center;
+    rgba(35,43,85,0.95));
+    /*url(mountains.jpeg) no-repeat center center;*/
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
@@ -523,7 +523,7 @@ a.btn-signup:hover, a.btn-signin:hover {
   
 }
 .premium-status-container a {
-  display: flex;
+
   align-items: center;
   justify-content: center;
   height: 100%;
