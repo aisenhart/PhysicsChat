@@ -68,12 +68,31 @@ $(function () {
   });
 
 }); */
+
+
+
 $(function () {
   $(".btn-signin").click(function () {
     let email = document.getElementsByName("email")[0].value;
     let password = document.getElementsByName("password")[0].value;
     console.log(email);
     console.log(password);
+
+    $.ajax({
+      url: '/get-user-name',
+      type: 'POST',
+      data: { email: email },
+      success: function (data) {
+        let name = data.name;
+        $('.welcome').text('Welcome, ' + name);
+        console.log("name: " + name);
+        // rest of the success function code
+      },
+      error: function (data) {
+        // error handling code
+      }
+    });
+
     $.ajax({
       url: "/login",
       type: "POST",
@@ -91,6 +110,28 @@ $(function () {
         $(".forgot").toggleClass("forgot-left");
         $(".signin-incorrect-show").toggleClass("signin-incorrect-hidden");
         $(".signin-incorrect-hidden").removeClass("signin-incorrect-show");
+        //How do I set the text of the h1 element with the class of welcome to "Welcome, +" the name? How do I get the data of the users name from the databse?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         console.log("success");
       },
 

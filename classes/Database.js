@@ -206,6 +206,12 @@ class Database {
             });
         });
     }
+    getFirstName(email) {
+        this.getUser(email, (user) => {
+            user = user[0];
+            return user.firstName;
+        });
+    }
 
     
 }

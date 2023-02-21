@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:300,400,600,700,800");
+body {
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans", sans-serif;
+  color: #212121;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 45px;
+  line-height: 61px;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 50px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+p, li, blockquote, label {
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+  color: #808080;
+  margin-bottom: 0;
+}
+
+
+
+
+
+
+
+
+#textbox {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid black;
+    padding: 10px;
+}
+#submit {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#clear {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#nav {
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #5a989e;
+}
+#nav a {
+    text-decoration: none;
+margin: 30px;
+    color: rgb(233, 233, 233);
+}
+#nav a:hover {
+    color: rgb(255, 255, 255);
+transition: linear 0.5s;
+}
+
+#text-area {
+height: 500px;
+width: 100%;
+min-width: 95%;
+max-width: max-content;
+max-height: 500px;
+min-height: 100px;
+
+}

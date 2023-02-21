@@ -103,6 +103,19 @@ app.get('/userinfo/:email', verify,(req, res) => {
 POST REQUESTS
 
 */
+app.post('/get-user-name', function(req, res) {
+  let email = req.body.email;
+  db.getUser(email, (user) => {
+    if (user.length == 0){
+      res.status(400).json({"error": "user does not exist"});
+      return;
+    }
+    user = user[0];
+    res.json({"name": user.name});
+  });
+});
+
+
 
 
 app.post('/ai', verify, async (req, res) => {
