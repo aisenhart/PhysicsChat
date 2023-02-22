@@ -79,7 +79,7 @@ $(function () {
     console.log(password);
 
     $.ajax({
-      url: '/get-user-name',
+      url: '/get-user-info',
       type: 'POST',
       data: { email: email },
       success: function (data) {

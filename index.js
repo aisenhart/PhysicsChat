@@ -103,17 +103,20 @@ app.get('/userinfo/:email', verify,(req, res) => {
 POST REQUESTS
 
 */
-app.post('/get-user-name', function(req, res) {
+app.post('/get-user-info', function(req, res) {
   let email = req.body.email;
   db.getUser(email, (user) => {
-    if (user.length == 0){
+    console.log(user.firstName);
+    console.log(JSON.stringify(user));
+    console.log(user.hasOwnProperty('firstName'));
+    if (user) {
+      res.json({"firstName": user.firstName});
+    } else {
       res.status(400).json({"error": "user does not exist"});
-      return;
     }
-    user = user[0];
-    res.json({"name": user.name});
   });
 });
+
 
 
 
