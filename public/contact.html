@@ -168,8 +168,37 @@ FACEBOOK: https://www.facebook.com/themefisher
   <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
   <script src="plugins/syotimer/jquery.syotimer.min.js"></script>
   <script src="plugins/aos/aos.js"></script>
-  
-  <script src="js/script.js"></script>
+ <!-- <script>
+
+    //Code for the contact form, to add to database.
+    //when the submit button is clicked
+    $(".btn-main-md").click(function(){
+      //get the values from the form
+      var name = $(".form-control.main").eq(0).val();
+      var email = $(".form-control.main").eq(1).val();
+      var subject = $(".form-control.main").eq(2).val();
+      var message = $(".form-control.main").eq(3).val();
+      //send the values to the database
+      $.post("contact.php", {name: name, email: email, subject: subject, message: message}, function(data){
+        if(data == "success"){
+          alert("Your message has been sent successfully!");
+          $(".form-control.main").val("");
+        }
+        else{
+          alert("There was an error sending your message. Please try again later.");
+        }
+      });
+    });
+
+
+
+
+
+
+
+
+  </script>-->
+
 </body>
 
 </html>
