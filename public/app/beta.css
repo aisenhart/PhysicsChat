@@ -1,36 +1,82 @@
 @import url("https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:300,400,600,700,800");
-body {
-  font-family: "Open Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
+
+
+
+h1, h2, h3 {
+  font-family: 'Lora', serif;
+}
+.nav {
+  width: 85%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #5a989e;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", sans-serif;
-  color: #212121;
-  font-weight: 300;
+.nav a {
+  text-decoration: none;
+  margin: 30px;
+  color: #fff;
 }
 
-h1 {
-  font-size: 45px;
-  line-height: 61px;
+.nav a:hover {
+  color: #fff;
+  transition: linear 0.5s;
 }
 
-h2 {
-  font-size: 40px;
-  line-height: 50px;
+.textbox {
+  width: 80%;
+  height: 80%;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  background-color: #fff;
 }
 
-h3 {
-  font-size: 20px;
-  line-height: 30px;
+.text-area {
+  height: 500px;
+  width: 100%;
+  min-width: 95%;
+  max-width: max-content;
+  max-height: 500px;
+  min-height: 100px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  resize: none;
 }
 
-p, li, blockquote, label {
-  font-size: 16px;
-  letter-spacing: 0;
-  line-height: 25px;
-  color: #808080;
-  margin-bottom: 0;
+.submit,
+.clear {
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #2e7eed;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.submit:hover,
+.clear:hover {
+  background-color: #0f3467;
+  transition: linear 0.5s;
+}
+.button-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.basic {
+  display: inline-block;
+  padding: 10px;
 }
 
 
@@ -38,47 +84,35 @@ p, li, blockquote, label {
 
 
 
+.spin:before {
+  content: '';
+  display: block;
+  height: 40px;
+  width: 40px;
+  animation: spin 0.5s infinite linear;
+  border: 6px solid #fff;
+  border-left-color: #2e7eed;
+  border-radius: 100%;
+}
+.basic:before {
+  content: '';
+  display: block;
+  height: 40px;
+  width: 40px;
+  -webkit-animation: spin .5s infinite linear;
+          animation: spin .5s infinite linear;
+  border: 6px var(#fff) solid;
+  border-left-color: var(#2e7eed);
+  border-radius: 100%; }
 
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
 
-#textbox {
-    width: 80%;
-    height: 80%;
-    margin: auto;
-    margin-top: 50px;
-    border: 1px solid black;
-    padding: 10px;
-}
-#submit {
-    margin-top: 10px;
-    margin-left: 10px;
-}
-#clear {
-    margin-top: 10px;
-    margin-left: 10px;
-}
-#nav {
-    width: 100%;
-    margin: auto;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #5a989e;
-}
-#nav a {
-    text-decoration: none;
-margin: 30px;
-    color: rgb(233, 233, 233);
-}
-#nav a:hover {
-    color: rgb(255, 255, 255);
-transition: linear 0.5s;
-}
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
 
-#text-area {
-height: 500px;
-width: 100%;
-min-width: 95%;
-max-width: max-content;
-max-height: 500px;
-min-height: 100px;
-
-}
+            

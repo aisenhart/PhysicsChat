@@ -1,103 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html style="
+  background-image: url('/images/blurry-gradient-haikei.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+">
 <head>
 	<title>Text Box</title>
-	<style type="text/css">
-		body {
-			background-color: #CBF1F5;
-		}
-		#textbox {
-			width: 80%;
-			height: 80%;
-			margin: auto;
-			margin-top: 50px;
-			border: 1px solid black;
-			padding: 10px;
-		}
-		#submit {
-			margin-top: 10px;
-			margin-left: 10px;
-		}
-		#clear {
-			margin-top: 10px;
-			margin-left: 10px;
-		}
-		#nav {
-			width: 100%;
-			margin: auto;
-			margin-top: 10px;
-			padding: 10px;
-      background-color: #5a989e;
-		}
-		#nav a {
-			text-decoration: none;
-      margin: 30px;
-			color: rgb(233, 233, 233);
-		}
-		#nav a:hover {
-			color: rgb(255, 255, 255);
-      transition: linear 0.5s;
-		}
+	<link rel="stylesheet" href="/app/beta.css" />
+	<link href="index.css" rel="stylesheet">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Bootstrap App Landing Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+	<meta name="author" content="Themefisher">
+	<meta name="generator" content="Themefisher Small Apps Template v1.0">
+	 
+	<!-- PLUGINS CSS STYLE -->
+	<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="/plugins/slick/slick.css">
+	<link rel="stylesheet" href="/plugins/slick/slick-theme.css">
+	<link rel="stylesheet" href="/plugins/fancybox/jquery.fancybox.min.css">
+	<link rel="stylesheet" href="/plugins/aos/aos.css">
 
-    #text-area {
-      height: 500px;
-      width: 100%;
-      min-width: 95%;
-      max-width: max-content;
-      max-height: 500px;
-      min-height: 100px;
-
-    }
-
-	</style>
 </head>
-<body>
-	<div id="nav">
-		<a href="/">Home</a>
-		<a href="/myaccount">Account</a>
-		<a href="/privacy">Disclaimers</a>
-		<a href="/tos">Terms of Service</a>
+<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0" style="    border-bottom: 1px solid #ccc;">
+	<div class="container" >
+	  <img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
+	  <a class="navbar-brand" href="index.html">Physics-Chat</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="ti-menu"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item dropdown active">
+			<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Home
+			  <span><i class="ti-angle-down"></i></span>
+			</a>
+			<!-- Dropdown list -->
+			<ul class="dropdown-menu">
+			  <li><a class="dropdown-item" href="/authorization/login.html">Sign Up</a></li>
+			  <li><a class="dropdown-item" href="/authorization/login.html">Login</a></li>
+			  </li>
+			</ul>
+		  </li>
+		  <li class="nav-item dropdown @@pages">
+			<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
+			  <span><i class="ti-angle-down"></i></span>
+			</a>
+			<!-- Dropdown list -->
+			<ul class="dropdown-menu">
+			  <li><a class="dropdown-item @@privacy" href="privacy-policy.html">Privacy</a></li>
+			  <li><a class="dropdown-item @@faq" href="FAQ.html">FAQ</a></li>
+			</ul>
+		  </li>
+		  <li class="nav-item @@contact">
+			<a class="nav-link" href="contact.html">Contact</a>
+		  </li>
+		</ul>
+	  </div>
 	</div>
-	<div id="textbox">
-		<textarea id="text-area"></textarea>
-		<button id="submit">Submit</button>
-		<button id="clear">Clear</button>
+  </nav>
+  
+  <body style="background: transparent;">
+	<div class="textbox">
+		<h2>This is a Chat-gpt beta</h2>
+		<h4 style="color:dimgray; font-size: medium;">
+			<a href="contact.html" style="color:#2e7eed; text-decoration:none;">
+			  Contact us
+			</a> if you are interested in gaining access to premium features in exchange for beta testing.
+		</h4>		
+		<textarea id="text-area" class="text-area"></textarea>
+		<div class="button-container">
+			<button id="submit" class="submit">Submit</button>
+			<button id="clear"class="clear">Clear</button>
+			<div class="basic"></div>
+		</div>
 	</div>
+	<script src="/app/beta.js"></script>
 </body>
-
-<script>
-
-function displayError(error){
-	  console.log(error);
-	  window.alert("Error: " + error);
-}
-
-//when you click the clear button, clear the text area
-document.getElementById("clear").addEventListener("click", function() {
-  document.getElementById("text-area").value = "";
-});
-
-
-
-
-
-
-// on submit click, post text-area contents to /ai 
-document.getElementById("submit").addEventListener("click", function() {
-  var text = document.getElementById("text-area").value;
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/ai", true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({prompt: text}));
-  xhr.onload = function() {
-	var response = JSON.parse(xhr.responseText);
-	document.getElementById("text-area").value = text + response.completion;
-	console.log(response.completion);
-	if(response.error){
-		displayError(response.error);
-	}
-  }
-});
-</script>
 
 </html>

@@ -76,12 +76,12 @@ app.get('/beta', verify,(req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/public/authorization/index.html');
+  res.sendFile(__dirname + '/public/authorization/login.html');
 });
 
 
 app.get('/account', verify,(req, res) => {
-  res.sendFile(__dirname + '/public/account/index.html');
+  res.sendFile(__dirname + '/public/authorization/account.html');
 });
 
 app.get('/userinfo/:email', verify,(req, res) => {
