@@ -65,6 +65,7 @@ app.get('/',(req, res) => {
 app.get('/admin', verify,(req, res) => {
   if(jwt.decode(req.cookies.Authorization).tier != "admin"){
     res.status(400).json({"error": "not logged in as authorized user"});
+
     return;
   } else{
     res.sendFile('/private/admin.html');
@@ -76,6 +77,11 @@ app.get('/beta', verify,(req, res) => {
 });
 
 app.get('/login', (req, res) => {
+  //if already logged in, redirect to beta 
+  if(req.cookies.Authorization){
+    res.redirect('/beta');
+    return;
+  }
   res.sendFile(__dirname + '/public/authorization/login.html');
 });
 
