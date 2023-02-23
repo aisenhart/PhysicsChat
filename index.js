@@ -131,14 +131,13 @@ app.post('/get-user-info', verify, function(req, res) {
       if(welcomeName == null||welcomeName == ""){
         welcomeName = user.lastName;
       }
-      res.json({"firstName": welcomeName});
+      res.json({"firstName": welcomeName, "balance": user.balance, "tier": user.tier});
 
     } else {
       res.status(400).json({"error": "user does not exist"});
     }
   });
 });
-
 
 
 

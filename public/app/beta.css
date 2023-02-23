@@ -54,6 +54,7 @@ h1, h2, h3 {
 .submit,
 .clear {
   margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 10px;
   background-color: #2e7eed;
   color: #fff;
@@ -78,7 +79,30 @@ h1, h2, h3 {
   display: inline-block;
   padding: 10px;
 }
+.token-box {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: medium;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  background-color: #0f3467;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: none;
 
+
+}
+
+.token-box span {
+  font-weight: bold;
+}
+
+.token-box span {
+  font-weight: bold;
+}
 
 
 
