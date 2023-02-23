@@ -267,6 +267,7 @@ app.post('/ai', verify, async (req, res) => {
       }).catch((error) => {
         console.log(error);
         res.status(400).json({"error": "error with openai api"});
+        return;
       });
       response.then((data) => {
         //console.log(data);
