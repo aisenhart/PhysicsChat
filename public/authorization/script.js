@@ -62,12 +62,9 @@ $(function () {
   });
 });
 
-/*$(function () {
-  $("#continue").click(function () {
-    window.location.href = "/beta.html";
-  });
-
-}); */
+document.getElementById("continue").addEventListener("click", function() {
+  window.location.href = "/beta";
+});
 
 
 
@@ -89,7 +86,7 @@ $(function () {
         // rest of the success function code
       },
       error: function (data) {
-        // error handling code
+        // error handling code 
       }
     });
 

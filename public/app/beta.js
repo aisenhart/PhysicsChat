@@ -23,6 +23,7 @@ xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify({prompt: text}));
 xhr.onload = function() {
   var response = JSON.parse(xhr.responseText);
+  console.log(response)
   document.getElementById("text-area").value = text + response.completion;
   console.log(response.completion);
   if(response.error){

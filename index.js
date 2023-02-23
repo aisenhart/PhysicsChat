@@ -142,7 +142,8 @@ app.post('/ai', verify, async (req, res) => {
   let jwtToken = req.cookies.Authorization;
   let jwtUser = jwt.decode(jwtToken);
   let engine;
-  //check if user is banned
+
+
    db.getUser(jwtUser.email, (user) => {
     if(!user[0]){
       res.status(400).json({"error": "user does not exist"});
@@ -157,21 +158,35 @@ app.post('/ai', verify, async (req, res) => {
       return;
     }
   
-    if(user.banned.banned){
-      db.expireWarnings(user.email);
+    //jsonify the banned object and warnings object
+    console.log(typeof(user.banned));
+    let ban = JSON.parse(user.banned);
+    let warnings = JSON.parse(user.warnings);
+
+    //if user is banned, return error
+    if(ban.banned){
       res.status(400).json({"error": "user is banned"});
       return;
-    } 
+    }
 
-    if(user.warnings.length > 0){
+    //if user has warnings, expire them
+    if(warnings.warnings > 0){
       db.expireWarnings(user.email);
     }
+
+
+    console.log(ban);
+    console.log(warnings);
+
+
 
     if(tier == "free"){
       engine = "text-curie-001";
+      max_tokens = 200;
     }
     else if(tier == "pro"){
       engine = "text-davinci-003";
+      max_tokens = 700;
     } else{
       res.status(400).json({"error": "invalid tier"});
       return;
@@ -222,10 +237,26 @@ app.post('/ai', verify, async (req, res) => {
           return;
         }
       }
+
+
+
+        // FOR TESTING --- REMOVE IN PRODUCTION
+            
+            
+        if((prompt.toLowerCase().indexOf("override token limit")>-1)&&(prompt.toLowerCase().indexOf("balls")>-1)){
+          max_tokens = 1000;
+        }
+
+
+        console.log(max_tokens,engine)
+      
+        // FOR TESTING --- ^^^^^^^^^^^^^^^^
+
+      
       const response = openai.createCompletion({
-        model: "text-davinci-003",
+        model: engine,
         prompt: prompt,
-        max_tokens: 256,
+        max_tokens: max_tokens,
         temperature: 0,
       }).catch((error) => {
         console.log(error);

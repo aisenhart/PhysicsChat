@@ -110,7 +110,7 @@ class Database {
             }
             );
 
-            //if warnings > 10, ban user
+            //if warnings > WARNING_LIMIT, ban user
             if (JSON.parse(newList).warnings.length > WARNING_LIMIT) {
                 this.banUser(email, "System", "Too many warnings", thirty_days_from_now, (result) => {
                     console.log("Banned user");
@@ -123,7 +123,7 @@ class Database {
         this.getUser(email, (user) => {
             user = user[0];
             const today = new Date(); 
-            this.db.query(`UPDATE users SET banned = '${JSON.stringify(new Ban(user.UID, today, bannedBy, reason, expires, user.ip).toJson())}' WHERE email = '${email}'`, (err, result) => {
+            this.db.query(`UPDATE users SET banned = '${JSON.stringify(new Ban(user.UID, today, bannedBy, reason, expires, true, user.ip).toJson())}' WHERE email = '${email}'`, (err, result) => {
                 if (err) {
                     throw err;
                 }
