@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Account</title>
+    <link rel="stylesheet" href="account.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Account Settings</h1>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password">
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password">
+        </div>
+        <div class="form-group">
+          <label for="tier">Membership Tier</label>
+          <select id="tier" name="tier">
+            <option value="free">Free</option>
+            <option value="paid">Paid</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="newsletter">Subscribe to Newsletter</label>
+          <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+        </div>
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </body>
+</html>
