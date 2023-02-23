@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const express = require('express');
+const GPT3Tokenizer = require('gpt3-tokenizer');
 //internal modules
+
 const { Order } = require("./classes/Order");
 const { User } = require("./classes/User");
 const { Ban } = require("./classes/Ban");
@@ -39,10 +41,14 @@ const configuration = new Configuration({
 });  
 const openai = new OpenAIApi(configuration);
 
+//let tokenizerGPT3 = new GPT3Tokenizer.GPT3Tokenizer({type: "gpt3"});
+//let tokenizerCODEX = new GPT3Tokenizer.GPT3Tokenizer({type: "codex"});
+//
 
 
+// ------------------------------
 let starting_balance = 20.00;
-
+// ------------------------------
 
 
 /*
@@ -103,14 +109,24 @@ app.get('/userinfo/:email', verify,(req, res) => {
 POST REQUESTS
 
 */
-app.post('/get-user-info', function(req, res) {
+app.post('/get-user-info', verify, function(req, res) {
   let email = req.body.email;
-  db.getUser(email, (user) => {
-    console.log(user.firstName);
-    console.log(JSON.stringify(user));
-    console.log(user.hasOwnProperty('firstName'));
-    if (user) {
-      res.json({"firstName": user.firstName});
+  db.getUser(email, (user) =>
+   {
+    if(user[0]){
+      user = user[0];
+      if(jwt.decode(req.cookies.Authorization).email != user.email){
+        res.status(400).json({"error": "not logged in as requested user"});
+        return;
+      }
+      console.log(user.firstName);
+      console.log(JSON.stringify(user));
+      let welcomeName = user.firstName;
+      if(welcomeName == null||welcomeName == ""){
+        welcomeName = user.lastName;
+      }
+      res.json({"firstName": welcomeName});
+
     } else {
       res.status(400).json({"error": "user does not exist"});
     }
@@ -161,12 +177,15 @@ app.post('/ai', verify, async (req, res) => {
       return;
     }
 
+
+
+    //remember to uncomment this
     // calculate tokens
-    if(calculateTokenCost(prompt) > user.balance){
-      res.status(400).json({"error": "user does not have enough tokens"});
-      return;
-    }
-  
+    //if(calculateTokenCost(prompt) > user.balance){
+    //  res.status(400).json({"error": "user does not have enough tokens"});
+    //  return;
+    //}
+  //
     //make sure prompt is not agauist terms of service
     const headers = 
     {
@@ -366,20 +385,12 @@ function verify(req,res,next){
 }
 
 
-function calculateTokenCost(inputString){
-  //space = 1 token
-  //new line = 1 token
-  //character = 0.25 tokens
-  let tokens = 0;
-  for(let i = 0; i < inputString.length; i++){
-    if(inputString[i] == " "){
-      tokens++;
-    } else if(inputString[i] == "\n"){
-      tokens++;
-    }
-    else{
-      tokens += 0.25;
-    }
+function calculateTokenCost(inputString, model){
+  if(model == "CODEX"){
+    let encoded = tokenizerCODEX.encode(inputString);
+  } else if(model == "GPT3"){
+    let encoded = tokenizerGPT3.encode(inputString);
   }
-  return tokens
+  return encoded.length;
 }
+

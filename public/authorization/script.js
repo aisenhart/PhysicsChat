@@ -83,7 +83,7 @@ $(function () {
       type: 'POST',
       data: { email: email },
       success: function (data) {
-        let name = data.name;
+        let name = data.firstName;
         $('.welcome').text('Welcome, ' + name);
         console.log("name: " + name);
         // rest of the success function code
