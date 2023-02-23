@@ -168,7 +168,7 @@ FACEBOOK: https://www.facebook.com/themefisher
   <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
   <script src="plugins/syotimer/jquery.syotimer.min.js"></script>
   <script src="plugins/aos/aos.js"></script>
- <!-- <script>
+ <script>
 
     //Code for the contact form, to add to database.
     //when the submit button is clicked
@@ -178,26 +178,26 @@ FACEBOOK: https://www.facebook.com/themefisher
       var email = $(".form-control.main").eq(1).val();
       var subject = $(".form-control.main").eq(2).val();
       var message = $(".form-control.main").eq(3).val();
-      //send the values to the database
-      $.post("contact.php", {name: name, email: email, subject: subject, message: message}, function(data){
+      console.log(name, email, subject, message);
+      //send the values to the submit-contact-request endpoint
+      $.post("/submit-contact-request", {name: name, email: email, subject: subject, message: message}, function(data){
+        //if the request was successful
         if(data == "success"){
-          alert("Your message has been sent successfully!");
-          $(".form-control.main").val("");
+          //show a success message
+          alert("Your message has been sent!");
         }
+        //if the request was not successful
         else{
+          //show an error message
           alert("There was an error sending your message. Please try again later.");
         }
       });
     });
+    
 
 
 
-
-
-
-
-
-  </script>-->
+</script>
 
 </body>
 

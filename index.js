@@ -369,6 +369,27 @@ app.post('/register', (req, res) => {
   
 });
 
+app.post("submit-contact-request", (req, res) => {
+  // client : $.post("/submit-contact-request", {name: name, email: email, subject: subject, message: message}, function(data){
+  let id = crypto.randomUUID();
+  let email = req.body.email;
+  let name = req.body.name;
+  let subject = req.body.subject;
+  let message = req.body.message;
+  if(!email || !name || !subject || !message){
+    res.status(400).json({"error": "missing fields"});
+    return;
+  }
+  if(email.indexOf("@") == -1){
+    res.status(400).json({"error": "invalid email"});
+    return;
+  }
+
+  console.log("contact request from " + email + " with id " + id);
+  console.log('details: ' + name + " " + subject + " " + message);
+
+});
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
