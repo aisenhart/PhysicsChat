@@ -9,15 +9,12 @@ html, body * {
 }
 html {
   height: 100%;
+  background-image: url('/images/login-bg.svg') no-repeat center center fixed;;
 }
 
 body {
-  background:
-    linear-gradient(
-    rgba(246,247,249,0.8),
-    rgba(40, 68, 159, 0.85)),
-    url("/images/mountains.jpeg") no-repeat center center fixed;
     background-size: cover;
+   color: #636363;
 }
 
 .container {
@@ -29,10 +26,7 @@ body {
 .frame {
   height: 545px;
   width: 430px;
-  background:
-     linear-gradient(
-    rgba(35,43,85,0.75),
-    rgba(35,43,85,0.95));
+  background: white;
     /*url(mountains.jpeg) no-repeat center center;*/
   background-size: cover;
   margin-left: auto;
@@ -80,7 +74,7 @@ header nav ul {
 
 header nav a {
   text-transform: none;
-  color: #fff;
+  color: #636363;
   text-decoration: none;
   font-size: 20px;
 }
@@ -110,12 +104,12 @@ li {
   text-align: left;
   text-transform: uppercase;
   padding-right: 10px;
-  color: #ffffff;
+  color: #636363;
 }
 
 .signin-active a {
   padding-bottom: 10px;
-  color: #ffffff;
+  color: #636363;
   text-decoration: none;
   border-bottom: solid 2px #1059FF;
   transition: all .25s ease;
@@ -124,7 +118,7 @@ li {
 
 .signin-inactive a {
   padding-bottom: 0;
-  color: rgba(255,255,255,.3);
+  color: #636363;
   text-decoration: none;
   border-bottom: none;
   cursor: pointer;
@@ -132,7 +126,7 @@ li {
 
 .signup-active a {
   cursor: pointer;
-  color: #ffffff;
+  color: #636363;
   text-decoration: none;
   border-bottom: solid 2px #1059FF;
   padding-bottom: 10px;
@@ -140,7 +134,7 @@ li {
 
 .signup-inactive a {
   cursor: pointer;
-  color: rgba(255,255,255,.3);
+  color: #636363;
   text-decoration: none;
   transition: all .25s ease;
 }
@@ -320,7 +314,7 @@ font-weight: 400;
 
 
 .form-signin input, .form-signup input {
-  color: #ffffff;
+  color: #323232;
   font-size: 13px;
 }
 
@@ -331,7 +325,7 @@ font-weight: 400;
 	border: none;
 	border-radius: 20px;
   margin-bottom: 20px;
-  background: rgba(255,255,255,.2);
+  background: rgba(129, 129, 129, 0.5);
 }
 
 label {
@@ -340,7 +334,7 @@ label {
   font-size: 13px;
   padding-left: 15px;
   padding-bottom: 10px;
-  color: rgba(255,255,255,.7);
+  color: #636363;
   display: block;
 }
 
@@ -348,7 +342,7 @@ label {
 }
 
 .form-signin input:focus, textarea:focus, .form-signup input:focus, textarea:focus {
-    background: rgba(255,255,255,.3);
+    background: hsla(0, 0%, 30%, 0.5);
     border: none; 
     padding-right: 40px;
     transition: background .5s ease;
@@ -453,7 +447,7 @@ a.btn-signup:hover, a.btn-signin:hover {
   text-align: center;
   padding-top: 24px;
 
-  border-top: solid 1px rgba(255,255,255,.3);
+  border-top: solid 1px #636363;
   transition: all 0.5s ease;
   bottom: 0;
 }
@@ -470,7 +464,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 }
 
 .forgot a {
-  color: rgba(255,255,255,.3);
+  color: #636363;
   font-weight: 400;
   font-size: 13px;
   text-decoration: none;
@@ -541,7 +535,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 }
 
 h1 {
-  color: #ffffff;
+  color: #636363;
   font-size: 35px;
 	font-weight: 300;
   text-align: center;
@@ -558,7 +552,7 @@ h1 {
 }
 
 #check path {
-  stroke: #ffffff;
+  stroke: #202880;
   stroke-linecap:round;
   stroke-linejoin:round;
   stroke-width: .85px;
@@ -591,13 +585,13 @@ h1 {
 
 /*HEADER STUFF IMPORTED FROM ANOTHER PAGE*/
 .header{
-  background:rgba(35,43,85,0.65);
+  background: #ffffff;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   transition: all .5s ease;
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
-  color: #fff;
+  color:#6363638e;
   width: fit-content;
   display: flex;
 align-items: center;
@@ -607,9 +601,9 @@ align-items: center;
   align-items: center;
   }
 .navbar-brand{
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 700;
-  color: #fff;
+  color: #636363;
   letter-spacing: 1px;
   text-decoration: none;
   transition: all .5s ease;
