@@ -38,25 +38,25 @@ app.set('view engine', 'ejs');
 let tiers = {
 
   "free": {
-    "tokens": 20,
+    "tokens": 200,
     "price": 0,
     "max_tokens": 200,
     "engine": "text-curie-001"
   },
   "basic": {
-    "tokens": 100,
+    "tokens": 1000,
     "price": 5,
     "max_tokens": 500,
     "engine": "text-davinci-003"
   },
   "pro": {
-    "tokens": 500,
+    "tokens": 4000,
     "price": 20,
     "max_tokens": 1000,
     "engine": "text-davinci-003"
   },
   "admin": {
-    "tokens": 1000,
+    "tokens": 100000,
     "price": 1000000000,
     "max_tokens": 1000,
     "engine": "text-davinci-003"
@@ -400,6 +400,15 @@ app.post("submit-contact-request", (req, res) => {
 
 });
 
+app.get('searchUser', (req, res) => {
+  // client email="",UID="",IP="",firstName="",lastName=""
+  searchParams = req.query;
+  db.searchUser(searchParams, (users) => {
+    res.json(users);
+  });
+});
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
@@ -421,7 +430,7 @@ function newUser(ip,email,password,fullName){
     lastName = fullName.split(" ")[1];
   }
   let u1 = new User(ip,email,hashedPassword,firstName,lastName,tier);
-  u1.setBalance(starting_balance);
+  u1.setBalance(tiers['free'].tokens);
   u1.setFirstName(firstName);
   u1.setLastName(lastName);
   u1.setAccountCreatedAt(new Date().toISOString().slice(0, 19).replace("T", " "));

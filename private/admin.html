@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="admin.css" />
 <body>
     <h1>ADMIN (UNBUILT)</h1>
+    <textarea id="command-log" readonly></textarea>
     <select>
         <option value="search-user">Search User</option>
         <option value="new-user">New User</option>
@@ -61,12 +62,11 @@
 <div class="information-container">
     <div class="information-inputs" id="new-user">
         <h2>New User</h2>
-        <form action="/register" method="post">
+        <form>
             <input type="text" name="email" placeholder="Email" required>
             <input type="text" name="password" placeholder="Password" required>
             <input type="text" name="fullname" placeholder="Full Name" required>
-            <input type="text" name="noauth" value="true" hidden>
-            <input type="submit" value="Submit">
+            <input class="submit" id="submit-new-user" value="Submit">
             <input type="reset">
         </form>
     </div>
@@ -108,7 +108,18 @@
 <script>
 
 
+function commandLog(text){
 
+    let commandLog = document.getElementById("command-log")
+    let commandLogText = commandLog.value
+
+    if(commandLogText==""){
+        commandLog.value = text + "\n"
+    }else{
+        commandLog.value = commandLogText + text + "\n"
+    }
+
+}
 
 function searchUser(email="",UID="",IP="",firstName="",lastName=""){
     //searches for a user based on the information given
@@ -153,6 +164,28 @@ function searchUser(email="",UID="",IP="",firstName="",lastName=""){
     })
 
 }
+
+$(function(){
+    $("#submit-new-user").click(function(){
+        let email = $("#new-user input[name='email']").val()
+        let password = $("#new-user input[name='password']").val()
+        let fullname = $("#new-user input[name='fullname']").val()
+        $.ajax({
+            type: "POST",
+            url: "register",
+            data: {
+                email: email,
+                password: password,
+                fullname: fullname,
+            },
+            success: function(data){
+                commandLog(JSON.stringify(data))
+            }, error: function(data){
+                commandLog(JSON.stringify(data))
+            }
+        })
+    })
+})
 
 
 

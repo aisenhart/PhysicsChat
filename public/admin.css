@@ -66,8 +66,10 @@
 
     background-color: #f1f1f1;
   }
-  
-  input[type="submit"], input[type="reset"] {
+ /* and where input id contains submit*/
+  input[type="submit"], input[type="reset"], input[id*="submit"]{
+    text-align: center;
+    width: 20%;
     background-color: #2e7eed;
     color: white;
     padding: 12px 20px;
@@ -96,6 +98,19 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     margin: 10px 0;
     width: 50%;
+  }
+  
+  textarea{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 100px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 0;
+    background-color: #f1f1f1;
   }
 
   #new-user:checked ~ #new-user,
