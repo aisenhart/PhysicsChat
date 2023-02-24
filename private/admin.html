@@ -23,11 +23,11 @@
 <html>
 <head>
     <title>ADMIN</title>
-    <link rel="stylesheet" href="admin.css">
-</head>
+    <link rel="stylesheet" href="admin.css" />
 <body>
     <h1>ADMIN (UNBUILT)</h1>
     <select>
+        <option value="search-user">Search User</option>
         <option value="new-user">New User</option>
         <option value="ban-user">Ban User</option>
         <option value="unban-user">Unban User</option>
@@ -38,7 +38,6 @@
         <option value="remove-warnings">Remove Warnings</option>
         <option value="manual-warning">Manual Warning</option>
         <option value="manual-sql">Manual SQL</option>
-        <option value="search-user">Search User</option>
         <option value="search-ip">Search IP</option>
         <option value="change-email">Change Email</option>
         <option value="change-password">Change Password</option>
@@ -59,7 +58,7 @@
         this.#balance=0;
     }
     -->
-
+<div class="information-container">
     <div class="information-inputs" id="new-user">
         <h2>New User</h2>
         <form action="/register" method="post">
@@ -97,10 +96,70 @@
             <input type="submit" value="Submit">
             <input type="reset">
         </form>
-    
+    </div>
     <!--Make a toolbar with all the different admin tools-->
 
 
 </body>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+
+
+
+
+function searchUser(email="",UID="",IP="",firstName="",lastName=""){
+    //searches for a user based on the information given
+    //returns a list of users
+    //if no information is given, returns no parameters specified
+    //if multiple users are found, returns all users
+    //if no users are found, returns an empty list
+
+    if(email=="" && UID=="" && IP=="" && firstName=="" && lastName==""){
+        return "No parameters specified"
+    }
+
+    let users = []
+    let user = {
+        UID: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        IP: "",
+        tier: "",
+        balance: "",
+        warnings: "",
+        banned: ""
+    }
+
+    //make web request to search for user
+    $.ajax({
+        type: "GET",
+        url: "searchUser",
+        data: {
+            email: email,
+            UID: UID,
+            IP: IP,
+            firstName: firstName,
+            lastName: lastName
+        },
+        success: function(data){
+            //parse data into user object
+            //add user object to users list
+            //return users list
+        }
+    })
+
+}
+
+
+
+
+</script>
+
+
+
 </html>
 
