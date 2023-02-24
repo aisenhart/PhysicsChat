@@ -35,6 +35,37 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 
+let tiers = {
+
+  "free": {
+    "tokens": 20,
+    "price": 0,
+    "max_tokens": 200,
+    "engine": "text-curie-001"
+  },
+  "basic": {
+    "tokens": 100,
+    "price": 5,
+    "max_tokens": 500,
+    "engine": "text-davinci-003"
+  },
+  "pro": {
+    "tokens": 500,
+    "price": 20,
+    "max_tokens": 1000,
+    "engine": "text-davinci-003"
+  },
+  "admin": {
+    "tokens": 1000,
+    "price": 1000000000,
+    "max_tokens": 1000,
+    "engine": "text-davinci-003"
+  }
+
+}
+
+
+
 //openai INIT 
 const configuration = new Configuration({
     apiKey: process.env.API_KEY,
@@ -68,7 +99,7 @@ app.get('/admin', verify,(req, res) => {
 
     return;
   } else{
-    res.sendFile('/private/admin.html');
+    res.sendFile(__dirname+'/private/admin.html');
   }
 });
 
@@ -185,19 +216,12 @@ app.post('/ai', verify, async (req, res) => {
 
 
 
-    if(tier == "free"){
-      engine = "text-curie-001";
-      max_tokens = 200;
-    }
-    else if(tier == "pro"){
-      engine = "text-davinci-003";
-      max_tokens = 700;
-    } else{
-      res.status(400).json({"error": "invalid tier"});
+    // see if tier is in tiers
+      
+    if(!tiers[tier]){
+      res.status(400).json({"error": "user tier does not exist"});
       return;
     }
-
-
 
     //remember to uncomment this
     // calculate tokens
@@ -242,26 +266,11 @@ app.post('/ai', verify, async (req, res) => {
           return;
         }
       }
-
-
-
-        // FOR TESTING --- REMOVE IN PRODUCTION
-            
-            
-        if((prompt.toLowerCase().indexOf("override token limit")>-1)&&(prompt.toLowerCase().indexOf("balls")>-1)){
-          max_tokens = 1000;
-        }
-
-
-        console.log(max_tokens,engine)
-      
-        // FOR TESTING --- ^^^^^^^^^^^^^^^^
-
       
       const response = openai.createCompletion({
-        model: engine,
+        model: tiers[tier].engine,
         prompt: prompt,
-        max_tokens: max_tokens,
+        max_tokens: tiers[tier].max_tokens,
         temperature: 0,
       }).catch((error) => {
         console.log(error);
