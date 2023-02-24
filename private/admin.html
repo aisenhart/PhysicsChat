@@ -25,8 +25,11 @@
     <title>ADMIN</title>
     <link rel="stylesheet" href="admin.css" />
 <body>
-    <h1>ADMIN (UNBUILT)</h1>
+    <div id="title"><h1>ADMIN PANEL</h1></div>
+    <div id="textarea-container">
+        <div id="console-title"><a>Console Log:</a></div>
     <textarea id="command-log" readonly></textarea>
+    </div>
     <select>
         <option value="search-user">Search User</option>
         <option value="new-user">New User</option>
@@ -60,6 +63,20 @@
     }
     -->
 <div class="information-container">
+    <div class="information-inputs" id="search-user">
+
+    <h2>Search User</h2>
+        <form>
+            <input type="text" name="email" placeholder="Email" >
+            <input type="text" name="UID" placeholder="UID">
+            <input type="text" name="IP" placeholder="IP">
+            <input type="text" name="firstName" placeholder="First Name">
+            <input type="text" name="lastName" placeholder="Last Name">
+            <input class="submit" id="submit-search-user" value="Search">
+            <input type="reset">
+        </form>
+    </div>
+
     <div class="information-inputs" id="new-user">
         <h2>New User</h2>
         <form>
@@ -114,9 +131,9 @@ function commandLog(text){
     let commandLogText = commandLog.value
 
     if(commandLogText==""){
-        commandLog.value = text + "\n"
+        commandLog.value = text+"\n\n";
     }else{
-        commandLog.value = commandLogText + text + "\n"
+        commandLog.value = commandLogText + text + "\n\n"
     }
 
 }
@@ -154,7 +171,7 @@ function searchUser(email="",UID="",IP="",firstName="",lastName=""){
             UID: UID,
             IP: IP,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
         },
         success: function(data){
             //parse data into user object
@@ -177,6 +194,46 @@ $(function(){
                 email: email,
                 password: password,
                 fullname: fullname,
+            },
+            success: function(data){
+                commandLog(JSON.stringify(data))
+            }, error: function(data){
+                commandLog(JSON.stringify(data))
+            }
+        })
+    })
+})
+
+$(function(){
+    $("#submit-search-user").click(function(){
+
+        let email = $("#search-user input[name='email']").val()
+        let UID = $("#search-user input[name='UID']").val()
+        let IP = $("#search-user input[name='IP']").val()
+        let firstName =  $("#search-user input[name='firstName']").val()
+        let lastName = $("#search-user input[name='lastName']").val()
+
+        console.log("email");
+        console.log(email);
+        console.log("UID");
+        console.log(UID);
+        console.log("IP");
+        console.log(IP);
+        console.log("firstName");
+        console.log(firstName);
+        console.log("lastName");
+        console.log(lastName);
+
+
+        $.ajax({
+            type: "GET",
+            url: "searchUser",
+            data: {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                IP: IP,
+                UID: UID
             },
             success: function(data){
                 commandLog(JSON.stringify(data))

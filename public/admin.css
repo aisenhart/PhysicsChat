@@ -45,6 +45,23 @@
     color: inherit;
   }
   
+  #title {
+    text-align: center;
+    background-color: #2e7eed;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  #title h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 36px;
+  }
+
+
+
   /* Select dropdown styles */
   select {
     padding: 10px;
@@ -99,18 +116,51 @@
     margin: 10px 0;
     width: 50%;
   }
+  #console-title {
+    height: 30px;
+    width: 80%;
+    display: inline-block;
+    align-items: left;
+    padding: 3px;
+    background-color: #adadad;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  #console-title a {
+    color: #fff;
+    margin: 0;
+    padding-left: 10px;
+    font-size: 20px;
+    text-align: left;
+    display: inline-block;
+  }
+  #textarea-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
   
   textarea{
-    display: flex;
+    display: block;
     justify-content: space-around;
     align-items: center;
     width: 80%;
     height: 100px;
     padding: 12px;
     border: none;
-    border-radius: 5px;
-    margin: 10px 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0 auto;
     background-color: #f1f1f1;
+    resize: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    resize: vertical;
+    min-height: 100px;
+    max-height: 400px;
   }
 
   #new-user:checked ~ #new-user,

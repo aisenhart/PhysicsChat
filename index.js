@@ -94,13 +94,14 @@ app.get('/',(req, res) => {
 });
 
 app.get('/admin', verify,(req, res) => {
-  if(jwt.decode(req.cookies.Authorization).tier != "admin"){
-    res.status(400).json({"error": "not logged in as authorized user"});
-
-    return;
-  } else{
-    res.sendFile(__dirname+'/private/admin.html');
-  }
+  let email = jwt.decode(req.cookies.Authorization).email;
+  db.getUser(email, (user) => {
+    if(user[0].tier != "admin"){
+      res.status(400).json({"error": "not admin"});
+    } else{
+      res.sendFile(__dirname+'/private/admin.html');
+    }
+  });
 });
 
 app.get('/beta', verify,(req, res) => {
@@ -369,7 +370,10 @@ app.post('/register', (req, res) => {
 
       if(!req.body.noauth){
         res.cookie('Authorization', accessToken).send({"success": "user created"});
+      } else{
+        res.json({"success": "user created"});
       }
+
       //res.cookie('Authorization', accessToken, {secure: true}).json({"success":"user created"});
     }
     else{
@@ -379,7 +383,7 @@ app.post('/register', (req, res) => {
   
 });
 
-app.post("submit-contact-request", (req, res) => {
+app.post("/submit-contact-request", (req, res) => {
   // client : $.post("/submit-contact-request", {name: name, email: email, subject: subject, message: message}, function(data){
   let id = crypto.randomUUID();
   let email = req.body.email;
@@ -400,11 +404,24 @@ app.post("submit-contact-request", (req, res) => {
 
 });
 
-app.get('searchUser', (req, res) => {
+app.get('/searchUser', verify, (req, res) => {
   // client email="",UID="",IP="",firstName="",lastName=""
-  searchParams = req.query;
-  db.searchUser(searchParams, (users) => {
-    res.json(users);
+  let email = jwt.decode(req.cookies.Authorization).email;
+  db.getUser(email, (user) => {
+    user = user[0];
+    if(user == undefined){
+      res.status(400).json({"error": "not logged in as authorized user"});
+      return;
+    }
+    if(user.tier != "admin"){
+      res.status(400).json({"error": "not logged in as authorized user"});
+      return;
+    } else{
+      let searchParams = req.query;
+      db.searchUser(searchParams, (users) => {
+        res.json(users);
+      });
+    }
   });
 });
 

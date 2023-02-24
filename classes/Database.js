@@ -258,18 +258,6 @@ class Database {
         });
     }
 
-    /*
-
-        app.get('searchUser', (req, res) => {
-          // client email="",UID="",IP="",firstName="",lastName=""
-          searchParams = req.query;
-          db.searchUser(searchParams, (users) => {
-            res.json(users);
-          });
-        });
-
-    */
-
     searchUser(searchParams, callback) {
         let email = searchParams.email;
         let UID = searchParams.UID;
@@ -289,12 +277,14 @@ class Database {
                 callback(user);
             });
         }
-        //IF IP IS NOT EMPTY
-        else if(IP!=""){
-            this.getUsersByIP(IP, (user) => {
+
+        //IF FIRST AND LAST NAME ARE NOT EMPTY
+        else if(firstName!="" && lastName!=""){
+            this.getUsersByFullName(firstName, lastName, (user) => {
                 callback(user);
             });
         }
+
         //IF FIRSTNAME IS NOT EMPTY
         else if(firstName!=""){
             this.getUsersByFirstName(firstName, (user) => {
@@ -307,12 +297,15 @@ class Database {
                 callback(user);
             });
         }
-        //IF FIRST AND LAST NAME ARE NOT EMPTY
-        else if(firstName!="" && lastName!=""){
-            this.getUsersByFullName(firstName, lastName, (user) => {
+
+        //IF IP IS NOT EMPTY
+        else if(IP!=""){
+            this.getUsersByIP(IP, (user) => {
                 callback(user);
             });
         }
+        
+
         //IF ALL ARE EMPTY
         else{
             callback(null);
