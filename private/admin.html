@@ -1,7 +1,5 @@
 
 <!-- 
-
-
  TO DO LIST: 
 
  Manual entry of new users
@@ -18,7 +16,6 @@
  Search for Users by IP
  Change password of Users
  Change email of Users
-
 -->
 
 
@@ -65,16 +62,40 @@
 
     <div class="information-inputs" id="new-user">
         <h2>New User</h2>
-        <form action="admin.php" method="post">
-            <input type="text" name="username" placeholder="Username">
-            <input type="text" name="password" placeholder="Password">
-            <input type="text" name="email" placeholder="Email">
-            <input type="text" name="balance" placeholder="Balance">
-            <input type="text" name="ip" placeholder="IP">
-            <input type="text" name="rank" placeholder="Rank">
-            <input type="text" name="warnings" placeholder="Warnings">
-            <input type="text" name="banned" placeholder="Banned">
+        <form action="/register" method="post">
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="text" name="password" placeholder="Password" required>
+            <input type="text" name="fullname" placeholder="Full Name" required>
+            <input type="text" name="noauth" value="true" hidden>
             <input type="submit" value="Submit">
+            <input type="reset">
+        </form>
+    </div>
+
+    <div class="information-inputs" id="ban-user">
+        <h2>Ban User</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="submit" value="Submit">
+            <input type="reset">
+        </form>
+    </div>
+
+    <div class="information-inputs" id="unban-user">
+        <h2>Unban User</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="submit" value="Submit">
+            <input type="reset">
+        </form>
+    </div>
+
+    <div class="information-inputs" id="delete-user">
+        <h2>Delete User</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="submit" value="Submit">
+            <input type="reset">
         </form>
     
     <!--Make a toolbar with all the different admin tools-->

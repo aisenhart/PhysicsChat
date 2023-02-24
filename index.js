@@ -367,7 +367,9 @@ app.post('/register', (req, res) => {
       delete userCleaned.ip;
       const accessToken = jwt.sign(userCleaned, process.env.ACCESS_TOKEN_SECRET);
 
-      res.cookie('Authorization', accessToken).send({"success": "user created"});
+      if(!req.body.noauth){
+        res.cookie('Authorization', accessToken).send({"success": "user created"});
+      }
       //res.cookie('Authorization', accessToken, {secure: true}).json({"success":"user created"});
     }
     else{
