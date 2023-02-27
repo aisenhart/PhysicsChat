@@ -1,71 +1,187 @@
 @import url("https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:300,400,600,700,800");
+
 body {
-    font-family: 'Helvetica Neue', sans-serif;
-    background-color: #f6f7fb;
+  font-family: "Lora", serif;
+  background: transparent;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Lora", serif;
+}
+.nav {
+  width: 85%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #5a989e;
+}
+
+.nav a {
+  text-decoration: none;
+  margin: 30px;
+  color: #fff;
+}
+
+.nav a:hover {
+  color: #fff;
+  transition: linear 0.5s;
+}
+
+.textbox {
+  width: 80%;
+  height: 80%;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  background-color: #fff;
+}
+
+.text-area {
+  height: 500px;
+  width: 100%;
+  min-width: 95%;
+  max-width: max-content;
+  max-height: 500px;
+  min-height: 100px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  resize: none;
+}
+
+.submit,
+.clear {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  background-color: #2e7eed;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.submit:hover,
+.clear:hover {
+  background-color: #0f3467;
+  transition: linear 0.5s;
+}
+.button-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.basic {
+  display: inline-block;
+  padding: 10px;
+}
+.token-box {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: medium;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  background-color: #0f3467;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: defau;
+}
+
+.token-box span {
+  font-weight: bold;
+}
+
+.token-box span {
+  font-weight: bold;
+}
+
+.spin:before {
+  content: "";
+  display: block;
+  height: 40px;
+  width: 40px;
+  animation: spin 0.5s infinite linear;
+  border: 6px solid #fff;
+  border-left-color: #2e7eed;
+  border-radius: 100%;
+}
+.basic:before {
+  content: "";
+  display: block;
+  height: 40px;
+  width: 40px;
+  -webkit-animation: spin 0.5s infinite linear;
+  animation: spin 0.5s infinite linear;
+  border: 6px var(#fff) solid;
+  border-left-color: var(#2e7eed);
+  border-radius: 100%;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-  
-  h1 {
-    font-size: 24px;
-    color: #2b365d;
-    margin-bottom: 30px;
-  }
-  
-  form {
-    width: 400px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  select {
-    display: block;
-    width: 80%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #666;
-  }
-  
-  input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  button {
-    background-color: #5e8cd5;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #4068b2;
-  }
-  
+}
+
+.account-container {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  background-color: #fff;
+}
+.account-settings {
+  padding: 20px;
+  border-radius: 5px;
+}
+.account-settings h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.account-settings label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+.account-settings input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.account-settings button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  background-color: #2e7eed;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
