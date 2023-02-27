@@ -24,16 +24,17 @@ xhr.send(JSON.stringify({prompt: text}));
 xhr.onload = function() {
   var response = JSON.parse(xhr.responseText);
   console.log(response)
-  document.getElementById("text-area").value = text + response.completion;
-  console.log(response.completion);
   if(response.error){
-      displayError(response.error);
+    displayError(response.error);
+  } else {
+    document.getElementById("text-area").value = text + response.completion;
+    console.log(response.completion);
   }
-  const basicScroller = document.querySelector('.basic');
+    const basicScroller = document.querySelector('.basic');
   basicScroller.classList.remove('spin');
-
-
+  setTokenCount();
 }
+
 });
 
 
@@ -44,3 +45,38 @@ function startBasicScroller() {
   const basicScroller = document.querySelector('.basic');
   basicScroller.classList.add('spin');
 }
+
+
+//sign out button
+
+document.getElementById("sign-out").addEventListener("click", function() {
+  fetch('/sign-out', { method: 'POST', credentials: 'same-origin' })
+  .then(function(response) {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+      return;
+    }
+    window.location.href = "/";
+  })
+});
+
+
+
+//function to set the token counter (id token-count) to the number of tokens the user has left
+function setTokenCount(){
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/token-count", true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.send();
+xhr.onload = function() {
+  var response = JSON.parse(xhr.responseText);
+  console.log(response)
+  response.tokens = response.tokens.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  document.getElementById("token-count").innerHTML = response.tokens;
+}
+}
+setTokenCount();
+
+
+

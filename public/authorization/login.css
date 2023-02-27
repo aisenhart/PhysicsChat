@@ -29,11 +29,9 @@ body {
   height: 545px;
   width: 430px;
   background: white;
-    /*url(mountains.jpeg) no-repeat center center;*/
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
-  border-top: solid 1px rgba(255,255,255,.5);
   border-radius: 5px;
   box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
   overflow: hidden;
@@ -475,11 +473,11 @@ a.btn-signup:hover, a.btn-signin:hover {
 }
 .welcome {
   width: 100%;
-  height: 50px;
   position: relative;
   color: rgba(35,43,85,0.75);
   opacity: 0;
   transition: transform 1.5s ease .5s, opacity .1s ease 1s;
+  margin-bottom : 5px;
 }
 
 .welcome-left {
@@ -489,7 +487,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 
 
 .cover-photo {
-  height: 150px;
+  height: 170px;
   position: relative;
   left: 0px;  top: -900px;
   background:
@@ -532,7 +530,7 @@ a.btn-signup:hover, a.btn-signin:hover {
   }
 
 .cover-photo-down {
-  top: -1286px;
+  top: -1300px;
   opacity: 1;
 }
 
@@ -545,10 +543,12 @@ h1 {
 
 
 #continue{
+  font-size: medium;
+  font-weight: 600;
   border: 1px ;
   outline: none;
   background: none;
-  color: white;
+  color: #202880;
   cursor: pointer;
   
 }
