@@ -9,7 +9,9 @@ html, body * {
 }
 html {
   height: 100%;
-  background-image: url('/images/login-bg.svg') no-repeat center center fixed;;
+  background-image: url('/authorization/login-bg.svg');
+  background-repeat: no-repeat;
+  background-size: 10000px;
 }
 
 body {
