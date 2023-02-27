@@ -42,7 +42,7 @@
 			<ul class="dropdown-menu">
 			  <li><a class="dropdown-item" href="/authorization/login.html">Sign Up</a></li>
 			  <li><a class="dropdown-item" href="/authorization/login.html">Login</a></li>
-			  </li>
+		   </li>
 			</ul>
 		  </li>
 		  <li class="nav-item dropdown @@pages">
@@ -58,9 +58,25 @@
 		  <li  class="nav-item @@contact">
 			<a class="nav-link" href="mailto:support@physics-chat.com">Contact</a>
 		  </li>
+		  <ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown">
+			  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Username
+				<span><i class="ti-angle-down"></i></span>
+			  </a>
+			  <!-- Dropdown list -->
+			  <ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="/authorization/account.html">My Account</a></li>
+				<li><a id="sign-out" class="dropdown-item" href="">Sign Out</a></li>
+			 </li>
+			  </ul>
+
+
+
+
+			<!--
 		  <li id="sign-out" class="nav-item ">
 			<a style="color:#2e7eed"class="nav-link" href="#"><strong>Sign Out</strong></a>
-		  </li>
+		  </li>-->
 		</ul>
 	  </div>
 	</div>
@@ -81,7 +97,7 @@
 			<button id="submit" class="submit">Submit</button>
 			<button id="clear"class="clear">Clear</button>
 			<div class="token-box">
-				Tokens: <span id="token-count">2</span>
+				Tokens: <span id="token-count"></span>
 			  </div>
 			
 			<div class="basic"></div>

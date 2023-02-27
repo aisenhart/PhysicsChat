@@ -1,47 +1,107 @@
 <!DOCTYPE html>
+<html style="
+  background-image: url('/images/blurry-gradient-haikei.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
 
-<html lang="en">
+
+">
+<head>
+	<title>Physics Chat | Account</title>
+	<link rel="stylesheet" href="account.css" />
+	<link href="/index.css" rel="stylesheet">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Bootstrap App Landing Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+	<meta name="author" content="Themefisher">
+	<meta name="generator" content="Themefisher Small Apps Template v1.0">
+	 
+	<!-- PLUGINS CSS STYLE -->
+	<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/plugins/slick/slick.css">
+	<link rel="stylesheet" href="/plugins/slick/slick-theme.css">
+	<link rel="stylesheet" href="/plugins/fancybox/jquery.fancybox.min.css">
+	<link rel="stylesheet" href="/plugins/aos/aos.css">
+
+</head>
+<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0" style="    border-bottom: 1px solid #ccc;">
+	<div class="container" >
+	  <img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
+	  <a style="color: #000000;" class="navbar-brand" href="index.html">Physics-Chat</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="ti-menu"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item dropdown active">
+			<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Home
+			  <span><i class="ti-angle-down"></i></span>
+			</a>
+			<!-- Dropdown list -->
+			<ul class="dropdown-menu">
+			  <li><a class="dropdown-item" href="/authorization/login.html">Sign Up</a></li>
+			  <li><a class="dropdown-item" href="/authorization/login.html">Login</a></li>
+		   </li>
+			</ul>
+		  </li>
+		  <li class="nav-item dropdown @@pages">
+			<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
+			  <span><i class="ti-angle-down"></i></span>
+			</a>
+			<!-- Dropdown list -->
+			<ul class="dropdown-menu">
+			  <li><a class="dropdown-item @@privacy" href="privacy-policy.html">Privacy</a></li>
+			  <li><a class="dropdown-item @@faq" href="FAQ.html">FAQ</a></li>
+			</ul>
+		  </li>
+		  <li  class="nav-item @@contact">
+			<a class="nav-link" href="mailto:support@physics-chat.com">Contact</a>
+		  </li>
+		  <ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown">
+			  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Username
+				<span><i class="ti-angle-down"></i></span>
+			  </a>
+			  <!-- Dropdown list -->
+			  <ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="/authorization/account.html">My Account</a></li>
+				<li><a id="sign-out" class="dropdown-item" href="">Sign Out</a></li>
+			 </li>
+			  </ul>
 
 
-  <head>
-    <meta charset="UTF-8" />
-    <title>Account</title>
-    <link rel="stylesheet" href="account.css" />
-  </head>
 
-  <body>
-    <div class="container">
-      <h1>Account Settings</h1>
-      <form>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password">
-        </div>
-        <div class="form-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" name="confirm-password">
-        </div>
-        <div class="form-group">
-          <label for="tier">Membership Tier</label>
-          <select id="tier" name="tier">
-            <option value="free">Free</option>
-            <option value="paid">Paid</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="newsletter">Subscribe to Newsletter</label>
-          <input type="checkbox" id="newsletter" name="newsletter" value="yes">
-        </div>
-        <button type="submit">Save Changes</button>
-      </form>
+
+			<!--
+		  <li id="sign-out" class="nav-item ">
+			<a style="color:#2e7eed"class="nav-link" href="#"><strong>Sign Out</strong></a>
+		  </li>-->
+		</ul>
+	  </div>
+	</div>
+  </nav>
+  
+  <body style="background: transparent;">
+    <div class="account-container">
+      <div class="account-settings">
+        <h2>Account Settings</h2>
+        <form>
+          <label>Full Name</label>
+          <input type="text" name="Full Name" readonly/>
+          <label>Email Address</label>
+          <input type="text" name="email" readonly/>
+          <label>Tier</label>
+          <input type="text" name="tier" readonly/>
+          <label>Amount of Times Used Beta</label>
+          <input type="text" name="beta" readonly/>
+          <label>Amount of Tokens Spent</label>
+          <input type="text" name="tokens" readonly/>
+          <button type="submit">Save</button>
+        </form>
+      </div>
     </div>
   </body>
+
 </html>
+
