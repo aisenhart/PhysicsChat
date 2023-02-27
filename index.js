@@ -117,6 +117,28 @@ app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/authorization/login.html');
 });
 
+app.post('/sign-out', verify, (req, res) => {
+  //delete all cookies
+  res.clearCookie('Authorization');
+  res.redirect('/login');
+});
+
+//get users amount of tokens
+app.get('/token-count', (req, res) => {
+  let email = jwt.decode(req.cookies.Authorization).email;
+  console.log(email);
+  db.getUser(email, (user) => {
+    if(user[0]){
+      res.json({"tokens": user[0].balance});
+      console.log(user[0].balance);
+      
+    } else {
+      res.status(400).json({"error": "user does not exist"});
+    }
+  });
+});
+
+
 
 app.get('/account', verify,(req, res) => {
   res.sendFile(__dirname + '/public/authorization/account.html');
@@ -139,6 +161,19 @@ app.get('/userinfo/:email', verify,(req, res) => {
   });
 });
 
+app.get('/get-name-tier/:email',(req, res) => {
+  db.getUser(req.params.email, (user) => {
+      if(!user[0]){
+        res.status(400).json({"error": "user does not exist"});
+        return;
+      }
+
+
+      user = user[0];
+      console.log(user);
+      res.json({"firstName": user.firstName, "tier": user.tier});
+  });
+});
 
 
 
@@ -147,35 +182,16 @@ app.get('/userinfo/:email', verify,(req, res) => {
 POST REQUESTS
 
 */
-app.post('/get-user-info', verify, function(req, res) {
-  let email = req.body.email;
-  db.getUser(email, (user) =>
-   {
-    if(user[0]){
-      user = user[0];
-      if(jwt.decode(req.cookies.Authorization).email != user.email){
-        res.status(400).json({"error": "not logged in as requested user"});
-        return;
-      }
-      console.log(user.firstName);
-      console.log(JSON.stringify(user));
-      let welcomeName = user.firstName;
-      if(welcomeName == null||welcomeName == ""){
-        welcomeName = user.lastName;
-      }
-      res.json({"firstName": welcomeName, "balance": user.balance, "tier": user.tier});
-
-    } else {
-      res.status(400).json({"error": "user does not exist"});
-    }
-  });
-});
-
-
 
 
 app.post('/ai', verify, async (req, res) => {
   let prompt = req.body.prompt;
+
+  if(!prompt||prompt.length < 1){
+    res.status(400).json({"error": "prompt is empty"});
+    return;
+  }
+
   let jwtToken = req.cookies.Authorization;
   let jwtUser = jwt.decode(jwtToken);
   let engine;
@@ -282,7 +298,9 @@ app.post('/ai', verify, async (req, res) => {
         //console.log(data);
         let completion = data.data.choices[0].text;
         res.json({"completion": completion});
-        db.decrementBalance(user.email,data.data.usage.total_tokens);
+        if(data.data.usage.completion_tokens>0){
+          db.decrementBalance(user.email,data.data.usage.total_tokens);
+        }
       });
    });
 });
