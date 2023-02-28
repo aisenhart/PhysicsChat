@@ -79,12 +79,10 @@ let tiers = {
 
 //db.generateResetPasswordToken("zaydalzein@gmail.com", (token) => {
 //  console.log(token);
-//  sendReset("zaydalzein@gmail.com", "http://localhost:3000/reset-password?token=" + token);
+//  //sendReset("zaydalzein@gmail.com", process.env.WEB_URL+"/reset-password?token=" + token);
 //});
 
 // ------------------------------
-
-
 
 
 
@@ -491,11 +489,58 @@ app.get('/searchUser', verify, (req, res) => {
 });
 
 
+app.get('/forgot-password', (req, res) => {
+  res.sendFile(__dirname + '/public/authorization/forgot.html');
+});
+
+
+app.post('/forgot-password', (req, res) => {
+  if(req.query.email == null || req.query.email.length == 0){
+    res.status(400).json({"error": "email cannot be empty"});
+    return;
+  }
+  const email = req.query.email;
+  db.getUser(email, (user) => {
+    if(user[0] == undefined){
+      res.status(400).json({"error": "user does not exist"});
+      return;
+    }
+    db.generateResetPasswordToken(email, (result) => {
+      if(result == undefined){
+        res.status(400).json({"error": "unknown error"});
+        return;
+      }
+      sendReset("zaydalzein@gmail.com", process.env.WEB_URL+"/reset-password?token=" + token);
+      res.json({"success": "email sent"});
+    });
+  });
+});
+
+      
+      
+
+
+//127.0.0.1:3000/reset-password?token=e6035073-1702-4744-9a8c-f77e311bcb1e
+app.get('/reset-password', (req, res) => {
+  console.log(req.query);
+  db.verifyResetPasswordToken(req.query.email,req.query.token, (user) => {
+    if(user.length == 0){
+      res.status(400).json({"error": "invalid token"});
+      return;
+    }
+    res.sendFile(path.join(__dirname + '/reset-password.html'));  });
+});
+    
+
+app.get('*', function(req, res){
+  res.sendFile(__dirname+'/public/404.html');
+});
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
- 
+
 
 // Path: classes/User.js
 function newUser(ip,email,password,fullName){

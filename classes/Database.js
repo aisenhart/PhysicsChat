@@ -343,6 +343,15 @@ class Database {
             callback(result);
         });
     }
+    verifyResetPasswordToken(email, token, callback) {
+        this.db.query(`SELECT * FROM passwordResetCodes WHERE email = '${email}' AND resetCode = '${token}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    
 
 
 

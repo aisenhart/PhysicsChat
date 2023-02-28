@@ -12,13 +12,14 @@ const html = `
 
 async function sendReset(email, link) {
     nodeMailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: false,
+        service: 'gmail',
         auth: {
             user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
+            pass: process.env.EMAIL_PASS
         },
+        tls: {
+            rejectUnauthorized: false
+        }
     }).sendMail({
         from: "Physics Chat <" + process.env.EMAIL_USER + ">",
         to: email,

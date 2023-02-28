@@ -16,7 +16,7 @@ document.getElementById("sign-out").addEventListener("click", function() {
 //load the getuserinfo function when the page loads
 getUserInfo();
 console.log("function loaded");
-var email = jwt.decode(req.cookies.Authorization).email;
+var email = "test";
 function getUserInfo() {
     $.ajax({
         url: '/get-user-info',
@@ -50,4 +50,20 @@ function getUserInfo() {
         }
     });
 };
-
+function setUsernameText() {
+$.ajax({
+  url: '/get-user-info',
+  type: 'GET',
+  data: { email: email},
+  success: function (data) {
+      let firstName = data.firstName;
+      console.log(firstName);
+      $("#username-txt").text(firstName);
+  },
+  error: function (data) {
+      console.log("error");
+      // error handling code 
+  }
+});
+};
+setUsernameText();
