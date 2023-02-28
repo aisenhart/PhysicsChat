@@ -4,6 +4,12 @@ body {
   font-family: "Lora", serif;
   background: transparent;
 }
+html {
+  height: 100%;
+  background-image: url("/authorization/bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 h1,
 h2,
@@ -55,12 +61,10 @@ h3 {
   padding: 10px;
   resize: none;
 }
-
-.submit,
-.clear {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+#request-btn{
+  margin-left: 0px;
+}
+#request-btn, #reset-btn{  
   background-color: #2e7eed;
   color: #fff;
   border: none;
@@ -68,12 +72,13 @@ h3 {
   padding: 10px 20px;
   cursor: pointer;
 }
-
-.submit:hover,
-.clear:hover {
+#request-btn:hover, #reset-btn:hover{  
   background-color: #0f3467;
   transition: linear 0.5s;
 }
+
+
+
 .button-container {
   display: flex;
   flex-direction: row;

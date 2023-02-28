@@ -9,9 +9,9 @@ html, body * {
 }
 html {
   height: 100%;
-  background-image: url('/authorization/login-bg.svg');
+  background-image: url('/authorization/bg.svg');
   background-repeat: no-repeat;
-  background-size: 10000px;
+  background-size: cover;
 }
 
 body {
