@@ -139,8 +139,39 @@ li {
   transform: translateX(-400px);
   opacity: .0;
 }
+.incorrect-text {
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #ff0000;
+  font-size: 13px;
+  font-weight: 300;
+  margin: 0px;
+  left: 0px;
+  transition: all .5s ease;
+}
 
-*/
+.signin-incorrect-hidden{
+  height: 0;
+  width: 100%;
+  transition: all .5s ease;
+  opacity: 0;
+  display: block;
+  position: relative;
+  margin: 0px;
+
+}
+.signin-incorrect-show {
+  width: 100%;
+  height: 10px;
+  margin: 0px;
+  transition: all .5s ease;
+  display: block;
+  position: relative;
+
+}
+
+
 
 
 
