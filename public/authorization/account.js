@@ -1,8 +1,22 @@
-//load the getuserinfo function when the page loads
+document.getElementById("sign-out").addEventListener("click", function() {
+    fetch('/sign-out', { method: 'POST', credentials: 'same-origin' })
+    .then(function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+      window.location.href = "/";
+    })
+  });
+  
 
-    getUserInfo();
-    console.log("function loaded");
-    var email = jwt.decode(req.cookies.Authorization).email;
+
+
+//load the getuserinfo function when the page loads
+getUserInfo();
+console.log("function loaded");
+var email = jwt.decode(req.cookies.Authorization).email;
 function getUserInfo() {
     $.ajax({
         url: '/get-user-info',
@@ -29,17 +43,6 @@ function getUserInfo() {
             $('#user-balance').val(balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' Tokens');
             $('#beta-usage').val(completions + ' Completions');
             $('#tokens-spent').val(usedTokens.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ) + ' Tokens');
-
-
-
-
-
-
-
-
-
-
-
         },
         error: function (data) {
             console.log("error");
@@ -47,3 +50,4 @@ function getUserInfo() {
         }
     });
 };
+

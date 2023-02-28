@@ -312,9 +312,48 @@ class Database {
         }
     }
 
+    generateResetPasswordToken(email, callback) {
+        this.getUser(email, (user) => {
+            user = user[0];
+            let token = crypto.randomUUID();
+            this.db.query(`INSERT INTO passwordResetCodes (email, resetCode,created) VALUES ('${email}', '${token}', '${Date.now()}')`, (err, result) => {
+                if (err) {
+                    throw err;
+                }
+                callback(token);
+            }
+            );
+        });
+    }
+
+    deleteResetPasswordToken(email, callback) {
+        this.db.query(`DELETE FROM password-reset-codes WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+
+    resetPassword(email, password, callback) {
+        this.db.query(`UPDATE users SET password = '${password}' WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+
+
+
+    
+
+
+
 }
 
 
 module.exports = {
     Database
 }
+

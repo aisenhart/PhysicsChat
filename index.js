@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const GPT3Tokenizer = require('gpt3-tokenizer');
 //internal modules
-
+const sendReset  = require('./reset-password');
 const { Order } = require("./classes/Order");
 const { User } = require("./classes/User");
 const { Ban } = require("./classes/Ban");
@@ -21,6 +21,8 @@ const MODERATION_API_URL = `https://api.openai.com/v1/moderations`;
 
 //connect to database and setup class
 const db = new Database();
+
+
 db.connect();
 //web server variables
 const app = express();
@@ -63,6 +65,27 @@ let tiers = {
   }
 
 }
+
+
+
+//-----------------------
+
+/* TESTING CODE */
+
+
+
+
+//send reset is an async function 
+
+//db.generateResetPasswordToken("zaydalzein@gmail.com", (token) => {
+//  console.log(token);
+//  sendReset("zaydalzein@gmail.com", "http://localhost:3000/reset-password?token=" + token);
+//});
+
+// ------------------------------
+
+
+
 
 
 
@@ -138,8 +161,6 @@ app.get('/token-count', (req, res) => {
   });
 });
 
-
-
 app.get('/account', verify,(req, res) => {
   res.sendFile(__dirname + '/public/authorization/account.html');
 });
@@ -175,6 +196,10 @@ app.get('/get-name-tier/:email',(req, res) => {
   });
 });
 app.get('/get-user-info',(req, res) => {
+  if(req.cookies.Authorization == undefined){
+    res.status(400).json({"error": "not logged in"});
+    return;
+  }
   let email = jwt.decode(req.cookies.Authorization).email;
   db.getUser(email, (user) => {
     console.log(req.params.email);
@@ -490,7 +515,7 @@ function newUser(ip,email,password,fullName){
   u1.setBalance(tiers['free'].tokens);
   u1.setFirstName(firstName);
   u1.setLastName(lastName);
-  u1.setAccountCreatedAt(new Date().toISOString().slice(0, 19).replace("T", " "));
+  u1.setAccountCreatedAt(Date.now());
   u1.setAdsClicked(0);
   u1.setAdsWatched(0);
   u1.setBanned(JSON.stringify({"banned": false, "reason": "", "date": ""}));
