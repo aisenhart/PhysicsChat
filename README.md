@@ -4,6 +4,7 @@
 ### TO DO LIST
 - [x] Fix contact links
 - [x] Update Privacy Policy add "openAI user terms"
+- [x] Fix Load times with login page. Possible issue: Loading the SVG. Thin out css from bootstrap?
 - [ ] Termly 
 - [ ] Do FA!
 - [ ] Account verification via email
