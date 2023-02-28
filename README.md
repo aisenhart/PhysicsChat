@@ -11,6 +11,7 @@
 - [ ] Payment processing
 - [ ] Setup watching ads for tokens
 - [ ] reset password form | Add passwords dont match error
+- [ ] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .env required 
 
