@@ -174,8 +174,30 @@ app.get('/get-name-tier/:email',(req, res) => {
       res.json({"firstName": user.firstName, "tier": user.tier});
   });
 });
+app.get('/get-user-info',(req, res) => {
+  let email = jwt.decode(req.cookies.Authorization).email;
+  db.getUser(email, (user) => {
+    console.log(req.params.email);
+      if(!user[0]){
+        res.status(400).json({"error": "user does not exist"});
+        return;
+      }
+      user = user[0];
+      console.log(user);
+      res.json({
+      "firstName": user.firstName, 
+      "lastName": user.lastName, 
+      "tier": user.tier, 
+      "balance": user.balance, 
+      "email": user.email, 
+      "completionsCount": user.completionsCount,
+      "usedTokens": user.usedTokens,
 
-
+    
+    });
+  });
+});
+//get user email from cookie?
 
 /*
 

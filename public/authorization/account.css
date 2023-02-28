@@ -144,22 +144,31 @@ h3 {
 }
 
 .account-container {
-  width: 500px;
+  width: fit-content;
+  max-width: 1000px;
+	display: flex;
+	flex-wrap: wrap;
   margin: 0 auto;
-  margin-top: 50px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  background-color: #fff;
+	margin-top: 50px;
+  margin-bottom: 50px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+	background-color: #fff;
 }
 .account-settings {
   padding: 20px;
   border-radius: 5px;
+  width: 400px;
+  max-width: 500px;
 }
 .account-settings h2 {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  flex-basis: 60%;
+	padding: 20px;
+	border-radius: 5px;
 }
 .account-settings label {
   font-size: 16px;
@@ -169,6 +178,8 @@ h3 {
 }
 .account-settings input {
   width: 100%;
+  font-size: 20px;
+  color: black;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -185,3 +196,77 @@ h3 {
   padding: 10px 20px;
   cursor: pointer;
 }
+
+
+.plan-information {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.plan-information-container {
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #2e7eed;
+  flex-basis: 40%;
+	border-radius: 5px;
+}
+.plan-information-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  flex-basis: 60%;
+	border-radius: 5px;
+  color: #fff;
+  padding: 2px;
+
+}
+.plan-information-item {
+	flex-basis: calc(50% - 20px);
+  padding: 10px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+.plan-information-item.active {
+  border: 3px solid #fff;
+  border-radius: 5px;
+}
+.plan-information-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+
+  }
+  .plan-information-item p {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #e0e0e0;
+
+  }
+  .plan-information-container {
+  margin-left: 50px;
+  width: 500px;
+  }
+  @media (max-width: 768px) {
+  .account-settings, .plan-information-container {
+  width: 100%;
+  margin-left: 0;
+  }
+  .plan-information-container {
+  margin-top: 20px;
+  }
+  }
+  
+  /* float settings and plan information containers */
+  .account-settings, .plan-information-container {
+  float: left;
+  width: 50%;
+  }
+  .clearfix {
+  clear: both;
+  }

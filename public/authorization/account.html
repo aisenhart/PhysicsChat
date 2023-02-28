@@ -26,7 +26,7 @@
 </head>
 <nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0" style="    border-bottom: 1px solid #ccc;">
 	<div class="container" >
-	  <img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
+	  <img class="img-fluid" src="mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
 	  <a style="color: #000000;" class="navbar-brand" href="index.html">Physics-Chat</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,25 +83,57 @@
   </nav>
   
   <body style="background: transparent;">
-    <div class="account-container">
-      <div class="account-settings">
-        <h2>Account Settings</h2>
-        <form>
-          <label>Full Name</label>
-          <input type="text" name="Full Name" readonly/>
-          <label>Email Address</label>
-          <input type="text" name="email" readonly/>
-          <label>Tier</label>
-          <input type="text" name="tier" readonly/>
-          <label>Amount of Times Used Beta</label>
-          <input type="text" name="beta" readonly/>
-          <label>Amount of Tokens Spent</label>
-          <input type="text" name="tokens" readonly/>
-          <button type="submit">Save</button>
-        </form>
-      </div>
-    </div>
+	<div class="account-container">
+	  <div class="account-settings">
+		<h2>Account Settings</h2>
+		<form>
+			<label for="full-name">Full Name</label>
+			<input id="full-name" type="text" name="Full Name" readonly/>
+			<label for="email-address">Email Address</label>
+			<input id="email-address" type="text" name="email" readonly/>
+			<label for="tier">Tier</label>
+			<input id="tier" type="text" name="tier" readonly/>
+			<label for="beta-usage">Number of Completions</label>
+			<input id="beta-usage" type="text" name="beta" readonly/>
+			<label for="tokens-spent">Amount of Tokens Spent</label>
+			<input id="tokens-spent" type="text" name="tokens" readonly/>
+			<label for="user-balance">User Balance</label>
+			<input id="user-balance" type="text" name="balance" readonly/>
+			<button id="save-btn" type="submit">Request Tokens</button>
+			<button id="reset-btn" type="reset">Reset password?</button>
+			
+		</form>
+	  </div>
+	  <div class="plan-information-container">
+		<h2 style="border-bottom: 2px solid white; border-radius: 0;">Plan Information</h2>
+		<div class="plan-information">
+			<div id="free-information-item"class="plan-information-item ">
+				<h3>Free</h3>
+				<p>
+				  200 free tokens<br>
+				  Maximum 200 tokens per request<br>
+				  Engine: text-curie-001
+				</p>
+			  </div>
+			  <div id="basic-information-item" class="plan-information-item">
+				<h3>Basic</h3>
+				<p>
+				  1000 tokens for $5<br>
+				  Maximum 500 tokens per request<br>
+				  Engine: text-davinci-003
+				</p>
+			  </div>
+			  <div id="pro-information-item"class="plan-information-item">
+				<h3>Pro</h3>
+				<p>
+				  4000 tokens for $20<br>
+				  Maximum 1000 tokens per request<br>
+				  Engine: text-davinci-003
+				</p>
+			  </div>
+	</div>
   </body>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="account.js"></script>
 </html>
 
