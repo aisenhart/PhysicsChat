@@ -37,8 +37,12 @@
             <div ng-app ng-init="checked = false">
                 <form id="submitLogin" class="form-forgot" action="/login" method="post" name="form" required>
                     <label for="email">Email</label>
-                    <input class="form-styling" type="text" name="email" placeholder="" />
+                    <input style ="margin-bottom: 0px;"class="form-styling" type="text" name="email" placeholder="" />
                     
+                    <div id="incorrect-text-container"class="signin-incorrect-hidden">
+                        <p class="incorrect-text">Invalid email</p>
+                      </div>
+
                     <div class="btn-animate" id="forgot-btn">
                         <a class="btn-forgot">Send Email</a>
                     </div>
@@ -55,6 +59,34 @@
             <!-- partial -->
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
-</body>
+
+
+
+            <script>
+                $(document).ready(function () {
+                    console.log("ready!");
+                    //check if email is valid and contains an @ and a .com
+                    $("#forgot-btn").click(function () {
+                        var email = $("input[name=email]").val();
+                        console.log(email);
+                        if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
+                            $("#incorrect-text-container").removeClass("signin-incorrect-hidden");
+                            $("#incorrect-text-container").addClass("signin-incorrect-show");
+                            console.log("email is invalid");
+                        } else {
+                            console.log("email is valid");
+                            $("#incorrect-text-container").removeClass("signin-incorrect-show");
+                            $("#incorrect-text-container").addClass("signin-incorrect-hidden");
+                        }
+                    });
+                    });
+            </script>
+
+
+        </body>
+
+
+
+
 
 </html>
