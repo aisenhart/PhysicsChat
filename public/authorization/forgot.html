@@ -64,17 +64,13 @@
 
             <script>
                 $(document).ready(function () {
-                    console.log("ready!");
-                    //check if email is valid and contains an @ and a .com
                     $("#forgot-btn").click(function () {
                         var email = $("input[name=email]").val();
                         console.log(email);
                         if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
                             $("#incorrect-text-container").removeClass("signin-incorrect-hidden");
                             $("#incorrect-text-container").addClass("signin-incorrect-show");
-                            console.log("email is invalid");
                         } else {
-                            console.log("email is valid");
                             $("#incorrect-text-container").removeClass("signin-incorrect-show");
                             $("#incorrect-text-container").addClass("signin-incorrect-hidden");
                         }

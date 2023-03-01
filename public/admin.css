@@ -64,15 +64,25 @@
 
   /* Select dropdown styles */
   select {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #2e7eed;
-    color: white;
-    font-size: 16px;
+    appearance: none;
+    border: 2px solid #0051c2;
+    padding: 12px;
     margin: 20px;
+    width: 170px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: inherit;
+    line-height: inherit;
+    color: white;
+    background-color: #2e7eed;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
-  
+
+
+
+
+
   /* Input fields styles */
   input[type="text"], input[type="password"] {
     width: 100%;
@@ -101,6 +111,7 @@
   }
   
   /* Information input sections styles */
+
   .information-container{
     display: flex;
     flex-direction: column;
@@ -115,6 +126,9 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     margin: 10px 0;
     width: 50%;
+  }
+  .hidden {
+    display: none;
   }
   #console-title {
     height: 30px;

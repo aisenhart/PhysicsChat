@@ -30,7 +30,7 @@
         <div id="console-title"><a>Console Log:</a></div>
     <textarea id="command-log" readonly></textarea>
     </div>
-    <select>
+    <select id="select-dropdown">
         <option value="search-user">Search User</option>
         <option value="new-user">New User</option>
         <option value="ban-user">Ban User</option>
@@ -72,8 +72,8 @@
             <input type="text" name="IP" placeholder="IP">
             <input type="text" name="firstName" placeholder="First Name">
             <input type="text" name="lastName" placeholder="Last Name">
-            <input class="submit" id="submit-search-user" value="Search">
-            <input type="reset">
+            <input class="submit" id="submit-search-user" value="Search" readonly>
+            <input type="reset" readonly>
         </form>
     </div>
 
@@ -83,8 +83,8 @@
             <input type="text" name="email" placeholder="Email" required>
             <input type="text" name="password" placeholder="Password" required>
             <input type="text" name="fullname" placeholder="Full Name" required>
-            <input class="submit" id="submit-new-user" value="Submit">
-            <input type="reset">
+            <input class="submit" id="submit-new-user" value="Submit" readonly>
+            <input type="reset" readonly>
         </form>
     </div>
 
@@ -92,8 +92,8 @@
         <h2>Ban User</h2>
         <form action="admin.php" method="post">
             <input type="text" name="UID" placeholder="UID">
-            <input type="submit" value="Submit">
-            <input type="reset">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
         </form>
     </div>
 
@@ -101,8 +101,8 @@
         <h2>Unban User</h2>
         <form action="admin.php" method="post">
             <input type="text" name="UID" placeholder="UID">
-            <input type="submit" value="Submit">
-            <input type="reset">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
         </form>
     </div>
 
@@ -110,8 +110,8 @@
         <h2>Delete User</h2>
         <form action="admin.php" method="post">
             <input type="text" name="UID" placeholder="UID">
-            <input type="submit" value="Submit">
-            <input type="reset">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
         </form>
     </div>
     <!--Make a toolbar with all the different admin tools-->
@@ -121,10 +121,38 @@
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+<!-- import J query-->
 <script>
+//Make all of the tools hidden by default except what is selected by the dropdown menu
+//code:
+console.log("Admin Panel Loaded")
+function hideElements(){
+document.getElementById("search-user").classList.add("hidden");
+document.getElementById("new-user").classList.add("hidden");
+document.getElementById("ban-user").classList.add("hidden");
+document.getElementById("unban-user").classList.add("hidden");
+document.getElementById("delete-user").classList.add("hidden");
+/*
+document.getElementById("set-balance").classList.add("hidden");
+document.getElementById("increase-balance").classList.add("hidden");
+document.getElementById("decrease-balance").classList.add("hidden");
+document.getElementById("remove-warnings").classList.add("hidden");
+document.getElementById("manual-warning").classList.add("hidden");
+document.getElementById("manual-sql").classList.add("hidden");
+document.getElementById("search-ip").classList.add("hidden");
+document.getElementById("change-email").classList.add("hidden");
+document.getElementById("change-password").classList.add("hidden");*/
+}
+hideElements();
 
-
+//Make the selected tool visible
+document.getElementById("select-dropdown").onchange = function(){
+    hideElements();
+    let selected = document.getElementById("select-dropdown").value;
+    document.getElementById(selected).classList.remove("hidden");
+}
+</script>
+<script>
 function commandLog(text){
 
     let commandLog = document.getElementById("command-log")
