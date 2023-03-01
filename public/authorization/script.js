@@ -107,6 +107,7 @@ $(function () {
       success: function (data) {
         console.log(data.success);
         //show the success message
+        $(".premium-status-container").removeClass("premium-status-container-hidden");
         $(".btn-animate").toggleClass("btn-animate-grow");
         $(".welcome").toggleClass("welcome-left");
         $(".cover-photo").toggleClass("cover-photo-down");

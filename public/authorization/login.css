@@ -446,10 +446,10 @@ a.btn-signup:hover, a.btn-signin:hover {
   margin-right: auto;
   text-align: center;
   padding-top: 24px;
-
   border-top: solid 1px #636363;
   transition: all 0.5s ease;
   bottom: 0;
+  pointer-events: auto; 
 }
 
 .forgot-left {
@@ -468,7 +468,6 @@ a.btn-signup:hover, a.btn-signin:hover {
   font-weight: 400;
   font-size: 13px;
   text-decoration: none;
-  pointer-events: auto; 
 
 }
 .welcome {
@@ -487,7 +486,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 
 
 .cover-photo {
-  height: 170px;
+  height: 0px;
   position: relative;
   left: 0px;  top: -900px;
   background:
@@ -510,12 +509,16 @@ a.btn-signup:hover, a.btn-signin:hover {
   opacity: 0;
 }
 .premium-status-container {
+
   position: relative;
   top: 0;
   left: 0;
   right: 0;
   padding: 50px;
   
+}
+.premium-status-container-hidden {
+height: 0px;
 }
 .premium-status-container a {
 
@@ -530,8 +533,10 @@ a.btn-signup:hover, a.btn-signin:hover {
   }
 
 .cover-photo-down {
+  height: 170px;
   top: -1300px;
   opacity: 1;
+  
 }
 
 h1 {
