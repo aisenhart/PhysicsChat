@@ -6,13 +6,13 @@
 - [x] Update Privacy Policy add "openAI user terms"
 - [x] Fix Load times with login page. Possible issue: Loading the SVG. Thin out css from bootstrap?
 - [ ] Termly 
-- [ ] Do FA!
 - [ ] Account verification via email
 - [ ] Finish Contact databse link
 - [ ] Payment processing
 - [ ] Setup watching ads for tokens
 - [x] reset password form | Add passwords dont match error
 - [ ] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- [ ] CORRECT MY POOR FILE HREFS
 
 .env required 
 
