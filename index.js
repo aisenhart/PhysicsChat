@@ -47,19 +47,19 @@ let tiers = {
     "tokens": 1000,
     "price": 5,
     "max_tokens": 500,
-    "engine": "text-davinci-003"
+    "engine": "gpt-3.5-turbo"
   },
   "pro": {
     "tokens": 4000,
     "price": 20,
     "max_tokens": 1000,
-    "engine": "text-davinci-003"
+    "engine": "gpt-3.5-turbo"
   },
   "admin": {
     "tokens": 100000,
     "price": 1000000000,
     "max_tokens": 1000,
-    "engine": "text-davinci-003"
+    "engine": "gpt-3.5-turbo"
   }
 
 }
