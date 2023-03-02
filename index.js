@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const GPT3Tokenizer = require('gpt3-tokenizer');
 //internal modules
-const sendReset  = require('./reset-password');
+
 const { Order } = require("./classes/Order");
 const { User } = require("./classes/User");
 const { Ban } = require("./classes/Ban");
@@ -21,8 +21,6 @@ const MODERATION_API_URL = `https://api.openai.com/v1/moderations`;
 
 //connect to database and setup class
 const db = new Database();
-
-
 db.connect();
 //web server variables
 const app = express();
@@ -65,25 +63,6 @@ let tiers = {
   }
 
 }
-
-
-
-//-----------------------
-
-/* TESTING CODE */
-
-
-
-
-//send reset is an async function 
-
-//db.generateResetPasswordToken("zaydalzein@gmail.com", (token) => {
-//  console.log(token);
-//  //sendReset("zaydalzein@gmail.com", process.env.WEB_URL+"/reset-password?token=" + token);
-//});
-
-// ------------------------------
-
 
 
 
@@ -138,26 +117,6 @@ app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/authorization/login.html');
 });
 
-app.post('/sign-out', verify, (req, res) => {
-  //delete all cookies
-  res.clearCookie('Authorization');
-  res.redirect('/login');
-});
-
-//get users amount of tokens
-app.get('/token-count', (req, res) => {
-  let email = jwt.decode(req.cookies.Authorization).email;
-  console.log(email);
-  db.getUser(email, (user) => {
-    if(user[0]){
-      res.json({"tokens": user[0].balance});
-      console.log(user[0].balance);
-      
-    } else {
-      res.status(400).json({"error": "user does not exist"});
-    }
-  });
-});
 
 app.get('/account', verify,(req, res) => {
   res.sendFile(__dirname + '/public/authorization/account.html');
@@ -180,63 +139,43 @@ app.get('/userinfo/:email', verify,(req, res) => {
   });
 });
 
-app.get('/get-name-tier/:email',(req, res) => {
-  db.getUser(req.params.email, (user) => {
-      if(!user[0]){
-        res.status(400).json({"error": "user does not exist"});
-        return;
-      }
 
 
-      user = user[0];
-      console.log(user);
-      res.json({"firstName": user.firstName, "tier": user.tier});
-  });
-});
-app.get('/get-user-info',(req, res) => {
-  if(req.cookies.Authorization == undefined){
-    res.status(400).json({"error": "not logged in"});
-    return;
-  }
-  let email = jwt.decode(req.cookies.Authorization).email;
-  db.getUser(email, (user) => {
-    console.log(req.params.email);
-      if(!user[0]){
-        res.status(400).json({"error": "user does not exist"});
-        return;
-      }
-      user = user[0];
-      console.log(user);
-      res.json({
-      "firstName": user.firstName, 
-      "lastName": user.lastName, 
-      "tier": user.tier, 
-      "balance": user.balance, 
-      "email": user.email, 
-      "completionsCount": user.completionsCount,
-      "usedTokens": user.usedTokens,
-
-    
-    });
-  });
-});
-//get user email from cookie?
 
 /*
 
 POST REQUESTS
 
 */
+app.post('/get-user-info', verify, function(req, res) {
+  let email = req.body.email;
+  db.getUser(email, (user) =>
+   {
+    if(user[0]){
+      user = user[0];
+      if(jwt.decode(req.cookies.Authorization).email != user.email){
+        res.status(400).json({"error": "not logged in as requested user"});
+        return;
+      }
+      console.log(user.firstName);
+      console.log(JSON.stringify(user));
+      let welcomeName = user.firstName;
+      if(welcomeName == null||welcomeName == ""){
+        welcomeName = user.lastName;
+      }
+      res.json({"firstName": welcomeName, "balance": user.balance, "tier": user.tier});
+
+    } else {
+      res.status(400).json({"error": "user does not exist"});
+    }
+  });
+});
+
+
 
 
 app.post('/ai', verify, async (req, res) => {
   let prompt = req.body.prompt;
-
-  if(!prompt||prompt.length < 1){
-    res.status(400).json({"error": "prompt is empty"});
-    return;
-  }
-
   let jwtToken = req.cookies.Authorization;
   let jwtUser = jwt.decode(jwtToken);
   let engine;
@@ -343,9 +282,7 @@ app.post('/ai', verify, async (req, res) => {
         //console.log(data);
         let completion = data.data.choices[0].text;
         res.json({"completion": completion});
-        if(data.data.usage.completion_tokens>0){
-          db.decrementBalance(user.email,data.data.usage.total_tokens);
-        }
+        db.decrementBalance(user.email,data.data.usage.total_tokens);
       });
    });
 });
@@ -435,9 +372,10 @@ app.post('/register', (req, res) => {
         res.cookie('Authorization', accessToken).send({"success": "user created"});
       } else{
         res.json({"success": "user created"});
+        res.cookie('Authorization', accessToken, {secure: true}).json({"success":"user created"});
+
       }
 
-      //res.cookie('Authorization', accessToken, {secure: true}).json({"success":"user created"});
     }
     else{
       res.status(400).json({"error":"unknown error"});
@@ -488,59 +426,41 @@ app.get('/searchUser', verify, (req, res) => {
   });
 });
 
-
-app.get('/forgot-password', (req, res) => {
-  res.sendFile(__dirname + '/public/authorization/forgot.html');
-});
-
-
-app.post('/forgot-password', (req, res) => {
-  if(req.query.email == null || req.query.email.length == 0){
-    res.status(400).json({"error": "email cannot be empty"});
-    return;
-  }
-  const email = req.query.email;
+app.get('/banuser', verify, (req, res) => {
+  // client email="",UID="",IP="",firstName="",lastName=""
+  let email = jwt.decode(req.cookies.Authorization).email;
   db.getUser(email, (user) => {
-    if(user[0] == undefined){
-      res.status(400).json({"error": "user does not exist"});
+    user = user[0];
+    if(user == undefined){
+      res.status(400).json({"error": "not logged in as authorized user"});
       return;
     }
-    db.generateResetPasswordToken(email, (result) => {
-      if(result == undefined){
-        res.status(400).json({"error": "unknown error"});
+    if(user.tier != "admin"){
+      res.status(400).json({"error": "not logged in as authorized user"});
+      return;
+    } else{
+      let UID = req.query.UID;
+      let ban = req.query.ban;
+      let reason = req.query.reason;
+      if(!UID || !ban || !reason){
+        res.status(400).json({"error": "missing fields"});
         return;
       }
-      sendReset("zaydalzein@gmail.com", process.env.WEB_URL+"/reset-password?token=" + token);
-      res.json({"success": "email sent"});
-    });
-  });
-});
-
-      
-      
-
-
-//127.0.0.1:3000/reset-password?token=e6035073-1702-4744-9a8c-f77e311bcb1e
-app.get('/reset-password', (req, res) => {
-  console.log(req.query);
-  db.verifyResetPasswordToken(req.query.email,req.query.token, (user) => {
-    if(user.length == 0){
-      res.status(400).json({"error": "invalid token"});
-      return;
+      db.banUser(UID, ban, reason, (success) => {
+        if(success){
+          res.json({"success": "user banned"});
+        } else{
+          res.status(400).json({"error": "unknown error"});
+        }
+      });
     }
-    res.sendFile(path.join(__dirname + '/reset-password.html'));  });
-});
-    
-
-app.get('*', function(req, res){
-  res.sendFile(__dirname+'/public/404.html');
-});
+  });
 
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
-
+ 
 
 // Path: classes/User.js
 function newUser(ip,email,password,fullName){
@@ -560,6 +480,7 @@ function newUser(ip,email,password,fullName){
   u1.setBalance(tiers['free'].tokens);
   u1.setFirstName(firstName);
   u1.setLastName(lastName);
+  console.log(Date.now());
   u1.setAccountCreatedAt(Date.now());
   u1.setAdsClicked(0);
   u1.setAdsWatched(0);
@@ -575,6 +496,8 @@ function newUser(ip,email,password,fullName){
   
 
 }
+
+
 
 function verify(req,res,next){
   const token = req.cookies.Authorization;
