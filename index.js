@@ -455,6 +455,7 @@ app.get('/banuser', verify, (req, res) => {
       });
     }
   });
+});
 
 
 app.listen(port, () => {
@@ -480,7 +481,7 @@ function newUser(ip,email,password,fullName){
   u1.setBalance(tiers['free'].tokens);
   u1.setFirstName(firstName);
   u1.setLastName(lastName);
-  console.log(Date.now());
+  
   u1.setAccountCreatedAt(Date.now());
   u1.setAdsClicked(0);
   u1.setAdsWatched(0);
@@ -496,8 +497,6 @@ function newUser(ip,email,password,fullName){
   
 
 }
-
-
 
 function verify(req,res,next){
   const token = req.cookies.Authorization;
