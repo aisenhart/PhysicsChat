@@ -114,6 +114,93 @@
             <input type="reset" readonly>
         </form>
     </div>
+
+    <div class="information-inputs" id="set-balance">
+        <h2>Set Balance</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="text" name="balance" placeholder="Balance">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+    <div class="information-inputs" id="increase-balance">
+        <h2>Increase Balance</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="text" name="balance" placeholder="Balance">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+    <div class="information-inputs" id="decrease-balance">
+        <h2>Decrease Balance</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="text" name="balance" placeholder="Balance">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+    <div class="information-inputs" id="remove-warnings">
+        <h2>Remove Warnings</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+    <div class="information-inputs" id="manual-warning">
+        <h2>Manual Warning</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+    <div class="information-inputs" id="manual-sql">
+        <h2>Manual SQL</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+    <div class="information-inputs" id="change-password">
+        <h2>Change Password</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="text" name="password" placeholder="Password">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+    <div class="information-inputs" id="change-email">
+        <h2>Change Email</h2>
+        <form action="admin.php" method="post">
+            <input type="text" name="UID" placeholder="UID">
+            <input type="text" name="email" placeholder="Email">
+            <input type="submit" value="Submit" readonly>
+            <input type="reset" readonly>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
     <!--Make a toolbar with all the different admin tools-->
 
 
@@ -132,18 +219,18 @@ document.getElementById("new-user").classList.add("hidden");
 document.getElementById("ban-user").classList.add("hidden");
 document.getElementById("unban-user").classList.add("hidden");
 document.getElementById("delete-user").classList.add("hidden");
-/*
 document.getElementById("set-balance").classList.add("hidden");
 document.getElementById("increase-balance").classList.add("hidden");
 document.getElementById("decrease-balance").classList.add("hidden");
 document.getElementById("remove-warnings").classList.add("hidden");
 document.getElementById("manual-warning").classList.add("hidden");
 document.getElementById("manual-sql").classList.add("hidden");
-document.getElementById("search-ip").classList.add("hidden");
 document.getElementById("change-email").classList.add("hidden");
-document.getElementById("change-password").classList.add("hidden");*/
+document.getElementById("change-password").classList.add("hidden");
 }
 hideElements();
+document.getElementById("search-user").classList.remove("hidden");
+
 
 //Make the selected tool visible
 document.getElementById("select-dropdown").onchange = function(){
