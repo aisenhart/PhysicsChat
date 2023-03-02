@@ -13,6 +13,7 @@
 - [x] reset password form | Add passwords dont match error
 - [ ] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 - [ ] CORRECT MY POOR FILE HREFS
+- [ ] Fix "app" link in dropdown for the account page. Brings user to login instead of back to application.
 
 .env required 
 
