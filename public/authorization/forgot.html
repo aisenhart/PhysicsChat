@@ -19,14 +19,6 @@
             <a class="navbar-brand" href="/">Physics-Chat</a>
     </nav>
 
-
-
-
-
-
-
-
-
     <div class="container">
         <div class="frame">
             <div class="nav">
@@ -34,27 +26,26 @@
                     <li class="forgot-active"><a class="btn">Forgot Password</a></li>
                 </ul>
             </div>
-            <div ng-app ng-init="checked = false">
-                <form id="submitLogin" class="form-forgot" action="/login" method="post" name="form" required>
+            <div>
+                <form id="submitLogin" class="form-forgot" action="/forgot-password" method="post" name="form" required>
                     <label for="email">Email</label>
-                    <input style ="margin-bottom: 0px;"class="form-styling" type="text" name="email" placeholder="" />
-                    
-                    <div id="incorrect-text-container"class="signin-incorrect-hidden">
+                    <input style ="margin-bottom: 0px;" class="form-styling" type="text" name="email" placeholder="" />
+                
+                    <div id="incorrect-text-container" class="signin-incorrect-hidden">
                         <p class="incorrect-text">Invalid email</p>
-                      </div>
-
+                    </div>
+            
                     <div class="btn-animate" id="forgot-btn">
                         <a class="btn-forgot">Send Email</a>
                     </div>
+            
                 </form>
-                <div class="additional">
-                    <a href="/contact.html">Require Additional help? Contact us!</a>
+                <div class="alert-container hidden" >
+                    <p class="alert-message">Check your email for a password reset link!</p>
                 </div>
-
-
-
-
-
+            </div>
+            <div class="additional">
+                <a href="/contact.html">Require Additional help? Contact us!</a>
             </div>
             <!-- partial -->
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -63,20 +54,59 @@
 
 
             <script>
+                submissionCount = 0;
+                submissionLimit = 3;
+                submittedEmails = [];
+                function checkSubmissionCount(email){
+                  if(submissionCount < submissionLimit){
+                    submissionCount++;
+                    submittedEmails.push(email);
+                    return true;
+                  } else {
+                    for(var i = 0; i < submittedEmails.length; i++){
+                      if(submittedEmails[i] == email){
+                        return false;
+                      }
+                    }
+                    submissionCount++;
+                    submittedEmails.push(email);
+                    return true;
+                  }
+                }
+              
+                function SubForm (){
+                  let email = $("input[name=email]").val();
+                  if(checkSubmissionCount(email)){
+                    $.ajax({
+                      url: '/forgot-password',
+                      type: 'post',
+                      data: $('#submitLogin').serialize(),
+                      success: function(){
+                        console.log("success");
+                        $(".alert-container").removeClass("hidden");
+                      }
+                    });
+                  } else {
+                    console.log("too many submissions");
+                  }
+                }
+              
                 $(document).ready(function () {
-                    $("#forgot-btn").click(function () {
-                        var email = $("input[name=email]").val();
-                        console.log(email);
-                        if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
-                            $("#incorrect-text-container").removeClass("signin-incorrect-hidden");
-                            $("#incorrect-text-container").addClass("signin-incorrect-show");
-                        } else {
-                            $("#incorrect-text-container").removeClass("signin-incorrect-show");
-                            $("#incorrect-text-container").addClass("signin-incorrect-hidden");
-                        }
-                    });
-                    });
-            </script>
+                  $("#forgot-btn").click(function () {
+                    var email = $("input[name=email]").val();
+                    console.log(email);
+                    if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
+                      $("#incorrect-text-container").removeClass("signin-incorrect-hidden");
+                      $("#incorrect-text-container").addClass("signin-incorrect-show");
+                    } else {
+                      $("#incorrect-text-container").removeClass("signin-incorrect-show");
+                      $("#incorrect-text-container").addClass("signin-incorrect-hidden");
+                      SubForm();
+                     
+                    }
+                  });
+                });
+              </script>
 
 
         </body>

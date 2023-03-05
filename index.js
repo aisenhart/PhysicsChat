@@ -340,7 +340,7 @@ app.post('/ai', verify, async (req, res) => {
         return;
       });
       response.then((data) => {
-        //console.log(data);
+        console.log(data);
         let completion = data.data.choices[0].text;
         res.json({"completion": completion});
         if(data.data.usage.completion_tokens>0){
@@ -495,42 +495,89 @@ app.get('/forgot-password', (req, res) => {
 
 
 app.post('/forgot-password', (req, res) => {
-  if(req.query.email == null || req.query.email.length == 0){
+  console.log(req.body);
+  if(req.body.email == null || req.body.email.length == 0){
     res.status(400).json({"error": "email cannot be empty"});
     return;
   }
-  const email = req.query.email;
+  const email = req.body.email;
   db.getUser(email, (user) => {
     if(user[0] == undefined){
       res.status(400).json({"error": "user does not exist"});
       return;
-    }
+    } 
     db.generateResetPasswordToken(email, (result) => {
       if(result == undefined){
         res.status(400).json({"error": "unknown error"});
-        return;
-      }
-      sendReset("zaydalzein@gmail.com", process.env.WEB_URL+"/reset-password?token=" + token);
+        return; 
+      } 
+      sendReset(req.body.email, process.env.WEB_URL+"/reset-password?token=" + result+"&email="+email);
       res.json({"success": "email sent"});
     });
   });
 });
 
-      
-      
 
-
-//127.0.0.1:3000/reset-password?token=e6035073-1702-4744-9a8c-f77e311bcb1e
 app.get('/reset-password', (req, res) => {
-  console.log(req.query);
+  console.log(req.query.token);
   db.verifyResetPasswordToken(req.query.email,req.query.token, (user) => {
+    console.log(user)
+    if(user.length == 0){
+      res.status(400).send('<div style="text-align:center; margin-top: 20%;"><h1>Invalid password reset token</h1> <a href="/forgot-password">Click here to reset your password</a><div>')
+      return;
+    }
+
+    if(user[0].created+900000 < Date.now()){
+      res.status(400).json({"error": "token expired"});
+      return;
+    }
+
+    res.sendFile(__dirname + '/public/authorization/reset.html');  
+  });
+});
+
+app.post('/reset-password', (req, res) => {
+  console.log(req.body);
+  if(req.body.password == null || req.body.password.length == 0){
+    res.status(400).json({"error": "password cannot be empty"});
+    return;
+  }
+  if(req.body.password.length < 8){
+    res.status(400).json({"error": "password must be at least 8 characters"});
+    return;
+  }
+  if(req.body.password != req.body.password2){
+    res.status(400).json({"error": "passwords do not match"});
+    return;
+  }
+  const email = req.body.email;
+  const token = req.body.token;
+  const password = req.body.password;
+  db.verifyResetPasswordToken(email,token, (user) => {
     if(user.length == 0){
       res.status(400).json({"error": "invalid token"});
       return;
     }
-    res.sendFile(path.join(__dirname + '/reset-password.html'));  });
+    if(user[0].created+900000 < Date.now()){
+      res.status(400).json({"error": "token expired"});
+      return;
+    }
+    db.resetPassword(email, password, (result) => {
+      if(result == undefined){
+        res.status(400).json({"error": "unknown error"});
+        return;
+      }
+      res.json({"success": "password reset"});
+    });
+  });
 });
-    
+
+
+
+app.get('/contact', (req, res) => {
+  res.sendFile(__dirname + '/public/contact.html');
+});
+
 
 app.get('*', function(req, res){
   res.sendFile(__dirname+'/public/404.html');

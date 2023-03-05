@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>PhysicsChat | Forgot</title>
-    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="/authorization/reset.css" />
+
+
 
 </head>
 
@@ -37,19 +39,21 @@
             <div ng-app ng-init="checked = false">
                 <form id="submitLogin" class="form-forgot" action="/login" method="post" name="form" required>
                     <label for="email">Email</label>
-                    <input class="form-styling" type="text" name="email" placeholder="" />
-                    <label for="temp-key">Temp-Key</label>
-                    <input class="form-styling" type="text" name="temp-key" placeholder="" />
-                    <label for="new-password">New Password</label>
-                    <input type="password" class="form-styling" type="text" name="new-password" placeholder="" />
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" class="form-styling" type="text" name="confirm-password" placeholder="" />
+                    <input id="email" class="form-styling" type="text" name="email" placeholder="" autocomplete="email"/>
+                    <label for="Token">Temporary Key</label>
+                    <input id="token" class="form-styling" type="text" name="token" placeholder="" />
+                    <label for="password">New Password</label>
+                    <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="new-password"/>
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" class="form-styling" type="text" name="password2" placeholder="" autocomplete="new-password"/>
                     <div id="incorrect-container"class="signin-incorrect-hidden">
                         <p class="incorrect-text">Error</p>
                       </div>
                     <div class="btn-animate" id="forgot-btn">
-                        <a class="btn-forgot">Reset</a>
+                        <a class="btn-forgot">Reset Password</a>
                     </div>
+
+                    
                 </form>
                 <div class="additional">
                     <a href="/contact.html">Require Additional help? Contact us!</a>
@@ -60,42 +64,24 @@
 
 
             </div>
+            <script>
+                //get url and auto populate token field with token query parameter
+                let url = window.location.href;
+                let token = url.split("token=")[1].split("&")[0];
+                document.getElementById("token").value = token;
+                let email = url.split("email=")[1].split("&")[0];
+                document.getElementById("email").value = email;
+
+
+                
+        
+            </script>
+        
             <!-- partial -->
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
             <script>
-                $(document).ready(function () {
-                    $("#forgot-btn").click(function () {
-                        $("#incorrect-container").removeClass("signin-incorrect-show");
-                        $("#incorrect-container").addClass("signin-incorrect-hidden");
-                        //Check if the email is valid, check if the password is greater than 8, check if the password matches the confirm password, check if the temp key is not empty
-                        if (form.email.value == "" || form["new-password"].value == "" || form["confirm-password"].value == "" || form["temp-key"].value == "") {
-                            $("#incorrect-container").toggleClass("signin-incorrect-show");
-                            $("#incorrect-container").toggleClass("signin-incorrect-hidden");
-                            $(".incorrect-text").text("Please fill out all fields");
-                            return false;
-                        } else if (form.email.value.indexOf("@") == -1) {
-                            $("#incorrect-container").toggleClass("signin-incorrect-show");
-                            $("#incorrect-container").toggleClass("signin-incorrect-hidden");
-                            $(".incorrect-text").text("Please enter a valid email");
-                            return false;
-                        } else if (form["new-password"].value.length < 8) {
-                            $("#incorrect-container").toggleClass("signin-incorrect-show");
-                            $("#incorrect-container").toggleClass("signin-incorrect-hidden");
-                            $(".incorrect-text").text("Password must be at least 8 characters");
-                            return false;
-                        } else if (form["new-password"].value != form["confirm-password"].value) {
-                            $("#incorrect-container").toggleClass("signin-incorrect-show");
-                            $("#incorrect-container").toggleClass("signin-incorrect-hidden");
-                            $(".incorrect-text").text("Passwords do not match");
-                            return false;
-                        } else {
-                            $("#incorrect-container").hide();
-                            $(".incorrect-text").text("");
-                            return true;
-                        }
-                });
-            });
+
             </script>
 </body>
 
