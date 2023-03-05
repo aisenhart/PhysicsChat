@@ -13,8 +13,12 @@
 - [x] reset password form | Add passwords dont match error
 - [ ] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 - [ ] CORRECT MY POOR FILE HREFS
+- [ ] privacy-policy.html -> /privacy
+- [ ] terms-of-service.html -> /terms
+- [ ] disclaimer.html -> /disclaimer
 - [ ] Fix "app" link in dropdown for the account page. Brings user to login instead of back to application.
-
+- [x] Fix sign out button, does not redirect to home or login page.
+- [ ] reset password form not submitting to backend
 .env required 
 
 DB_HOST=
