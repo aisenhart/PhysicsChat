@@ -62,23 +62,21 @@ const html = `
 	</style>
     </head>
 <body>
-	<div class="container">
-		<h1>Password Reset</h1>
-		<p>Hello,</p>
-		<p>We received a request to reset the password associated with this email address. If you did not request a password reset, please ignore this email. If you are concerend, contact support, We are happy to help :)</p>
-		<p>To reset your password, please click on the following link:</p>
-		<p><a href="link-autofill" target="_blank">Reset Password</a></p>
-		<p>If you're having trouble clicking the "Reset Password" button, copy and paste the URL below into your web browser:</p>
-		<p>link</p>
-		<p>link-autofill</p>
-		<p>Thank you,</p>
-		<p>The Physics Chat Team</p>
-	</div>
+<div class="container">
+<h1>Password Reset</h1>
+<p>Hello,</p>
+<p>We received a request to reset the password associated with this email address. If you did not request a password reset, please ignore this email. If you are concerned, contact support. We are happy to help :)</p>
+<p>To reset your password, please click on the following link:</p>
+<p><a href="linkAutoFill">Reset Password</a></p>
+<p>If you're having trouble clicking the "Reset Password" button, copy and paste the URL below into your web browser:</p>
+<p>linkAutoFill</p>
+<p>Thank you,</p>
+<p>The Physics Chat Team</p>
+</div>
 </body>
 
 </html>
 `
-
 async function sendReset(email, link) {
     nodeMailer.createTransport({
         service: 'gmail',
@@ -93,7 +91,7 @@ async function sendReset(email, link) {
         from: "Physics Chat <" + process.env.EMAIL_USER + ">",
         to: email,
         subject: 'Password Reset',
-        html: html.replace('link-autofill', link)
+        html: html.replace(/linkAutoFill/g, link)
     });
 }
 
