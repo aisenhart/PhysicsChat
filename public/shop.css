@@ -21,12 +21,17 @@ body {
 
 .container {
   width: 100%;
-  padding-top: 60px;
+  padding-top: 20px;
   padding-bottom: 100px;
 }
 
+#row-container {
+  width: 100%;
+  position: relative;
+}
+
 .frame {
-  height: 500px;
+  height: 725px;
   width: 70%;
   background: white;
   background-size: cover;
@@ -36,6 +41,9 @@ body {
   box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
   overflow: hidden;
   transition: all .5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .table-container {
   width: 100%;
@@ -43,6 +51,9 @@ body {
   margin-top: 10px;
     margin-bottom: 30px;
     transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
 
 }
 .table-container-left {
@@ -136,7 +147,9 @@ li {
   border-bottom: solid 2px #1059FF;
   padding-bottom: 10px;
 }
-
+.one-time-inactive {
+  z-index: 1; 
+}
 .one-time-inactive a {
   cursor: pointer;
   color: #636363;
@@ -200,6 +213,7 @@ font-weight: 400;
   transition: all 0.5s ease;
   bottom: 0;
   pointer-events: auto; 
+  margin-top: auto;
 }
 
 .contact-left {
@@ -228,6 +242,15 @@ h1 {
   text-align: center;
 }
 
+
+
+
+
+
+.frame-shrink{
+  height: 520px !important;
+  transition: all .5s ease;
+}
 
 
 

@@ -31,47 +31,61 @@
 
 <body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
 
-    <nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
-        <div class="container">
-            <img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
-          <a class="navbar-brand" href="/">Physics-Chat</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="ti-menu"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Home
-                  <span><i class="ti-angle-down"></i></span>
-                </a>
-                <!-- Dropdown list -->
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/login">Sign Up</a></li>
-                  <li><a class="dropdown-item" href="/login">Login</a></li>
-              </li>
-            </ul>
-            </li>
-            <li class="nav-item dropdown active @@pages">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
-                <span><i class="ti-angle-down"></i></span>
-              </a>
-              <!-- Dropdown list -->
-              <ul class="dropdown-menu active">
-                <li><a class="dropdown-item  @@privacy" href="/privacy">Privacy</a></li>
-                <li><a class="dropdown-item  @@privacy" href="/disclaimer">Disclaimer</a></li>
-                <li><a class="dropdown-item active @@privacy" href="/tos">Terms Of Service</a></li>
-                <li><a class="dropdown-item  @@privacy" href="/cookie">Cookie Policy</a></li>
-    
-              </ul>
-            </li>
-            <li class="nav-item @@contact">
-              <a class="nav-link" href="/contact">Contact</a>
-            </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+        <nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
+                <div class="container">
+                <img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
+                  <a class="navbar-brand" href="/">Physics-Chat</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="ti-menu"></span>
+                  </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Home
+                      <span><i class="ti-angle-down"></i></span>
+                    </a>
+                    <!-- Dropdown list -->
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/faq">FAQ</a></li>
+                      <li><a class="dropdown-item" href="/Contact">Contact</a></li>
+                     </li>
+                    </ul>
+                    </li>
+                    <li class="nav-item dropdown active @@pages">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
+                      <span><i class="ti-angle-down"></i></span>
+                    </a>
+                    <!-- Dropdown list -->
+                    <ul class="dropdown-menu ">
+                      <li><a class="dropdown-item  @@privacy" href="/privacy">Privacy</a></li>
+                      <li><a class="dropdown-item  @@privacy" href="/disclaimer">Disclaimer</a></li>
+                      <li><a class="dropdown-item active @@privacy" href="/tos">Terms Of Service</a></li>
+                      <li><a class="dropdown-item  @@privacy" href="/cookie">Cookie Policy</a></li>
+                
+                      </ul>
+                    </li>
+                    <li  class="nav-item @@contact">
+                    <a class="nav-link" href="/Shop">Shop</a>
+                    </li>
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown ">
+                      <a id="username-text"class="nav-link dropdown-toggle" href="/login" data-toggle="dropdown">Sign in
+                      <span><i class="ti-angle-down"></i></span>
+                      </a>
+                      <!-- Dropdown list -->
+                      <ul class="dropdown-menu">
+                      <li><a id="sign-out" class="dropdown-item " href="/beta">App</a></li>
+                      <li><a class="dropdown-item" href="/account">My Account</a></li>
+                      <li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
+                      
+                     </li>
+                      </ul>
+                  </ul>
+                  </div>
+                </div>
+              </nav>
+            
 
     <!--================================
 =            Page Title            =
@@ -1043,6 +1057,8 @@ Discover
     <script src="plugins/syotimer/jquery.syotimer.min.js"></script>
     <script src="plugins/aos/aos.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/getUserInfo.js"></script>
+
 </body>
 
 </html>
