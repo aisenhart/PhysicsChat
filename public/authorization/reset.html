@@ -12,22 +12,12 @@
 
 <body>
 
-
-
     <nav class="header">
         <div class="nav-container">
             <img class="img-fluid" src="../images/mainLogo-b@0.5x.png" alt="Logo"
                 style="height: 40px; margin: 5px; margin-right: 10px;">
             <a class="navbar-brand" href="/">Physics-Chat</a>
     </nav>
-
-
-
-
-
-
-
-
 
     <div class="container">
         <div class="frame">
@@ -39,13 +29,13 @@
             <div ng-app ng-init="checked = false">
                 <form id="submitLogin" class="form-forgot" action="/login" method="post" name="form" required>
                     <label for="email">Email</label>
-                    <input id="email" class="form-styling" type="text" name="email" placeholder="" autocomplete="email"/>
+                    <input id="email" class="form-styling" type="text" name="email" placeholder="" autocomplete="email" required/>
                     <label for="Token">Temporary Key</label>
-                    <input id="token" class="form-styling" type="text" name="token" placeholder="" />
+                    <input id="token" class="form-styling" type="text" name="token" placeholder="" required/>
                     <label for="password">New Password</label>
-                    <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="new-password"/>
+                    <input id="password" type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="new-password" required/>
                     <label for="password2">Confirm Password</label>
-                    <input type="password" class="form-styling" type="text" name="password2" placeholder="" autocomplete="new-password"/>
+                    <input id="password2" type="password" class="form-styling" type="text" name="password2" placeholder="" autocomplete="new-password" required/>
                     <div id="incorrect-container"class="signin-incorrect-hidden">
                         <p class="incorrect-text">Error</p>
                       </div>
@@ -56,12 +46,8 @@
                     
                 </form>
                 <div class="additional">
-                    <a href="/contact.html">Require Additional help? Contact us!</a>
+                    <a href="/contact">Require Additional help? Contact us!</a>
                 </div>
-
-
-
-
 
             </div>
             <script>
@@ -72,15 +58,64 @@
                 let email = url.split("email=")[1].split("&")[0];
                 document.getElementById("email").value = email;
 
-
-                
-        
             </script>
         
             <!-- partial -->
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
             <script>
+                function submitChangePassword() {
+                    let email = document.getElementById("email").value;
+                    let token = document.getElementById("token").value;
+                    let password = document.getElementById("password").value;
+                    let password2 = document.getElementById("password2").value;
+                    let incorrectContainer = document.getElementById("incorrect-container");
+                    let incorrectText = document.getElementsByClassName("incorrect-text")[0];
+                    let forgotBtn = document.getElementById("forgot-btn");
+                    if (password != password2) {
+                        incorrectContainer.classList.remove("signin-incorrect-hidden");
+                        incorrectContainer.classList.add("signin-incorrect");
+                        incorrectText.innerText = "Passwords do not match";
+                        return;
+                    }
+                    if(password.length < 8){
+                        incorrectContainer.classList.remove("signin-incorrect-hidden");
+                        incorrectContainer.classList.add("signin-incorrect");
+                        incorrectText.innerText = "Password must be at least 8 characters";
+                        return;
+                    }
+                    if(email == "" || token == "" || password == "" || password2 == ""){
+                        incorrectContainer.classList.remove("signin-incorrect-hidden");
+                        incorrectContainer.classList.add("signin-incorrect");
+                        incorrectText.innerText = "Please fill out all fields";
+                        return;
+                    }
+                    forgotBtn.classList.remove("btn-animate");
+                    forgotBtn.classList.add("btn-animate-clicked");
+                    let data = {
+                        email: email,
+                        token: token,
+                        password: password
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "/reset-password",
+                        data: data,
+                        success: function (data) {
+                            console.log(data)
+                            if (data.success) {
+                                window.location.href = "/login";
+                            } else {
+                                incorrectContainer.classList.remove("signin-incorrect-hidden");
+                                incorrectContainer.classList.add("signin-incorrect");
+                                incorrectText.innerText = data;
+
+                            }
+                        }
+                    });
+                }
+
+                document.getElementById("forgot-btn").addEventListener("click", submitChangePassword);
 
             </script>
 </body>

@@ -49,13 +49,16 @@
 			  <span><i class="ti-angle-down"></i></span>
 			</a>
 			<!-- Dropdown list -->
-			<ul class="dropdown-menu">
-			  <li><a class="dropdown-item @@privacy" href="privacy-policy.html">Privacy</a></li>
-			  <li><a class="dropdown-item @@faq" href="FAQ.html">FAQ</a></li>
-			</ul>
+			<ul class="dropdown-menu ">
+				<li><a class="dropdown-item  @@privacy" href="/privacy">Privacy</a></li>
+				<li><a class="dropdown-item  @@privacy" href="/disclaimer">Disclaimer</a></li>
+				<li><a class="dropdown-item  @@privacy" href="/tos">Terms Of Service</a></li>
+				<li><a class="dropdown-item  @@privacy" href="/cookie">Cookie Policy</a></li>
+	
+			  </ul>
 		  </li>
 		  <li  class="nav-item @@contact">
-			<a class="nav-link" href="contact.html">Contact</a>
+			<a class="nav-link" href="/contact">Contact</a>
 		  </li>
 		  <ul class="navbar-nav ml-auto">
 			<li class="nav-item dropdown active">
@@ -64,9 +67,9 @@
 			  </a>
 			  <!-- Dropdown list -->
 			  <ul class="dropdown-menu">
-				<li><a id="sign-out" class="dropdown-item" href="">App</a></li>
+				<li><a id="sign-out" class="dropdown-item" href="/beta">App</a></li>
 				<li><a class="dropdown-item active" href="/account">My Account</a></li>
-				<li><a id="sign-out" class="dropdown-item" href="">Sign Out</a></li>
+				<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
 			 </li>
 			  </ul>
 
@@ -99,7 +102,7 @@
 			<input id="tokens-spent" type="text" name="tokens" readonly/>
 			<label for="user-balance">User Balance</label>
 			<input id="user-balance" type="text" name="balance" readonly/>
-			<button id="request-btn" type="submit">Request Tokens</button>
+			<button id="request-btn" href="/contact">Request Tokens</button>
 			<button id="reset-btn" href="/forgot-password">Reset Password</button>
 
 
@@ -109,7 +112,9 @@
 			document.getElementById("reset-btn").addEventListener("click", function(){
 				window.location.href = "/forgot-password";
 			});
-
+			document.getElementById("request-btn").addEventListener("click", function(){
+				window.location.href = "/contact";
+			});
 
 		</script>
 
@@ -121,25 +126,25 @@
 			<div id="free-information-item"class="plan-information-item ">
 				<h3>Free</h3>
 				<p>
-				  200 free tokens<br>
+				  500 free tokens<br>
 				  Maximum 200 tokens per request<br>
-				  Engine: text-curie-001
+				  Engine: gpt-3.5-turbo (ChatGPT)
 				</p>
 			  </div>
 			  <div id="basic-information-item" class="plan-information-item">
 				<h3>Basic</h3>
 				<p>
-				  1000 tokens for $5<br>
+				  2500 tokens per month for $2<br>
 				  Maximum 500 tokens per request<br>
-				  Engine: text-davinci-003
+				  Engine: gpt-3.5-turbo (ChatGPT)
 				</p>
 			  </div>
 			  <div id="pro-information-item"class="plan-information-item">
 				<h3>Pro</h3>
 				<p>
-				  4000 tokens for $20<br>
+				  7000 tokens per month for $5<br>
 				  Maximum 1000 tokens per request<br>
-				  Engine: text-davinci-003
+				  Engine: gpt-3.5-turbo (ChatGPT)
 				</p>
 			  </div>
 	</div>

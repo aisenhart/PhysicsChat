@@ -5,20 +5,22 @@
 - [x] Fix contact links
 - [x] Update Privacy Policy add "openAI user terms"
 - [x] Fix Load times with login page. Possible issue: Loading the SVG. Thin out css from bootstrap?
-- [ ] Termly 
+- [x] Termly 
 - [ ] Account verification via email
 - [ ] Finish Contact databse link
 - [ ] Payment processing
 - [ ] Setup watching ads for tokens
 - [x] reset password form | Add passwords dont match error
 - [ ] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- [ ] CORRECT MY POOR FILE HREFS
-- [ ] privacy-policy.html -> /privacy
-- [ ] terms-of-service.html -> /terms
-- [ ] disclaimer.html -> /disclaimer
-- [ ] Fix "app" link in dropdown for the account page. Brings user to login instead of back to application.
+- [x] CORRECT MY POOR FILE HREFS
+- [x] privacy-policy.html -> /privacy
+- [x] terms-of-service.html -> /terms
+- [x] disclaimer.html -> /disclaimer
+- [x] Fix "app" link in dropdown for the account page. Brings user to login instead of back to application.
 - [x] Fix sign out button, does not redirect to home or login page.
-- [ ] reset password form not submitting to backend
+- [x] reset password form not submitting to backend
+- [ ] add implimentation of conseting to terms of service and user is over 13
+- [ ] tokens calculator
 .env required 
 
 DB_HOST=
