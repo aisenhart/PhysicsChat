@@ -21,6 +21,30 @@
 - [x] reset password form not submitting to backend
 - [ ] add implimentation of conseting to terms of service and user is over 13
 - [ ] tokens calculator
+
+
+Salesman suggestion : 
+
+tiers of membership subscription
+
+- free
+- $1 a month 2000 tokens
+- $2 a month 5000 tokens
+- $5 a month 15000 tokens
+
+Standard cost non subscription
+
+- $1 = 1500 tokens
+- $2 = 4000 tokens
+- $5 = 10000 tokens
+
+
+
+
+
+
+
+
 .env required 
 
 DB_HOST=
