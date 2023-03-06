@@ -38,7 +38,7 @@ app.set('view engine', 'ejs');
 
 
 let tiers = {
-
+ 
   "free": {
     "tokens": 200,
     "price": 0,
@@ -65,28 +65,7 @@ let tiers = {
   }
 
 }
-
-
-
-//-----------------------
-
-/* TESTING CODE */
-
-
-
-
-//send reset is an async function 
-
-//db.generateResetPasswordToken("zaydalzein@gmail.com", (token) => {
-//  console.log(token);
-//  //sendReset("zaydalzein@gmail.com", process.env.WEB_URL+"/reset-password?token=" + token);
-//});
-
-// ------------------------------
-
-
-
-
+ 
 //openai INIT 
 const configuration = new Configuration({
     apiKey: process.env.API_KEY,
@@ -129,6 +108,19 @@ app.get('/beta', verify,(req, res) => {
   res.sendFile(__dirname + '/public/app/beta.html');
 });
 
+app.get('/privacy', verify,(req, res) => {
+  res.sendFile(__dirname + '/public/privacy-policy.html');
+});
+app.get('/tos', verify,(req, res) => {
+  res.sendFile(__dirname + '/public/tos.html');
+});
+app.get('/disclaimer', verify,(req, res) => {
+  res.sendFile(__dirname + '/public/disclaimer.html');
+});
+app.get('/cookie', verify,(req, res) => {
+  res.sendFile(__dirname + '/public/cookie-policy.html');
+});
+
 app.get('/login', (req, res) => {
   //if already logged in, redirect to beta 
   if(req.cookies.Authorization){
@@ -138,20 +130,17 @@ app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/authorization/login.html');
 });
 
-app.post('/sign-out', verify, (req, res) => {
-  //delete all cookies
-  res.clearCookie('Authorization');
-  res.redirect('/login');
+app.get('/sign-out', verify, (req, res) => {
+  //overwrite authorization cookie to sign out
+  res.send('<script>document.cookie = "Authorization= ; expires = Thu, 01 Jan 1970 00:00:00 GMT", document.location.href = "/";</script>');
 });
 
 //get users amount of tokens
 app.get('/token-count', (req, res) => {
   let email = jwt.decode(req.cookies.Authorization).email;
-  console.log(email);
   db.getUser(email, (user) => {
     if(user[0]){
       res.json({"tokens": user[0].balance});
-      console.log(user[0].balance);
       
     } else {
       res.status(400).json({"error": "user does not exist"});
@@ -189,7 +178,6 @@ app.get('/get-name-tier/:email',(req, res) => {
 
 
       user = user[0];
-      console.log(user);
       res.json({"firstName": user.firstName, "tier": user.tier});
   });
 });
@@ -200,13 +188,11 @@ app.get('/get-user-info',(req, res) => {
   }
   let email = jwt.decode(req.cookies.Authorization).email;
   db.getUser(email, (user) => {
-    console.log(req.params.email);
       if(!user[0]){
         res.status(400).json({"error": "user does not exist"});
         return;
       }
       user = user[0];
-      console.log(user);
       res.json({
       "firstName": user.firstName, 
       "lastName": user.lastName, 
@@ -257,7 +243,6 @@ app.post('/ai', verify, async (req, res) => {
     }
   
     //jsonify the banned object and warnings object
-    console.log(typeof(user.banned));
     let ban = JSON.parse(user.banned);
     let warnings = JSON.parse(user.warnings);
 
@@ -271,10 +256,6 @@ app.post('/ai', verify, async (req, res) => {
     if(warnings.warnings > 0){
       db.expireWarnings(user.email);
     }
-
-
-    console.log(ban);
-    console.log(warnings);
 
 
 
@@ -329,9 +310,9 @@ app.post('/ai', verify, async (req, res) => {
         }
       }
       
-      const response = openai.createCompletion({
+      const response = openai.createChatCompletion({
         model: tiers[tier].engine,
-        prompt: prompt,
+        messages: [{role:"user",content:prompt}],
         max_tokens: tiers[tier].max_tokens,
         temperature: 0,
       }).catch((error) => {
@@ -341,7 +322,7 @@ app.post('/ai', verify, async (req, res) => {
       });
       response.then((data) => {
         console.log(data);
-        let completion = data.data.choices[0].text;
+        let completion = data.data.choices[0].message.content;
         res.json({"completion": completion});
         if(data.data.usage.completion_tokens>0){
           db.decrementBalance(user.email,data.data.usage.total_tokens);
@@ -379,7 +360,7 @@ app.post('/login', (req, res) => {
       try{
         if(bcrypt.compareSync(req.body.password, user.password)){
           const accessToken = jwt.sign(userCleaned, process.env.ACCESS_TOKEN_SECRET);
-          res.cookie('Authorization', accessToken).send({"success": "logged in"});
+          res.cookie('Authorization', accessToken,{maxAge:Date.now()+3600000,overwrite:true}).send({"success": "logged in"});
           //res.cookie('Authorization', accessToken, {secure: true}).send(accessToken);
 
 
@@ -432,7 +413,7 @@ app.post('/register', (req, res) => {
       const accessToken = jwt.sign(userCleaned, process.env.ACCESS_TOKEN_SECRET);
 
       if(!req.body.noauth){
-        res.cookie('Authorization', accessToken).send({"success": "user created"});
+        res.cookie('Authorization', accessToken,{maxAge:3600000,overwrite:true}).send({"success": "user created"});
       } else{
         res.json({"success": "user created"});
       }
@@ -519,9 +500,7 @@ app.post('/forgot-password', (req, res) => {
 
 
 app.get('/reset-password', (req, res) => {
-  console.log(req.query.token);
   db.verifyResetPasswordToken(req.query.email,req.query.token, (user) => {
-    console.log(user)
     if(user.length == 0){
       res.status(400).send('<div style="text-align:center; margin-top: 20%;"><h1>Invalid password reset token</h1> <a href="/forgot-password">Click here to reset your password</a><div>')
       return;
@@ -546,14 +525,13 @@ app.post('/reset-password', (req, res) => {
     res.status(400).json({"error": "password must be at least 8 characters"});
     return;
   }
-  if(req.body.password != req.body.password2){
-    res.status(400).json({"error": "passwords do not match"});
-    return;
-  }
+
   const email = req.body.email;
   const token = req.body.token;
   const password = req.body.password;
+  
   db.verifyResetPasswordToken(email,token, (user) => {
+    console.log(user)
     if(user.length == 0){
       res.status(400).json({"error": "invalid token"});
       return;
@@ -562,7 +540,7 @@ app.post('/reset-password', (req, res) => {
       res.status(400).json({"error": "token expired"});
       return;
     }
-    db.resetPassword(email, password, (result) => {
+    db.resetPassword(email, bcrypt.hashSync(password, 10), (result) => {
       if(result == undefined){
         res.status(400).json({"error": "unknown error"});
         return;
