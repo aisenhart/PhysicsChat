@@ -108,16 +108,16 @@ app.get('/beta', verify,(req, res) => {
   res.sendFile(__dirname + '/public/app/beta.html');
 });
 
-app.get('/privacy', verify,(req, res) => {
+app.get('/privacy',(req, res) => {
   res.sendFile(__dirname + '/public/privacy-policy.html');
 });
-app.get('/tos', verify,(req, res) => {
+app.get('/tos',(req, res) => {
   res.sendFile(__dirname + '/public/tos.html');
 });
-app.get('/disclaimer', verify,(req, res) => {
+app.get('/disclaimer',(req, res) => {
   res.sendFile(__dirname + '/public/disclaimer.html');
 });
-app.get('/cookie', verify,(req, res) => {
+app.get('/cookie',(req, res) => {
   res.sendFile(__dirname + '/public/cookie-policy.html');
 });
 
