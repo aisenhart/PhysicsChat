@@ -17,6 +17,7 @@ const { Database } = require("./classes/Database");
 const crypto = require('crypto');
 const fetch = require("node-fetch");
 
+
 const MODERATION_API_URL = `https://api.openai.com/v1/moderations`;
 
 //connect to database and setup class
@@ -29,12 +30,21 @@ const app = express();
 const port = 3000;
 
 //body-parser
+
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('view engine', 'ejs');
+
+
+//import express routes from ./stripe.js
+require('./stripe')(express,app,db,process.env.STRIPE_SECRET_KEY,process.env.STRIPE_PUBLISHABLE_KEY,process.env.DOMAIN);
+
+
+
+
 
 
 let tiers = {
@@ -557,9 +567,9 @@ app.get('/contact', (req, res) => {
 });
 
 
-app.get('*', function(req, res){
-  res.sendFile(__dirname+'/public/404.html');
-});
+//app.get('*', function(req, res){
+//  res.sendFile(__dirname+'/public/404.html');
+//});
 
 
 app.listen(port, () => {

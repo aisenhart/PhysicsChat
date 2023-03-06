@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:300,400,600,700,800");
+body {
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+html, body * { 
+  box-sizing: border-box; 
+  font-family: 'Open Sans', sans-serif; 
+}
+html {
+  height: 100%;
+  background-image: url('/authorization/bg.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+    background-size: cover;
+   color: #636363;
+}
+
+.container {
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.frame {
+  height: 500px;
+  width: 70%;
+  background: white;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+  overflow: hidden;
+  transition: all .5s ease;
+}
+.table-container {
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+    margin-bottom: 30px;
+    transition: all 0.5s ease;
+
+}
+.table-container-left {
+    transform: translateX(-400px);
+    opacity: 0;
+    height: 0px;
+  }
+
+
+
+header {
+  background: rgba(255,255,255,.2);
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(35,43,85,0.75);
+
+
+  
+}
+
+#logo {
+  width: 30px;
+}
+header nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+header nav a {
+  text-transform: none;
+  color: #636363;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+
+
+
+
+
+.nav {
+  width: 100%;
+  height: 100px;
+  padding-top: 40px;
+  opacity: 1;
+  transition: all .5s ease;
+}
+
+.nav-up {
+  transform: translateY(-100px);
+  opacity: 0;
+}
+
+li {
+  padding-left: 10px;
+  font-size: 18px;
+  display: inline;
+  text-align: left;
+  text-transform: uppercase;
+  padding-right: 10px;
+  color: #636363;
+}
+
+.subscriptions-active a {
+  padding-bottom: 10px;
+  color: #636363;
+  text-decoration: none;
+  border-bottom: solid 2px #1059FF;
+  transition: all .25s ease;
+  cursor: pointer;
+}
+
+.subscriptions-inactive a {
+  padding-bottom: 0;
+  color: #636363;
+  text-decoration: none;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.one-time-active a {
+  cursor: pointer;
+  color: #636363;
+  text-decoration: none;
+  border-bottom: solid 2px #1059FF;
+  padding-bottom: 10px;
+}
+
+.one-time-inactive a {
+  cursor: pointer;
+  color: #636363;
+  text-decoration: none;
+  transition: all .25s ease;
+}
+
+
+.table-container-left {
+  transform: translateX(-400px);
+  opacity: .0;
+}
+
+.form-one-time {
+  width: 430px;
+  height: 375px;
+	font-size: 16px;
+	font-weight: 300;
+  padding-left: 37px;
+  padding-right: 37px;
+  padding-top: 20px;
+  position: relative;
+  top: -375px;
+  left: 400px;
+  opacity: 0;
+  transition: all .5s ease;
+}
+
+
+
+/*
+font-weight: 400;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding-left: 15px;
+  padding-bottom: 10px;
+  color: rgba(255,255,255,.7);
+  display: block;
+
+*/
+/*Create CSS for an unsuccessful password attempt that looks just like the labels*/
+
+
+
+
+
+/*Button shake animation. Shake the btn-animate*/
+
+
+
+
+
+.contact {
+  height: 100px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 24px;
+  border-top: solid 1px #636363;
+  transition: all 0.5s ease;
+  bottom: 0;
+  pointer-events: auto; 
+}
+
+.contact-left {
+  transform: translateX(-400px);
+  opacity: 0;
+  height: 0px;
+}
+
+.contact-fade {
+  opacity: 0;
+  height: 0px;
+}
+
+.contact a {
+  color: #636363;
+  font-weight: 400;
+  font-size: 13px;
+  text-decoration: none;
+
+}
+
+h1 {
+  color: #636363;
+  font-size: 35px;
+	font-weight: 300;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*HEADER STUFF IMPORTED FROM ANOTHER PAGE*/
+.header{
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  transition: all .5s ease;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  color:#6363638e;
+  width: fit-content;
+  display: flex;
+align-items: center;
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  }
+.navbar-brand{
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #636363;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all .5s ease;
+  display: flex;
+align-items: center;
+height: 100%;
+padding-right: 5px;
+}

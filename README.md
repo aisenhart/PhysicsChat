@@ -22,21 +22,18 @@
 - [ ] add implimentation of conseting to terms of service and user is over 13
 - [ ] tokens calculator
 
+Salesman suggestion:
 
-Salesman suggestion : 
+    Free Tier
+    Basic Subscription: $1/month for 2000 tokens
+    Premium Subscription: $2/month for 5000 tokens
+    Elite Subscription: $5/month for 15000 tokens
 
-tiers of membership subscription
+Standard cost non-subscription:
 
-- free
-- $1 a month 2000 tokens
-- $2 a month 5000 tokens
-- $5 a month 15000 tokens
-
-Standard cost non subscription
-
-- $1 = 1500 tokens
-- $2 = 4000 tokens
-- $5 = 10000 tokens
+    Starter Pack: $1 for 1500 tokens
+    Advanced Pack: $2 for 4000 tokens
+    Pro Pack: $5 for 10000 tokens
 
 
 
