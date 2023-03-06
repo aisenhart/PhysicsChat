@@ -117,7 +117,7 @@ button:focus {
   text-transform: uppercase;
 }
 .btn-main {
-  padding: 25px 45px;
+  padding: 20px;
   border-radius: 3px;
   background: #2e7eed;
   color: #fff;

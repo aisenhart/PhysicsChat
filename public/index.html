@@ -1,270 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+	<link rel="stylesheet" href="/authorization/account.css" />
+	<title>Physics Chat</title>
+	<link href="/index.css" rel="stylesheet">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Bootstrap App Landing Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+	<meta name="author" content="Themefisher">
+	<meta name="generator" content="Themefisher Small Apps Template v1.0">
 
-  <!-- Basic Page Needs
-  ================================================== -->
-  <meta charset="utf-8">
-  <title>Physics-Chat</title>
-
-  <!-- Mobile Specific Metas
-  ================================================== -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Bootstrap App Landing Template">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="author" content="Themefisher">
-  <meta name="generator" content="Themefisher Small Apps Template v1.0">
-   
-  <!-- PLUGINS CSS STYLE -->
-  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="plugins/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
-  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="plugins/aos/aos.css">
-
-  <!-- CUSTOM CSS -->
-  <link href="index.css" rel="stylesheet">
-
+	<!-- PLUGINS CSS STYLE -->
+	<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/plugins/slick/slick.css">
+	<link rel="stylesheet" href="/plugins/slick/slick-theme.css">
+	<link rel="stylesheet" href="/plugins/fancybox/jquery.fancybox.min.css">
+	<link rel="stylesheet" href="/plugins/aos/aos.css">
 </head>
 
 <body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
 
 
-<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
-  <div class="container">
-	<img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
-    <a class="navbar-brand" href="/">Physics-Chat</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="ti-menu"></span>
-    </button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item dropdown active">
-			<a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Home
-			  <span><i class="ti-angle-down"></i></span>
-			</a>
-			<!-- Dropdown list -->
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="/faq">FAQ</a></li>
-				<li><a class="dropdown-item" href="/Contact">Contact</a></li>
-		   </li>
-			</ul>
-		  </li>
-		  <li class="nav-item dropdown @@pages">
-			<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
-			  <span><i class="ti-angle-down"></i></span>
-			</a>
-			<!-- Dropdown list -->
-			<ul class="dropdown-menu ">
-				<li><a class="dropdown-item  @@privacy" href="/privacy">Privacy</a></li>
-				<li><a class="dropdown-item  @@privacy" href="/disclaimer">Disclaimer</a></li>
-				<li><a class="dropdown-item  @@privacy" href="/tos">Terms Of Service</a></li>
-				<li><a class="dropdown-item  @@privacy" href="/cookie">Cookie Policy</a></li>
-	
-			  </ul>
-		  </li>
-		  <li  class="nav-item @@contact">
-			<a class="nav-link" href="/Shop">Shop</a>
-		  </li>
-		  <ul class="navbar-nav ml-auto">
-			<li class="nav-item dropdown ">
-			  <a id="username-text"class="nav-link dropdown-toggle" href="/login" data-toggle="dropdown">Sign in
-				<span><i class="ti-angle-down"></i></span>
-			  </a>
-			  <!-- Dropdown list -->
-			  <ul class="dropdown-menu">
-				<li><a id="sign-out" class="dropdown-item " href="/beta">App</a></li>
-				<li><a class="dropdown-item" href="/account">My Account</a></li>
-				<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
-				
-			 </li>
-			  </ul>
-		</ul>
-	  </div>
-  </div>
-</nav>
+	<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
+		<div class="container">
+			<img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo"
+				style="height: 40px; margin: 5px; margin-right: 10px;">
+			<a class="navbar-brand" href="/">Physics-Chat</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="ti-menu"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown active">
+						<a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Home
+							<span><i class="ti-angle-down"></i></span>
+						</a>
+						<!-- Dropdown list -->
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="/faq">FAQ</a></li>
+							<li><a class="dropdown-item" href="/Contact">Contact</a></li>
+					</li>
+				</ul>
+				</li>
+				<li class="nav-item dropdown @@pages">
+					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
+						<span><i class="ti-angle-down"></i></span>
+					</a>
+					<!-- Dropdown list -->
+					<ul class="dropdown-menu ">
+						<li><a class="dropdown-item  @@privacy" href="/privacy">Privacy</a></li>
+						<li><a class="dropdown-item  @@privacy" href="/disclaimer">Disclaimer</a></li>
+						<li><a class="dropdown-item  @@privacy" href="/tos">Terms Of Service</a></li>
+						<li><a class="dropdown-item  @@privacy" href="/cookie">Cookie Policy</a></li>
+					</ul>
+				</li>
+				<li class="nav-item @@contact">
+					<a class="nav-link" href="/Shop">Shop</a>
+				</li>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown">
+						<a id="username-text" class="nav-link dropdown-toggle" href="/login"">Sign in</a>
+						<!-- Dropdown list -->
+						<ul class=" dropdown-menu">
+					<li><a id="app" class="dropdown-item " href="/beta">App</a></li>
+					<li><a id="account" class="dropdown-item" href="/account">My Account</a></li>
+					<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
+					</li>
+				</ul>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-<!--====================================
+	<!--====================================
 =            Hero Section            =
 =====================================-->
-<section class="section gradient-banner">
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
-				<h1 class="text-white font-weight-bold mb-4">AI-powered productivity for everyone </h1>
-				<p class="text-white mb-5">Say goodbye to manual, time-consuming tasks and hello to increased efficiency and productivity. </p>
-				<a href="login" class="btn btn-main-md">Lets Go!</a>
-			</div>
-			<div class="col-md-6 text-center order-1 order-md-2">
-				<img class="img-fluid" src="images/mainLogo@2x.png" alt="Logo" style="height: 400px;">
+	<section class="section gradient-banner">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
+					<h1 class="text-white font-weight-bold mb-4">AI-powered productivity for everyone </h1>
+					<p class="text-white mb-5">Say goodbye to manual, time-consuming tasks and hello to increased
+						efficiency and productivity. </p>
+					<a href="login" class="btn-main"
+						style="font-size: 20px !important; text-decoration: none  !important;">Lets Go!</a>
+				</div>
+				<div class="col-md-6 text-center order-1 order-md-2">
+					<img class="img-fluid" src="images/mainLogo@2x.png" alt="Logo" style="height: 400px;">
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
-<!--====  End of Hero Section  ====-->
+	</section>
+	<!--====  End of Hero Section  ====-->
 
-<!--==============================
+	<!--==============================
 =            Services            =
 ===============================-->
-<section class="service section bg-gray">
-	<div class="container-fluid p-0">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="section-title" style="padding-bottom: 20px;">
-					<h2>Some Notes To You</h2>
-					<p> Get a quick glimpse of what's important with us. The better you know us, the better we will be.</p>
-				</div> 
-			</div>
-		</div>
-		<div class="row no-gutters">
-			<div class="col-lg-6 align-self-center">
-				<!-- Feature Image -->
-				<div style="padding: 30px; height: 300px;">
-					<img src="images/mainLogo-b@2x.png" alt="Logo" style="height: 400px; margin-left: 200px;  ">
+	<section class="service section bg-gray">
+		<div class="container-fluid p-0">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title" style="padding-bottom: 20px;">
+						<h2>Some Notes To You</h2>
+						<p> Get a quick glimpse of what's important with us. The better you know us, the better we will
+							be.</p>
+					</div>
 				</div>
 			</div>
-			<div class="col-lg-5 mr-auto align-self-center">
-				<div class="service-box">
-					<div class="row align-items-center">
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<!-- Heading -->
-								<h3>Bookmark Our Mirrors</h3>
-								<!-- Description -->
-								<p>In case we get blocked, we want you to still have access. So bookmark our mirror links to experience zero interruptions.</p>
+			<div class="row no-gutters">
+				<div class="col-lg-6 align-self-center">
+					<!-- Feature Image -->
+					<div style="padding: 30px; height: 300px;">
+						<img src="images/mainLogo-b@2x.png" alt="Logo" style="height: 400px; margin-left: 200px;  ">
+					</div>
+				</div>
+				<div class="col-lg-5 mr-auto align-self-center">
+					<div class="service-box">
+						<div class="row align-items-center">
+							<div class="col-md-6 col-xs-12">
+								<!-- Service 01 -->
+								<div class="service-item">
+									<!-- Icon -->
+									<!-- Heading -->
+									<h3>Bookmark Our Mirrors</h3>
+									<!-- Description -->
+									<p>In case we get blocked, we want you to still have access. So bookmark our mirror
+										links to experience zero interruptions.</p>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<!-- Heading -->
-								<h3>We are new!</h3>
-								<!-- Description -->
-								<p>Right now we are brand new, keep in mind there may be some downtime while we perfect our tools.</p>
+							<div class="col-md-6 col-xs-12">
+								<!-- Service 01 -->
+								<div class="service-item">
+									<!-- Icon -->
+									<!-- Heading -->
+									<h3>We are new!</h3>
+									<!-- Description -->
+									<p>Right now we are brand new, keep in mind there may be some downtime while we
+										perfect our tools.</p>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<!-- Heading -->
-								<h3>SHARE!!!!</h3>
-								<!-- Description -->
-								<p>Share us with everyone you know!! As more people use our platform the better we can make it!</p>
+							<div class="col-md-6 col-xs-12">
+								<!-- Service 01 -->
+								<div class="service-item">
+									<!-- Icon -->
+									<!-- Heading -->
+									<h3>SHARE!!!!</h3>
+									<!-- Description -->
+									<p>Share us with everyone you know!! As more people use our platform the better we
+										can make it!</p>
+								</div>
 							</div>
-						</div>
-						<div class="col-md-6 col-xs-12">
-							<!-- Service 01 -->
-							<div class="service-item">
-								<!-- Icon -->
-								<!-- Heading -->
-								<h3>Want something changed?</h3>
-								<!-- Description -->
-								<p>We are open to any suggestions. Contact us through our website or by email and we'll hear you out!</p>
+							<div class="col-md-6 col-xs-12">
+								<!-- Service 01 -->
+								<div class="service-item">
+									<!-- Icon -->
+									<!-- Heading -->
+									<h3>Want something changed?</h3>
+									<!-- Description -->
+									<p>We are open to any suggestions. Contact us through our website or by email and
+										we'll hear you out!</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
-<!--====  End of Services  ====-->
+	</section>
+	<!--====  End of Services  ====-->
 
 
 
-<!--=================================
+	<!--=================================
 =            Testimonial            =
 ==================================-->
-<section class="section testimonial" id="testimonial">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<!-- Testimonial Slider -->
-				<div class="testimonial-slider owl-carousel owl-theme">
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<h2>Respond to questions</h2>
-							<p>
-								For example, if someone asks "What is the capital of France?" our AI can respond with "The capital of France is Paris."
-							</p>
+	<section class="section testimonial" id="testimonial">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<!-- Testimonial Slider -->
+					<div class="testimonial-slider owl-carousel owl-theme">
+						<!-- Testimonial 01 -->
+						<div class="item">
+							<div class="block shadow">
+								<!-- Speech -->
+								<h2>Respond to questions</h2>
+								<p>
+									For example, if someone asks "What is the capital of France?" our AI can respond
+									with "The capital of France is Paris."
+								</p>
+							</div>
 						</div>
-					</div>
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<h2>Text analysis</h2>
+						<!-- Testimonial 01 -->
+						<div class="item">
+							<div class="block shadow">
+								<!-- Speech -->
+								<h2>Text analysis</h2>
 
-							<p>
-								For example, if someone asks our AI to analyze the sentiment of the following sentence: "I had an amazing time at the beach today!", our AI can determine that the sentiment is positive by recognizing words like "amazing" and "time" which are associated with positive sentiment. The result of the analysis could be represented as a sentiment score between -1 and 1, where -1 represents negative sentiment, 0 represents neutral sentiment, and 1 represents positive sentiment. In this case, the sentiment score would be close to 1, indicating a highly positive sentiment.
-							</p>
+								<p>
+									For example, if someone asks our AI to analyze the sentiment of the following
+									sentence: "I had an amazing time at the beach today!", our AI can determine that the
+									sentiment is positive by recognizing words like "amazing" and "time" which are
+									associated with positive sentiment. The result of the analysis could be represented
+									as a sentiment score between -1 and 1, where -1 represents negative sentiment, 0
+									represents neutral sentiment, and 1 represents positive sentiment. In this case, the
+									sentiment score would be close to 1, indicating a highly positive sentiment.
+								</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<h2>Generate text based on a prompt</h2>
-							<p>
-								For example, if someone asks our AI to "Generate a story about a magical world," we can produce a story such as:
-								"Once upon a time, in a magical world filled with enchanted creatures and mythical beings, there lived a young girl named Lily. She was born with the power to communicate with the animals and had a deep connection with nature. One day, Lily discovered that a wicked sorceress had placed a curse on the kingdom, causing the once lush and vibrant land to wither away. With the help of her animal friends, Lily set out on a quest to break the curse and restore the kingdom to its former glory."
+						<div class="item">
+							<div class="block shadow">
+								<!-- Speech -->
+								<h2>Generate text based on a prompt</h2>
+								<p>
+									For example, if someone asks our AI to "Generate a story about a magical world," we
+									can produce a story such as:
+									"Once upon a time, in a magical world filled with enchanted creatures and mythical
+									beings, there lived a young girl named Lily. She was born with the power to
+									communicate with the animals and had a deep connection with nature. One day, Lily
+									discovered that a wicked sorceress had placed a curse on the kingdom, causing the
+									once lush and vibrant land to wither away. With the help of her animal friends, Lily
+									set out on a quest to break the curse and restore the kingdom to its former glory."
 
 
-							</p>
-							<!-- Person Thumb -->
+								</p>
+								<!-- Person Thumb -->
+							</div>
 						</div>
-					</div>
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<h2>Write code</h2>
+						<!-- Testimonial 01 -->
+						<div class="item">
+							<div class="block shadow">
+								<!-- Speech -->
+								<h2>Write code</h2>
 
-							<p>
-								Here's an example of how our AI can write code:
-							</p>
-							<img src="images/codeExample.png"; style="width: 80%; border-radius: 10px; padding-top: 10px;">
+								<p>
+									Here's an example of how our AI can write code:
+								</p>
+								<img src="images/codeExample.png" ;
+									style="width: 80%; border-radius: 10px; padding-top: 10px;">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
-<!--====  End of Testimonial  ====-->
+	</section>
+	<!--====  End of Testimonial  ====-->
 
-<!--============================
+	<!--============================
 =            Footer            =
 =============================-->
-<footer>
-  <div class="footer-main">
-    
-  </div>
-</footer>
+	<footer>
+		<div class="footer-main">
+
+		</div>
+	</footer>
 
 
-  <!-- To Top -->
-  <div class="scroll-top-to">
-    <i class="ti-angle-up"></i>
-  </div>
-  
-  <!-- JAVASCRIPTS -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <script src="plugins/bootstrap/bootstrap.min.js"></script>
-  <script src="plugins/slick/slick.min.js"></script>
-  <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
-  <script src="plugins/syotimer/jquery.syotimer.min.js"></script>
-  <script src="plugins/aos/aos.js"></script>
-  <!-- google map -->
-  
-  <script src="js/script.js"></script>
-  <script src="js/getUserInfo.js"></script>
+	<!-- To Top -->
+	<div class="scroll-top-to">
+		<i class="ti-angle-up"></i>
+	</div>
+
+	<!-- JAVASCRIPTS -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="plugins/slick/slick.min.js"></script>
+	<script src="plugins/fancybox/jquery.fancybox.min.js"></script>
+	<script src="plugins/syotimer/jquery.syotimer.min.js"></script>
+	<script src="plugins/aos/aos.js"></script>
+	<!-- google map -->
+
+	<script src="js/script.js"></script>
+	<script src="js/getUserInfo.js"></script>
 </body>
 
 </html>

@@ -61,18 +61,14 @@
 			<a class="nav-link" href="/Shop">Shop</a>
 		  </li>
 		  <ul class="navbar-nav ml-auto">
-			<li class="nav-item dropdown active">
-			  <a id="username-text"class="nav-link dropdown-toggle" href="/login" data-toggle="dropdown">Sign in
-				<span><i class="ti-angle-down"></i></span>
-			  </a>
-			  <!-- Dropdown list -->
-			  <ul class="dropdown-menu ">
-				<li><a id="sign-out" class="dropdown-item " href="/beta">App</a></li>
-				<li><a class="dropdown-item active" href="/account">My Account</a></li>
-				<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
-				
-			 </li>
-			  </ul>
+			<li class="nav-item dropdown">
+				<a id="username-text" class="nav-link dropdown-toggle" href="/login"">Sign in</a>
+				<!-- Dropdown list -->
+				<ul class=" dropdown-menu">
+			<li><a id="app" class="dropdown-item " href="/beta">App</a></li>
+			<li><a id="account" class="dropdown-item" href="/account">My Account</a></li>
+			<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
+			</li>
 		</ul>
 	  </div>
 	</div>
@@ -144,5 +140,7 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/authorization/account.js"></script>
+<script src="js/getUserInfo.js"></script>
+
 </html>
 

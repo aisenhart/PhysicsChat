@@ -79,19 +79,26 @@ xhr.onload = function() {
 setTokenCount();
 let email = "test";
 function setUsernameText() {
-$.ajax({
-  url: '/get-user-info',
-  type: 'GET',
-  data: { email: email},
-  success: function (data) {
+  $.ajax({
+    url: '/get-user-info',
+    type: 'GET',
+    data: { email: email},
+    success: function (data) {
       let firstName = data.firstName;
-      console.log(firstName);
       $('#username-text').text(firstName);
-  },
-  error: function (data) {
+      // add icon to link
+      $('#username-text').append('<span><i class="ti-angle-down"></i></span>');
+    },
+    error: function (data) {
       console.log("error");
       // error handling code 
-  }
-});
+      $('#sign-out').remove();
+      $('#app').remove();
+      $('#account').remove();
+      $('#username-text').parent().removeClass('dropdown');
+      $('#username-text').attr('href', '/account');
+      $('#username-text').removeClass('dropdown-toggle');
+    }
+  });
 };
 setUsernameText();
