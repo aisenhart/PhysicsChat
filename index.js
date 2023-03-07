@@ -50,20 +50,26 @@ require('./stripe')(express,app,db,process.env.STRIPE_SECRET_KEY,process.env.STR
 let tiers = {
  
   "free": {
-    "tokens": 200,
+    "tokens": 500,
     "price": 0,
     "max_tokens": 200,
     "engine": "gpt-3.5-turbo"
   },
   "basic": {
-    "tokens": 1000,
-    "price": 5,
+    "tokens": 2000,
+    "price": 1,
     "max_tokens": 500,
     "engine": "gpt-3.5-turbo"
   },
   "pro": {
-    "tokens": 4000,
-    "price": 20,
+    "tokens": 5000,
+    "price": 2,
+    "max_tokens": 1000,
+    "engine": "gpt-3.5-turbo"
+  },
+  "elite": {
+    "tokens": 15000,
+    "price": 5,
     "max_tokens": 1000,
     "engine": "gpt-3.5-turbo"
   },
