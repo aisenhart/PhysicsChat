@@ -235,7 +235,10 @@ font-weight: 400;
 }
 
 
+#checkbox-label{
+margin-bottom: 5px;
 
+}
 
 
 
@@ -559,15 +562,19 @@ h1 {
   cursor: pointer;
   
 }
+#check {
+  border: #0F4FE6 1px solid;
+
+}
 
 #check path {
-  stroke: #202880;
+  stroke: #202880 ;
   stroke-linecap:round;
   stroke-linejoin:round;
   stroke-width: .85px;
   stroke-dasharray: 60px 300px;
   stroke-dashoffset: -166px;
-  fill: rgba(255,255,255,.0);
+  fill: rgba(255,255,255, 1);
   transition: stroke-dashoffset 2s ease .5s, fill 1.5s ease 1.0s;
 }
 #check.checked path {

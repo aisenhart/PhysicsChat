@@ -35,7 +35,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown active">
+					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Home
 							<span><i class="ti-angle-down"></i></span>
 						</a>
@@ -58,7 +58,7 @@
 						<li><a class="dropdown-item  @@privacy" href="/cookie">Cookie Policy</a></li>
 					</ul>
 				</li>
-				<li class="nav-item @@contact">
+				<li class="nav-item active @@contact">
 					<a class="nav-link" href="/Shop">Shop</a>
 				</li>
 				<ul class="navbar-nav ml-auto">
@@ -93,6 +93,7 @@
         </ul>
       </div>
       <div>
+		<p style="  text-align: center;">To ensure that you receive your product, please use the email address associated with your account when checking out.</p>
         <div id="row-container">
           <div id="subscription-container" class="shop-table-container shop-subscriptions-active">
             <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
@@ -124,7 +125,7 @@
     <script>
 
       $(function () {
-        $(".shop-btn").click(function () {
+        $(".shop-btn").click(function () { 
           $(".shop-frame").toggleClass("shop-frame-shrink");
           $(".shop-table-container").toggleClass("shop-table-container-left");
           $(".shop-form-one-time").toggleClass("shop-form-one-time-left");
@@ -140,6 +141,7 @@
 
 
     </script>
+	<script src="js/getUserInfo.js"></script>
 </body>
 
 </html>

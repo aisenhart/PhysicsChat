@@ -403,20 +403,22 @@ app.post('/register', (req, res) => {
       return;
     }
 
-    if(req.body.email.indexOf("@") == -1){
+    else if(req.body.email.indexOf("@") == -1||req.body.email.indexOf(".") == -1){
+      console.log('ye');
       res.status(400).json({"error":"invalid email"});
       return;
     }
-    if(req.body.password.length < 8){
+
+    else if(req.body.password.length < 8){
       res.status(400).json({"error":"password must be at least 8 characters"});
       return;
     }
-    if(req.body.fullname.length < 3){
+    else if(req.body.fullname.length < 3){
       res.status(400).json({"error":"full name must be at least 3 characters"});
       return;
     }
 
-    if(user[0]!=undefined){res.status(400).json({"error":"user already exists"}); return;}
+    if(user[0]!=undefined){res.status(400).json({"error":"user already exists"}); console.log(user);return;}
     let returnValue = newUser(req.ip,req.body.email,req.body.password,req.body.fullname);
     if(returnValue.UID!=undefined){
       //console.log(returnValue);
@@ -428,6 +430,7 @@ app.post('/register', (req, res) => {
       if(!req.body.noauth){
         res.cookie('Authorization', accessToken,{maxAge:3600000,overwrite:true}).send({"success": "user created"});
       } else{
+        console.log("user created")
         res.json({"success": "user created"});
       }
 

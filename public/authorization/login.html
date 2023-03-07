@@ -35,11 +35,11 @@
         </ul>
       </div>
       <div ng-app ng-init="checked = false">
-        <form id="submitLogin" class="form-signin" action="/login" method="post" name="form" required>
+        <form id="submitLogin" class="form-signin" name="form" required>
           <label for="email">Email</label>
-          <input class="form-styling" type="text" name="email" placeholder="" />
+          <input class="form-styling" type="text" name="email" placeholder="" autocomplete="on" required/>
           <label for="password">Password</label>
-          <input type="password" class="form-styling" type="text" name="password" placeholder="" required />
+          <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="on" required/>
 
           <div class="signin-incorrect-hidden">
             <p class="incorrect-text">Incorrect email or password</p>
@@ -68,19 +68,20 @@
           <label for="fullname">Full name</label>
           <input class="form-styling" type="text" name="fullname" placeholder="" required />
           <label for="email">Email</label>
-          <input class="form-styling" type="text" name="email" placeholder="" required />
+          <input class="form-styling" type="text" name="email" placeholder="" autocomplete="on" required/>
           <label for="password">Password</label>
-          <input type="password" class="form-styling" type="text" name="password" placeholder="" required />
+          <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="on" required>
           <label for="confirmpassword">Confirm password</label>
-          <input type="password" class="form-styling" type="text" name="confirmpassword" placeholder="" required />
+          <input type="password" class="form-styling" type="text" name="confirmpassword" placeholder="" autocomplete="on" required>
           <div class="checkbox-container" style="margin-bottom: 5px;">
             <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required />
-            <label for="termsCheckbox" style="font-size: 12px; padding: 5px;">I agree to the <a href="/tos">terms of service</a> and <a href="/disclaimer">disclaimer</a></label>
+            <label id="checkbox-label"for="termsCheckbox" style="font-size: 12px; padding: 5px;">I agree to the <a href="/tos">terms of service</a> and <a href="/disclaimer">disclaimer</a></label>
           </div>
           <div class="signup-incorrect-hidden">
             <p class="incorrect-text">Error</p>
           </div>
-          <button type="submit" class="btn-signup"> <a>Sign Up</a></button>
+          <div class="btn-signup"> <a>Sign Up</a></div>
+
         </form>
         
         
@@ -120,7 +121,7 @@
           </div>
 
         </div>
-        <h1 class="welcome">Welcome, {user}</h1>
+        <h1 id="welcome-text" class="welcome">Welcome, {user}</h1>
         <a class="btn-go" href="/beta">LETSSS GOOO!!!</a>
       </div>
 

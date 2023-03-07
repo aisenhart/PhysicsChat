@@ -16,17 +16,21 @@ $(function () {
   $(".btn-signup").click(function () {
     let email = document.getElementsByName("email")[1].value;
     let password = document.getElementsByName("password")[1].value;
-    let confirmPassword =
-      document.getElementsByName("confirmpassword")[0].value;
+    let confirmPassword = document.getElementsByName("confirmpassword")[0].value;
     let fullName = document.getElementsByName("fullname")[0].value;
-    console.log(email);
-    console.log(password);
+    let checkbox = document.getElementById('termsCheckbox');
 
     if (password != confirmPassword) {
       $(".signup-incorrect-hidden").toggleClass("signup-incorrect-show");
       $(".signup-incorrect-show").removeClass("signup-incorrect-hidden");
       $(".incorrect-text").text("Passwords do not match");
-    } else {
+    } 
+    else if (checkbox.checked == false) {
+      $(".signup-incorrect-hidden").toggleClass("signup-incorrect-show");
+      $(".signup-incorrect-show").removeClass("signup-incorrect-hidden");
+      $(".incorrect-text").text("Please agree to the terms and conditions");
+    }
+    else {
       $.ajax({
         url: "/register",
         type: "POST",
@@ -81,15 +85,9 @@ $(function () {
         let name = data.firstName;
         let tier = data.tier;
         console.log(tier);
-        $('.welcome').text('Welcome, ' + name);
-        if (tier == 'pro') {
-          $('.premium-text').text('PREMIUM');
-        } else if (tier == 'free'){
-          $('.premium-text').text('FREE');
-        }
-        else if (tier == 'admin'){
-          $('.premium-text').text('ADMIN');
-        }
+
+          $('.premium-text').text(tier);
+          $('#welcome-text').text('Welcome, ' + name + '!');
 
         console.log("name: " + name);
         // rest of the success function code
