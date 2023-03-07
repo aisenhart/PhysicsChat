@@ -25,16 +25,17 @@
 
 Salesman suggestion:
 
-    Free Tier
-    Basic Subscription: $1/month for 2000 tokens
-    Premium Subscription: $2/month for 5000 tokens
-    Elite Subscription: $5/month for 15000 tokens
+    Free Tier (no subscription): 3000 tokens
+
+    Basic Subscription: $1/month for 10000 tokens
+    Premium Subscription: $2/month for 15000 tokens
+    Elite Subscription: $5/month for 50000 tokens
 
 Standard cost non-subscription:
 
-    Starter Pack: $1 for 1500 tokens
-    Advanced Pack: $2 for 4000 tokens
-    Pro Pack: $5 for 10000 tokens
+    Starter Pack: $2 for 9000 tokens
+    Advanced Pack: $4 for 16000 tokens
+    Pro Pack: $8 for 50000 tokens
 
 
 
