@@ -19,7 +19,8 @@ body {
    color: #636363;
 }
 
-.container {
+.shop-container {
+  background-color: transparent !important;
   width: 100%;
   padding-top: 20px;
   padding-bottom: 100px;
@@ -30,9 +31,10 @@ body {
   position: relative;
 }
 
-.frame {
+.shop-frame {
+  padding: 10px;
   height: 725px;
-  width: 70%;
+  width: 75%;
   background: white;
   background-size: cover;
   margin-left: auto;
@@ -45,18 +47,25 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.table-container {
+
+.shop-frame-shrink{
+  height: 600px ;
+  transition: all .5s ease;
+}
+
+.shop-table-container {
   width: 100%;
   height: 100%;
   margin-top: 10px;
     margin-bottom: 30px;
     transition: all 0.5s ease;
-    position: absolute;
     top: 0;
     left: 0;
+    position: absolute;
 
 }
-.table-container-left {
+
+.shop-table-container-left {
     transform: translateX(-400px);
     opacity: 0;
     height: 0px;
@@ -64,43 +73,27 @@ body {
 
 
 
-header {
-  background: rgba(255,255,255,.2);
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(35,43,85,0.75);
-
-
-  
-}
 
 #logo {
   width: 30px;
 }
-header nav ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
+
+
+
+
+.shop-li {
+  padding-left: 10px;
+  font-size: 18px;
+  display: inline;
+  text-align: left;
+  text-transform: uppercase;
+  padding-right: 10px;
+
 }
 
-header nav a {
-  text-transform: none;
-  color: #636363;
-  text-decoration: none;
-  font-size: 20px;
-}
 
 
-
-
-
-
-.nav {
+.shop-nav {
   width: 100%;
   height: 100px;
   padding-top: 40px;
@@ -108,22 +101,13 @@ header nav a {
   transition: all .5s ease;
 }
 
-.nav-up {
+.shop-nav-up {
   transform: translateY(-100px);
   opacity: 0;
 }
 
-li {
-  padding-left: 10px;
-  font-size: 18px;
-  display: inline;
-  text-align: left;
-  text-transform: uppercase;
-  padding-right: 10px;
-  color: #636363;
-}
 
-.subscriptions-active a {
+.shop-subscriptions-active a {
   padding-bottom: 10px;
   color: #636363;
   text-decoration: none;
@@ -132,7 +116,7 @@ li {
   cursor: pointer;
 }
 
-.subscriptions-inactive a {
+.shop-subscriptions-inactive a {
   padding-bottom: 0;
   color: #636363;
   text-decoration: none;
@@ -140,17 +124,17 @@ li {
   cursor: pointer;
 }
 
-.one-time-active a {
+.shop-one-time-active a {
   cursor: pointer;
   color: #636363;
   text-decoration: none;
   border-bottom: solid 2px #1059FF;
   padding-bottom: 10px;
 }
-.one-time-inactive {
+.shop-one-time-inactive {
   z-index: 1; 
 }
-.one-time-inactive a {
+.shop-one-time-inactive a {
   cursor: pointer;
   color: #636363;
   text-decoration: none;
@@ -158,12 +142,9 @@ li {
 }
 
 
-.table-container-left {
-  transform: translateX(-400px);
-  opacity: .0;
-}
 
-.form-one-time {
+
+.shop-form-one-time {
   width: 430px;
   height: 375px;
 	font-size: 16px;
@@ -202,7 +183,7 @@ font-weight: 400;
 
 
 
-.contact {
+.shop-info {
   height: 100px;
   width: 80%;
   margin-left: auto;
@@ -216,18 +197,19 @@ font-weight: 400;
   margin-top: auto;
 }
 
-.contact-left {
+
+.shop-contact-left {
   transform: translateX(-400px);
   opacity: 0;
   height: 0px;
 }
 
-.contact-fade {
+.shop-contact-fade {
   opacity: 0;
   height: 0px;
 }
 
-.contact a {
+.shop-contact a {
   color: #636363;
   font-weight: 400;
   font-size: 13px;
@@ -235,22 +217,12 @@ font-weight: 400;
 
 }
 
-h1 {
-  color: #636363;
-  font-size: 35px;
-	font-weight: 300;
-  text-align: center;
-}
 
 
 
 
 
 
-.frame-shrink{
-  height: 520px !important;
-  transition: all .5s ease;
-}
 
 
 
@@ -263,7 +235,7 @@ h1 {
 
 
 /*HEADER STUFF IMPORTED FROM ANOTHER PAGE*/
-.header{
+.shop-header{
   background: #ffffff;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   transition: all .5s ease;
@@ -275,11 +247,11 @@ h1 {
   display: flex;
 align-items: center;
 }
-.nav-container {
+.shop-nav-container {
   display: flex;
   align-items: center;
   }
-.navbar-brand{
+.shop-navbar-brand{
   font-size: 1.4em;
   font-weight: 700;
   color: #636363;

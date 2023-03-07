@@ -130,6 +130,9 @@ app.get('/disclaimer',(req, res) => {
 app.get('/cookie',(req, res) => {
   res.sendFile(__dirname + '/public/cookie-policy.html');
 });
+app.get('/shop',(req, res) => {
+  res.sendFile(__dirname + '/public/shop.html');
+});
 
 app.get('/login', (req, res) => {
   //if already logged in, redirect to beta 
