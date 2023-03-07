@@ -131,7 +131,8 @@ app.get('/cookie',(req, res) => {
   res.sendFile(__dirname + '/public/cookie-policy.html');
 });
 app.get('/shop',(req, res) => {
-  res.sendFile(__dirname + '/public/shop.html');
+  //res.sendFile(__dirname + '/public/shop.html');
+  res.send("<h3>Thanks Beta Testers</h3>Shop is currently closed. We are working on the page and do not want to take any orders at this time. Please check back later.")
 });
 
 app.get('/login', (req, res) => {
