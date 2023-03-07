@@ -11,7 +11,7 @@
 - [ ] Payment processing
 - [ ] Setup watching ads for tokens
 - [x] reset password form | Add passwords dont match error
-- [ ] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- [x] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 - [x] CORRECT MY POOR FILE HREFS
 - [x] privacy-policy.html -> /privacy
 - [x] terms-of-service.html -> /terms
@@ -19,8 +19,9 @@
 - [x] Fix "app" link in dropdown for the account page. Brings user to login instead of back to application.
 - [x] Fix sign out button, does not redirect to home or login page.
 - [x] reset password form not submitting to backend
-- [ ] add implimentation of conseting to terms of service and user is over 13
-- [ ] tokens calculator
+- [x] add implimentation of conseting to terms of service and user is over 13
+- [] tokens calculator
+- [ ] Add pop up for when user is out of tokens, direct them to shop.
 
 Salesman suggestion:
 
