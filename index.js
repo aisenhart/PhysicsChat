@@ -40,47 +40,15 @@ app.set('view engine', 'ejs');
 
 
 //import express routes from ./stripe.js
-require('./stripe')(express,app,db,process.env.STRIPE_SECRET_KEY,process.env.STRIPE_PUBLISHABLE_KEY,process.env.DOMAIN);
+require('./stripe')(express,bodyParser,app,db,process.env.STRIPE_SECRET_KEY,process.env.STRIPE_PUBLISHABLE_KEY,process.env.DOMAIN);
 
 
 
 
 
+//read tiers.json
+let tiers = require('./tiers.json');
 
-let tiers = {
- 
-  "free": {
-    "tokens": 500,
-    "price": 0,
-    "max_tokens": 200,
-    "engine": "gpt-3.5-turbo"
-  },
-  "basic": {
-    "tokens": 2000,
-    "price": 1,
-    "max_tokens": 500,
-    "engine": "gpt-3.5-turbo"
-  },
-  "pro": {
-    "tokens": 5000,
-    "price": 2,
-    "max_tokens": 1000,
-    "engine": "gpt-3.5-turbo"
-  },
-  "elite": {
-    "tokens": 15000,
-    "price": 5,
-    "max_tokens": 1000,
-    "engine": "gpt-3.5-turbo"
-  },
-  "admin": {
-    "tokens": 100000,
-    "price": 1000000000,
-    "max_tokens": 1000,
-    "engine": "gpt-3.5-turbo"
-  }
-
-}
  
 //openai INIT 
 const configuration = new Configuration({
