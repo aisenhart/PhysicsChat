@@ -81,8 +81,13 @@
 
 			<label for="full-name">Full Name</label>
 			<input id="full-name" type="text" name="Full Name" readonly/>
+
 			<label for="email-address">Email Address</label>
-			<input id="email-address" type="text" name="email" readonly/>
+			<div class="email-container">
+			  <input id="email-address" type="text" name="email" readonly/>
+			  <a id ="verify-text" class="hidden" href="/verify-email">Verify</a>
+			</div>
+
 			<label for="tier">Tier</label>
 			<input id="tier" type="text" name="tier" readonly/>
 			<label for="beta-usage">Number of Completions</label>
@@ -115,7 +120,7 @@
 			<div id="free-information-item"class="plan-information-item ">
 				<h3>Free</h3>
 				<p>
-				  500 free tokens<br>
+				  3000 free tokens<br>
 				  Maximum 200 tokens per request<br>
 				  Engine: gpt-3.5-turbo (ChatGPT)
 				</p>
@@ -123,15 +128,23 @@
 			  <div id="basic-information-item" class="plan-information-item">
 				<h3>Basic</h3>
 				<p>
-				  2500 tokens per month for $2<br>
+				  10,000 tokens per month for $1<br>
 				  Maximum 500 tokens per request<br>
 				  Engine: gpt-3.5-turbo (ChatGPT)
 				</p>
 			  </div>
-			  <div id="pro-information-item"class="plan-information-item">
-				<h3>Pro</h3>
+			  <div id="premium-information-item"class="plan-information-item">
+				<h3>Premium</h3>
 				<p>
-				  7000 tokens per month for $5<br>
+				  15,000 tokens per month for $2<br>
+				  Maximum 1000 tokens per request<br>
+				  Engine: gpt-3.5-turbo (ChatGPT)
+				</p>
+			  </div>
+			  <div id="elite-information-item"class="plan-information-item">
+				<h3>Elite</h3>
+				<p>
+				  50,000 tokens per month for $5<br>
 				  Maximum 1000 tokens per request<br>
 				  Engine: gpt-3.5-turbo (ChatGPT)
 				</p>

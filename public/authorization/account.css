@@ -201,7 +201,29 @@ h3 {
   padding: 10px 20px;
   cursor: pointer;
 }
+.email-container {
+  display: flex;
+  align-items: center;
+}
 
+.email-container a {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  background-color: #2e7eed;
+  color: #fff !important;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.email-container a:hover {
+  background-color: #0f3467;
+  transition: linear 0.5s;
+}
+.hidden {
+  display: none;
+}
 
 .plan-information {
   display: flex;
@@ -234,7 +256,7 @@ h3 {
 	flex-basis: calc(50% - 20px);
   padding: 10px;
 	margin-right: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 }
 .plan-information-item.active {
   border: 3px solid #fff;
