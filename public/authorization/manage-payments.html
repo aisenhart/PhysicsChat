@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html style="
+  background-image: url('/images/blurry-gradient-haikei.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+">
+<head>
+	<link rel="stylesheet" href="/authorization/account.css" />
+	<title>Physics Chat | Payments</title>
+	<link href="/index.css" rel="stylesheet">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Bootstrap App Landing Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+	<meta name="author" content="Themefisher">
+	<meta name="generator" content="Themefisher Small Apps Template v1.0">
+	 
+	<!-- PLUGINS CSS STYLE -->
+	<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/plugins/slick/slick.css">
+	<link rel="stylesheet" href="/plugins/slick/slick-theme.css">
+	<link rel="stylesheet" href="/plugins/fancybox/jquery.fancybox.min.css">
+	<link rel="stylesheet" href="/plugins/aos/aos.css">
+</head>
+<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0" style="    border-bottom: 1px solid #ccc;">
+	<div class="container" >
+	  <img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
+	  <a style="color: #343a40;" class="navbar-brand" href="/">Physics-Chat</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="ti-menu"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item dropdown ">
+			<a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Home
+			  <span><i class="ti-angle-down"></i></span>
+			</a>
+			<!-- Dropdown list -->
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="/faq">FAQ</a></li>
+				<li><a class="dropdown-item" href="/Contact">Contact</a></li>
+		   </li>
+			</ul>
+		  </li>
+		  <li class="nav-item dropdown @@pages">
+			<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Legal
+			  <span><i class="ti-angle-down"></i></span>
+			</a>
+			<!-- Dropdown list -->
+			<ul class="dropdown-menu ">
+				<li><a class="dropdown-item  @@privacy" href="/privacy">Privacy</a></li>
+				<li><a class="dropdown-item  @@privacy" href="/disclaimer">Disclaimer</a></li>
+				<li><a class="dropdown-item  @@privacy" href="/tos">Terms Of Service</a></li>
+				<li><a class="dropdown-item  @@privacy" href="/cookie">Cookie Policy</a></li>
+	
+			  </ul>
+		  </li>
+		  <li  class="nav-item @@contact">
+			<a class="nav-link" href="/Shop">Shop</a>
+		  </li>
+		  <ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown active">
+				<a id="username-text" class="nav-link dropdown-toggle" href="/login"">Sign in</a>
+				<!-- Dropdown list -->
+				<ul class=" dropdown-menu">
+			<li><a id="app" class="dropdown-item " href="/beta">App</a></li>
+			<li><a id="account" class="dropdown-item active" href="/account">My Account</a></li>
+			<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
+			</li>
+		</ul>
+	  </div>
+	</div>
+  </nav>
+  
+  <body style="background: transparent;">
+	<div class="account-container">
+	  <div class="account-settings">
+		<h2>Account Settings</h2>
+
+			<label for="full-name">Full Name</label>
+			<input id="full-name" type="text" name="Full Name" readonly/>
+
+			<label for="email-address">Email Address</label>
+			<div class="email-container">
+			  <input id="email-address" type="text" name="email" readonly/>
+			  <a id ="verify-text" class="hidden" href="/verify-email">Verify</a>
+			</div>
+
+			<label for="tier">Tier</label>
+			<input id="tier" type="text" name="tier" readonly/>
+			<label for="beta-usage">Number of Completions</label>
+			<input id="beta-usage" type="text" name="beta" readonly/>
+			<label for="tokens-spent">Amount of Tokens Spent</label>
+			<input id="tokens-spent" type="text" name="tokens" readonly/>
+			<label for="user-balance">User Balance</label>
+			<input id="user-balance" type="text" name="balance" readonly/>
+			
+			<a href="/forgot-password">
+				<button id="reset-btn">Reset Password</button>
+			  </a>
+			  
+			  <a href="https://billing.stripe.com/p/login/bIY5mrdbD1yGdoY4gg" target="_blank">
+				<button id="portal-btn">Manage Subscription</button>
+			  </a>
+			  
+
+
+		<script>
+			
+			//add event listener to reset password button
+			document.getElementById("reset-btn").addEventListener("click", function(){
+				window.location.href = "/forgot-password";
+			});
+			document.getElementById("request-btn").addEventListener("click", function(){
+				window.location.href = "/contact";
+			});
+
+		</script>
+
+
+	  </div>
+	  <div class="plan-information-container">
+		<h2 style="border-bottom: 2px solid white; border-radius: 0;">Plan Information</h2>
+		<div class="plan-information">
+			<div id="free-information-item"class="plan-information-item ">
+				<h3>Free</h3>
+				<p>
+				  3000 free tokens<br>
+				  Maximum 200 tokens per request<br>
+				  Engine: gpt-3.5-turbo (ChatGPT)
+				</p>
+			  </div>
+			  <div id="basic-information-item" class="plan-information-item">
+				<h3>Basic</h3>
+				<p>
+				  10,000 tokens per month for $1<br>
+				  Maximum 500 tokens per request<br>
+				  Engine: gpt-3.5-turbo (ChatGPT)
+				</p>
+			  </div>
+			  <div id="premium-information-item"class="plan-information-item">
+				<h3>Premium</h3>
+				<p>
+				  15,000 tokens per month for $2<br>
+				  Maximum 1000 tokens per request<br>
+				  Engine: gpt-3.5-turbo (ChatGPT)
+				</p>
+			  </div>
+			  <div id="elite-information-item"class="plan-information-item">
+				<h3>Elite</h3>
+				<p>
+				  50,000 tokens per month for $5<br>
+				  Maximum 1000 tokens per request<br>
+				  Engine: gpt-3.5-turbo (ChatGPT)
+				</p>
+			  </div>
+	</div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/authorization/account.js"></script>
+<script src="js/getUserInfo.js"></script>
+
+</html>
+
