@@ -35,7 +35,7 @@ body {
 
 .shop-frame {
   padding: 5px;
-  height: 700px;
+  height: 800px;
   max-width: 1000px;
   background: white;
   margin-top: 30px;
@@ -51,7 +51,7 @@ body {
 }
 
 .shop-frame-shrink{
-  height: 760px ;
+  height: 700px;
   transition: all .5s ease;
 }
 
@@ -69,10 +69,19 @@ body {
 }
 
 .shop-table-container-left {
-    transform: translateX(-400px);
+    transform: translateX(-800px);
     opacity: 0;
     height: 0px;
-    display: none !important;
+    transition: all 0.5s ease;
+
+  }
+
+.shop-table-container-right {
+    transform: translateX(800px);
+    opacity: 0;
+    height: 0px;
+    transition: all 0.5s ease;
+
   }
 
 
