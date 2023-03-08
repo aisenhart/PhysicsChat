@@ -96,25 +96,17 @@
 			<input id="tokens-spent" type="text" name="tokens" readonly/>
 			<label for="user-balance">User Balance</label>
 			<input id="user-balance" type="text" name="balance" readonly/>
-			<a href="/forgot-password">
+			  <a href="/forgot-password">
 				<button id="reset-btn">Reset Password</button>
 			  </a>
-			  
-			  <form method="POST" action="/create-customer-portal-session">
-				<button id="portal-btn" type="submit">Manage billing</button>
-			  </form>
-			  
+			  <a href="https://billing.stripe.com/p/login/bIY5mrdbD1yGdoY4gg">
+				<button id="portal-btn" type="submit">Manage Subscription</button>
+			  </a>
 
 
 		<script>
 			
-			//add event listener to reset password button
-			document.getElementById("reset-btn").addEventListener("click", function(){
-				window.location.href = "/forgot-password";
-			});
-			document.getElementById("request-btn").addEventListener("click", function(){
-				window.location.href = "/contact";
-			});
+
 
 		</script>
 

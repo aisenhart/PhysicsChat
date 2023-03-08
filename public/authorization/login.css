@@ -396,6 +396,10 @@ label {
   margin-bottom: 20px;
   background-color: #1059FF;
 }
+.btn-signup a {
+  user-select: none;
+  cursor: pointer; 
+}
 
 .btn-signin {
   float: left;
@@ -405,6 +409,10 @@ label {
 	border: none;
 	border-radius: 20px;
   margin-top: -8px;
+}
+.btn-signin a {
+  user-select: none;
+  cursor: pointer; 
 }
 
 .btn-animate {
