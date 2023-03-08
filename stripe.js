@@ -34,10 +34,34 @@ module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
 
           case 'checkout.session.completed':
             console.log(event);
-            let customer = event.data.object.customer;
-            let customerEmail = event.data.object.customer_email;
-            let mode = event.data.object.mode;
-            let subscription = event.data.object.subscription;
+            let customer = event.data.object.customer; //customer id or null
+            let customerEmail = event.data.object.customer_details.email; //customer email
+            let mode = event.data.object.mode; // 'subscription' or 'payment'
+            let subscription = event.data.object.subscription; //null if not subscription || sub_1MjEPFLyXGv9FHExxAoitqf7
+            console.log(`
+            customer: ${customer}
+            ----------------
+            customerEmail: ${customerEmail}
+            ----------------
+            mode: ${mode}
+            ----------------
+            subscription: ${subscription}
+            ----------------
+            `);
+            console.log(event)
+
+            let line_items = stripe.checkout.sessions.listLineItems(
+              event.data.object.id,
+              { limit: 5 },
+              function(err, lineItems) {
+                // asynchronously called
+
+                let product_id = lineItems.data[0].price.product;
+                console.log(product_id);
+
+              }
+            );
+
 
 
           default:

@@ -28,4 +28,5 @@
     "price": 1000000000,
     "max_tokens": 1000,
     "engine": "gpt-3.5-turbo"
-  }}
+  }
+}

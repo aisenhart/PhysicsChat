@@ -1,0 +1,46 @@
+
+{
+
+    "prod_NTTcaB4BrrAYXQ":{
+        "name":"Pro Pack",
+        "subscription":false,
+        "token-amount":50000,
+        "price": 8
+    }, 
+
+    "prod_NTTbE31QAm8xMt":{
+        "name":"Advanced Pack",
+        "subscription":false,
+        "token-amount":16000,
+        "price": 4
+    },
+
+    "prod_NTTanVtEW76ILl":{
+        "name":"Starter Pack",
+        "subscription":false,
+        "token-amount":9000,
+        "price": 2
+    },
+
+    "prod_NTTZtlQpK1xw70":{
+        "name":"Elite Subscription",
+        "subscription":true,
+        "token-amount":50000,
+        "price": 5
+    },
+
+    "prod_NTTXvxsyqwf0xb":{
+        "name":"Premium Subscription",
+        "subscription":true,
+        "token-amount":15000,
+        "price": 2
+    },
+
+    "prod_NTTV4au7YBeoHw":{
+        "name":"Basic Subscription",
+        "subscription":true,
+        "token-amount":10000,
+        "price": 1
+    }
+
+}
