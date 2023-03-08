@@ -102,3 +102,28 @@ function setUsernameText() {
   });
 };
 setUsernameText();
+
+setAlertText('tokens');
+function setAlertText(type) {
+  const alertMessage = document.querySelector('.alert-message');
+  
+  if (type === 'tokens') {
+    $('#alert-text').text('You are out of tokens, please purchase more to continue using the service');
+    $('.alert-container').removeClass('hidden');
+  } else if (type === 'email') {
+    $('#alert-text').text('Please verify your email address to continue');
+    $('.alert-container').removeClass('hidden');
+  } else if (type === 'request') {
+    $('#alert-text').text('Your request cannot be processed at the moment, please try again later');
+    $('.alert-container').removeClass('hidden');
+  }
+  setTimeout(function() {
+    $('.alert-container').addClass('hidden');
+  }, 5000);
+}
+
+
+
+
+
+

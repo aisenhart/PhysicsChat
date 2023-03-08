@@ -367,10 +367,10 @@ a.btn-forgot:hover {
 }
 
 .alert-message.hidden {
-  height: 0;
   padding: 0;
   opacity: 0;
   pointer-events: none;
+  height: 10px;
   transition: 0.5s ease;
 }
 
