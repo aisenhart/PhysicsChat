@@ -6,19 +6,22 @@
     "engine": "gpt-3.5-turbo"
   },
   "basic": {
-    "tokens": 2000,
+    "stripe_id":"prod_NTTV4au7YBeoHw",
+    "tokens": 10000,
     "price": 1,
     "max_tokens": 500,
     "engine": "gpt-3.5-turbo"
   },
-  "pro": {
-    "tokens": 5000,
+  "premium": {
+    "stripe_id":"prod_NTTXvxsyqwf0xb",
+    "tokens": 15000,
     "price": 2,
     "max_tokens": 1000,
     "engine": "gpt-3.5-turbo"
   },
   "elite": {
-    "tokens": 15000,
+    "stripe_id":"prod_NTTZtlQpK1xw70",
+    "tokens": 50000,
     "price": 5,
     "max_tokens": 1000,
     "engine": "gpt-3.5-turbo"

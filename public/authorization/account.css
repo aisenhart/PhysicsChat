@@ -61,10 +61,10 @@ h3 {
   padding: 10px;
   resize: none;
 }
-#request-btn{
+#reset-btn{
   margin-left: 0px;
 }
-#request-btn, #reset-btn{  
+#reset-btn, #portal-btn{  
   background-color: #2e7eed;
   color: #fff;
   border: none;
@@ -72,7 +72,7 @@ h3 {
   padding: 10px 20px;
   cursor: pointer;
 }
-#request-btn:hover, #reset-btn:hover{  
+#reset-btn:hover, #portal-btn:hover{  
   background-color: #0f3467;
   transition: linear 0.5s;
 }

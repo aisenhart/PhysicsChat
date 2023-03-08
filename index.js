@@ -577,8 +577,6 @@ function newUser(ip,email,password,fullName){
   u1.setFirstName(firstName);
   u1.setLastName(lastName);
   u1.setAccountCreatedAt(Date.now());
-  u1.setAdsClicked(0);
-  u1.setAdsWatched(0);
   u1.setBanned(JSON.stringify({"banned": false, "reason": "", "date": ""}));
   u1.setCompletionsCount(0);
   u1.setOrders(JSON.stringify({"orders": []}));

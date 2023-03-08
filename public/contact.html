@@ -101,6 +101,12 @@
 
 
 <section class="contact-form ">
+  <div class="alert-container hidden">
+		<div class="alert-message">
+		  <div class="checkmark">!</div>
+		  <p id="alert-text">Alert</p>
+		</div>
+	  </div>
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -172,15 +178,40 @@
         //if the request was successful
         if(data == "success"){
           //show a success message
-          alert("Your message has been sent!");
+          setAlertText("success");
         }
         //if the request was not successful
         else{
           //show an error message
-          alert("There was an error sending your message. Please try again later.");
+          setAlertText("error");
         }
       });
     });
+
+
+
+
+
+
+
+
+
+
+
+    function setAlertText(type) {
+  const alertMessage = document.querySelector('.alert-message');
+
+  if (type === 'success') {
+    $('#alert-text').html('Your message has been sent!');
+    $('.alert-container').removeClass('hidden');
+  } else if (type === 'error') {
+    $('#alert-text').text('There was an error sending your message. Please try again later.');
+    $('.alert-container').removeClass('hidden');
+  setTimeout(function () {
+    $('.alert-container').addClass('hidden');
+  }, 5000);
+}
+}
     
 
 

@@ -21,7 +21,7 @@
 - [x] reset password form not submitting to backend
 - [x] add implimentation of conseting to terms of service and user is over 13
 - [ ] tokens calculator
-- [ ] Add pop up for when user is out of tokens, direct them to shop.
+- [x] Add pop up for when user is out of tokens, direct them to shop.
 
 Salesman suggestion:
 

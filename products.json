@@ -1,6 +1,13 @@
 
 {
 
+    "prod_NUDLNiclHpScKI":{
+        "name":"Test Pack",
+        "subscription":false,
+        "token-amount":1,
+        "price": 15
+    },
+
     "prod_NTTcaB4BrrAYXQ":{
         "name":"Pro Pack",
         "subscription":false,
