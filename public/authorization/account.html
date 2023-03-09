@@ -75,6 +75,12 @@
   </nav>
   
   <body style="background: transparent;">
+	<div class="alert-container hidden">
+		<div class="alert-message">
+		  <div class="checkmark">!</div>
+		  <p id="alert-text">Please verify your email address.</p>
+		</div>
+	  </div>
 	<div class="account-container">
 	  <div class="account-settings">
 		<h2>Account Settings</h2>
@@ -85,7 +91,7 @@
 			<label for="email-address">Email Address</label>
 			<div class="email-container">
 			  <input id="email-address" type="text" name="email" readonly/>
-			  <a id ="verify-button" class="hidden" href="/verify-email">Verify</a>
+			  <a id ="verify-button" class="hidden" >Verify</a>
 			</div>
 
 			<label for="tier">Tier</label>
@@ -151,7 +157,6 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/authorization/account.js"></script>
-<script src="js/getUserInfo.js"></script>
 
 </html>
 

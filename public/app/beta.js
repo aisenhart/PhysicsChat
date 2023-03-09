@@ -25,27 +25,7 @@ document.getElementById("submit").addEventListener("click", function () {
     var response = JSON.parse(xhr.responseText);
     console.log(response)
     if (response.error) {
-      if (response.error === "user has used up their tokens") {
-        setAlertText('tokens');
-      } else if (response.error === "user does not exist") {
-        setAlertText("user does not exist");
-      } else if (response.error === "user is banned") {
-        setAlertText("user is banned");
-      } else if (response.error === "user tier does not exist") {
-        setAlertText("user tier does not exist");
-      } else if (response.error === "user does not have enough tokens") {
-        setAlertText("user does not have enough tokens");
-      } else if (response.error === "prompt is not acceptable") {
-        setAlertText('prompt is not acceptable');
-      } else if (response.error === "error with OpenAI API") {
-        setAlertText("OpenAIError");
-      }
-      else if (response.error === "prompt is empty") {
-        setAlertText("prompt is empty");
-      }
-      else {
-        displayError(response.error);
-      }
+      setAlertText(response.error);
     }
     else {
       document.getElementById("text-area").value = text + response.completion;
@@ -124,34 +104,31 @@ function setUsernameText() {
 };
 setUsernameText();
 
-function setAlertText(type) {
+function setAlertText(error) {
   const alertMessage = document.querySelector('.alert-message');
 
-  if (type === 'tokens') {
+  if (error === 'user has used up their tokens') {
     $('#alert-text').html('You are out of tokens, please <a style="color: #fff; text-decoration: underline" href="/shop">purchase more</a> to continue using the service');
     $('.alert-container').removeClass('hidden');
-  } else if (type === 'email') {
-    $('#alert-text').html('Please <a style="color: #fff; text-decoration: underline" href="/account">verify</a> your email to continue');
+  } else if (error === 'user has not verified their email') {
+    $('#alert-text').html('Please <a style="color: #fff; text-decoration: underline" href="/account">verify</a> your email address to continue');
     $('.alert-container').removeClass('hidden');
-  } else if (type === 'request') {
-    $('#alert-text').text('Your request cannot be processed at the moment, please try again later');
-    $('.alert-container').removeClass('hidden');
-  } else if (type === 'user does not exist') {
+  } else if (error === 'user does not exist') {
     $('#alert-text').text('User does not exist');
     $('.alert-container').removeClass('hidden');
-  } else if (type === 'user is banned') {
+  } else if (error === 'user is banned') {
     $('#alert-text').html('You have been banned, if you believe this is a mistake please <a style="color: #fff; text-decoration: underline" href="/contact">contact us</a>');
     $('.alert-container').removeClass('hidden');
-  } else if (type === 'user tier does not exist') {
+  } else if (error === 'user tier does not exist') {
     $('#alert-text').text('User tier does not exist');
     $('.alert-container').removeClass('hidden');
-  } else if (type === 'user does not have enough tokens') {
+  } else if (error === 'user does not have enough tokens') {
     $('#alert-text').text('You do not have enough tokens');
     $('.alert-container').removeClass('hidden');
-  } else if (type === 'prompt is empty') {
+  } else if (error === 'prompt is empty') {
     $('#alert-text').text('Please enter a prompt');
     $('.alert-container').removeClass('hidden');
-  } else if (type === 'prompt is not acceptable') {
+  } else if (error === 'prompt is not acceptable') {
     $('#alert-text').html('The prompt you submitted is not acceptable and in violation of our <a style="color: #fff; text-decoration: underline" href="/tos">terms of service</a>');
     $('.alert-container').removeClass('hidden');
     setTimeout(function () {
@@ -165,7 +142,7 @@ function setAlertText(type) {
       }, 500);
     }, 5000);
   }
-  else if (type === 'OpenAIError') {
+  else if (error === 'error with OpenAI API') {
     $('#alert-text').text('An error occurred with OpenAI API');
     $('.alert-container').removeClass('hidden');
   } else {
@@ -176,10 +153,3 @@ function setAlertText(type) {
     $('.alert-container').addClass('hidden');
   }, 5000);
 }
-
-
-
-
-
-
-

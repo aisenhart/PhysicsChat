@@ -421,12 +421,30 @@ class Database {
         });
     }
 
-    deleteEmailVerificationCode(email,code,callback){
-        this.db.query(`DELETE FROM emailVerification WHERE email = '${email}' AND code = '${code}'`, (err, result) => {
+    
+    getEmailVerificationCodesByEmail(email,callback){
+        this.db.query(`SELECT * FROM emailVerification WHERE email = '${email}'`, (err, result) => {
             if (err) {
                 throw err;
             }
             callback(result);
+        });
+    }
+
+    deleteEmailVerificationCode(email,code,callback){
+        this.db.query(`DELETE FROM emailVerification WHERE email = '${email}' AND code = '${code}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }    
+            callback(result);
+        });    
+    }
+    //ZAYD LOOK HERE
+    addContactRequest(id, email, name, subject, message, timestamp){
+        this.db.query(`INSERT INTO contact (id, email, name, subject, message, timestamp) VALUES ('${id}', '${email}', '${name}', '${subject}', '${message}', '${timestamp}')`, (err, result) => {
+            if (err) {
+                throw err;
+            }
         });
     }
 

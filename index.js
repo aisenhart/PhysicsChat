@@ -179,6 +179,13 @@ app.get('/get-user-info',(req, res) => {
         return;
       }
       user = user[0];
+
+      if(user.verified==0){
+        user.verified = false;
+      } else{
+        user.verified = true;
+      }
+
       res.json({
       "firstName": user.firstName, 
       "lastName": user.lastName, 
@@ -187,8 +194,7 @@ app.get('/get-user-info',(req, res) => {
       "email": user.email, 
       "completionsCount": user.completionsCount,
       "usedTokens": user.usedTokens,
-
-    
+      "verified": user.verified
     });
   });
 });
@@ -396,6 +402,17 @@ app.post('/register', (req, res) => {
     }
 
     if(user[0]!=undefined){res.status(400).json({"error":"user already exists"}); console.log(user);return;}
+
+    //proxy_set_header  X-Real-IP $remote_addr;
+
+    //get ip address from header 
+    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log('\n\n\n\n\n')
+    console.log(ip);
+    console.log('\n\n\n\n\n')
+
+
+
     let returnValue = newUser(req.ip,req.body.email,req.body.password,req.body.fullname);
     if(returnValue.UID!=undefined){
       //console.log(returnValue);
@@ -427,6 +444,7 @@ app.post("/submit-contact-request", (req, res) => {
   let name = req.body.name;
   let subject = req.body.subject;
   let message = req.body.message;
+  let timestamp = new Date();
   if(!email || !name || !subject || !message){
     res.status(400).json({"error": "missing fields"});
     return;
@@ -435,10 +453,11 @@ app.post("/submit-contact-request", (req, res) => {
     res.status(400).json({"error": "invalid email"});
     return;
   }
-
+  //ZAYD LOOK HERE
+  res.json({"success": "message sent"});
   console.log("contact request from " + email + " with id " + id);
   console.log('details: ' + name + " " + subject + " " + message);
-
+  db.addContactRequest(id, email, name, subject, message, timestamp);
 });
 
 app.get('/searchUser', verify, (req, res) => {
@@ -568,6 +587,33 @@ app.get('/verify-email', (req, res) => {
 });
 
 
+app.post('/verify-email', (req, res) => {
+  const email = req.body.email;
+  if(!email) return res.send("{'error':'No email provided'}");
+  db.getUser(email, resultUser => {
+
+      if(resultUser.length>0){
+          if(resultUser[0].verified==1){
+              res.send({'error':'Email already verified'});
+          } else {
+             db.getEmailVerificationCodesByEmail(email,result => {
+                  if(result.length>0){
+                      for(let i=0;i<result.length;i++){
+                          db.deleteEmailVerificationCode(email,result[i].code,() => {});
+                      }
+                  }
+                  sendVerificationEmail(db,resultUser[0].email);
+                  res.send({'success':'Verification email sent'});
+              });
+          }
+      } else {
+          res.send({'error':'User not found'});
+      }
+  });
+});
+
+
+
 app.get('/contact', (req, res) => {
   res.sendFile(__dirname + '/public/contact.html');
 });
@@ -582,7 +628,7 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
 
-
+ 
 // Path: classes/User.js
 function newUser(ip,email,password,fullName){
   const hashedPassword = bcrypt.hashSync(password, 10);
