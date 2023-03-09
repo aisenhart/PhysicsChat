@@ -6,10 +6,6 @@
 - [x] Update Privacy Policy add "openAI user terms"
 - [x] Fix Load times with login page. Possible issue: Loading the SVG. Thin out css from bootstrap?
 - [x] Termly 
-- [ ] Account verification via email
-- [ ] Finish Contact databse link
-- [ ] Payment processing
-- [ ] Setup watching ads for tokens
 - [x] reset password form | Add passwords dont match error
 - [x] SITE UNBLOCKING ON FORTI-GAURD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 - [x] CORRECT MY POOR FILE HREFS
@@ -20,9 +16,14 @@
 - [x] Fix sign out button, does not redirect to home or login page.
 - [x] reset password form not submitting to backend
 - [x] add implimentation of conseting to terms of service and user is over 13
-- [ ] tokens calculator
 - [x] Add pop up for when user is out of tokens, direct them to shop.
-
+- [x] Account verification via email
+- [ ] Finish Contact databse link
+- [ ] Payment processing
+- [ ] Setup watching ads for tokens
+- [ ] tokens calculator
+- [ ] Desired word count slider
+- [ ] token limiter per request based on tier 
 Salesman suggestion:
 
     Free Tier (no subscription): 3000 tokens

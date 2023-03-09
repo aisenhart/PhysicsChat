@@ -1,6 +1,11 @@
 const nodeMailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
+//read blakclisted-emails.txt
+const fs = require('fs');
+const blacklistedEmails = fs.readFileSync('blacklisted-emails.txt', 'utf8');
+//split into array
+const blacklist = blacklistedEmails.split('\n');
 
 
 const html = `
@@ -38,12 +43,27 @@ const html = `
 
 
 function sendVerificationEmail(db,email) {
-    
+
+            if(checkDomainBlacklist(email)){
+                console.log("Email domain is blacklisted")
+                return;
+            }
+
             db.generateEmailVerificationCode(email, function(code) {
                 if(code){
                     sendEmail(email,code);
                 }
             });
+
+            function checkDomainBlacklist(email){
+                // Check if email domain is in blacklist.txt 
+                const domain = email.split('@')[1];
+                if(blacklist.includes(domain)){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         
 
 
