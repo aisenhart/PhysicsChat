@@ -438,7 +438,15 @@ class Database {
             }    
             callback(result);
         });    
-    }        
+    }
+    //ZAYD LOOK HERE
+    addContactRequest(id, email, name, subject, message, timestamp){
+        this.db.query(`INSERT INTO contact (id, email, name, subject, message, timestamp) VALUES ('${id}', '${email}', '${name}', '${subject}', '${message}', '${timestamp}')`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+        });
+    }
 
 
 }

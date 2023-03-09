@@ -444,6 +444,7 @@ app.post("/submit-contact-request", (req, res) => {
   let name = req.body.name;
   let subject = req.body.subject;
   let message = req.body.message;
+  let timestamp = new Date();
   if(!email || !name || !subject || !message){
     res.status(400).json({"error": "missing fields"});
     return;
@@ -452,10 +453,11 @@ app.post("/submit-contact-request", (req, res) => {
     res.status(400).json({"error": "invalid email"});
     return;
   }
-
+  //ZAYD LOOK HERE
+  res.json({"success": "message sent"});
   console.log("contact request from " + email + " with id " + id);
   console.log('details: ' + name + " " + subject + " " + message);
-
+  db.addContactRequest(id, email, name, subject, message, timestamp);
 });
 
 app.get('/searchUser', verify, (req, res) => {

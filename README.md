@@ -18,12 +18,13 @@
 - [x] add implimentation of conseting to terms of service and user is over 13
 - [x] Add pop up for when user is out of tokens, direct them to shop.
 - [x] Account verification via email
-- [ ] Finish Contact databse link
+- [x] Finish Contact databse link
 - [ ] Payment processing
 - [ ] Setup watching ads for tokens
 - [ ] tokens calculator
 - [ ] Desired word count slider
 - [ ] token limiter per request based on tier 
+
 Salesman suggestion:
 
     Free Tier (no subscription): 3000 tokens
