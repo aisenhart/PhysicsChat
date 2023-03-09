@@ -389,9 +389,20 @@ class Database {
             if (err) {
                 throw err;
             }
-            callback(result,code);
+            callback(code);
         });
 
+    }
+
+
+    //see if verification code exists
+    getEmailVerificationCode(email,code,callback){
+        this.db.query(`SELECT * FROM emailVerification WHERE email = '${email}' AND code = '${code}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
     }
 
     verifyEmailVerificationCode(email,code,callback){

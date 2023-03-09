@@ -41,7 +41,8 @@ app.set('view engine', 'ejs');
 
 //import express routes from ./stripe.js
 require('./stripe')(express,bodyParser,app,db,process.env.STRIPE_SECRET_KEY,process.env.STRIPE_PUBLISHABLE_KEY,process.env.DOMAIN);
-const emailVerification = require('./email-verification')(express,app,db);
+const sendVerificationEmail = require('./email-verification')
+
 
 //read tiers.json
 let tiers = require('./tiers.json');
@@ -217,6 +218,9 @@ app.post('/ai', verify, async (req, res) => {
     if(!user[0]){
       res.status(400).json({"error": "user does not exist"});
       return;
+    } else if (user[0].verified == 0){
+      res.status(400).json({"error": "user has not verified their email"});
+      return;
     }
     
     user = user[0];
@@ -300,6 +304,7 @@ app.post('/ai', verify, async (req, res) => {
         messages: [{role:"user",content:prompt}],
         max_tokens: tiers[tier].max_tokens,
         temperature: 0,
+        user: user.UID
       }).catch((error) => {
         console.log(error);
         res.status(400).json({"error": "error with openai api"});
@@ -539,15 +544,38 @@ app.post('/reset-password', (req, res) => {
 });
 
 
+app.get('/verify-email', (req, res) => {
+  const code = req.query.code;
+  const email = req.query.email;
+
+  if(!code || !email) return res.send("{'error':'No code or email provided'}");
+  db.getEmailVerificationCode(email,code,result => {
+      
+      if(result.length>0){
+          
+        db.verifyEmailVerificationCode(email,code,result => {
+            if(result){
+                res.redirect('/account');
+                db.deleteEmailVerificationCode(email,code,() => {});
+            } else {
+                res.send({'error':'Email not verified'});
+            }
+        });
+      } else {
+          res.send({'error':'Invalid code'});
+      }  
+  });
+});
+
 
 app.get('/contact', (req, res) => {
   res.sendFile(__dirname + '/public/contact.html');
 });
 
 
-//app.get('*', function(req, res){
-//  res.sendFile(__dirname+'/public/404.html');
-//});
+app.get('*', function(req, res){
+  res.sendFile(__dirname+'/public/404.html');
+});
 
 
 app.listen(port, () => {
@@ -581,8 +609,8 @@ function newUser(ip,email,password,fullName){
   u1.setUsedTokens(0);
   u1.setWarnings(JSON.stringify({"warnings": []}));
   db.newUser(u1, (result) => {
-    emailVerification.sendVerificationEmail(email);
   });
+  sendVerificationEmail(db,email);
   return u1.getAll();
 
   

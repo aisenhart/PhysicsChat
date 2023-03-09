@@ -36,34 +36,15 @@ const html = `
 `;
 
 
-module.exports = function(express,app,db,){
 
-
-
-    app.get('/verify-email', (req, res) => {
-        const code = req.query.code;
-        const email = req.query.email;
-
-        if(!code || !email) return res.send("{'error':'No code or email provided'}");
-
-        db.verifyEmail(email,code,result => {
-            if(result){
-                res.send({'success':'Email verified'});
-                db.deleteEmailVerificationCode(email,code,() => {});
-            } else {
-                res.send({'error':'Email not verified'});
-            }
-        });
-
-    });
-
-    async function sendVerificationEmail(email) {
+function sendVerificationEmail(db,email) {
     
-            db.generateEmailVerificationCode(result,code => {
+            db.generateEmailVerificationCode(email, function(code) {
                 if(code){
                     sendEmail(email,code);
                 }
             });
+        
 
 
             function sendEmail(email,code){
@@ -93,4 +74,7 @@ module.exports = function(express,app,db,){
             }
     }
 
+
+module.exports = (db,email) => {
+    sendVerificationEmail(db,email);
 }
