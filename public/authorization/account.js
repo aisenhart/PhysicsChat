@@ -38,7 +38,8 @@ function getUserInfo() {
             $('#email-address').val(email);
             if (tier == 'free') { $('#tier').val('Free'); $('#free-information-item').toggleClass('active');} 
             else if (tier == 'basic') {$('#tier').val('Basic'); $('#basic-information-item').toggleClass('active');}
-            else if (tier == 'pro') {$('#tier').val('Pro'); $('#pro-information-item').toggleClass('active');}
+            else if (tier == 'premium') {$('#tier').val('Premium'); $('#premium-information-item').toggleClass('active');}
+            else if (tier == 'elite') {$('#tier').val('Elite'); $('#elite-information-item').toggleClass('active');}
             else if (tier == 'admin') {$('#tier').val('Admin');}
             //add commas to balance
             $('#user-balance').val(balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' Tokens');
@@ -75,3 +76,11 @@ function setUsernameText() {
   });
 };
 setUsernameText();
+
+
+//INSTRUCTIONS TO ADD VERIFY BUTTON FUNCTIONALITY
+//First make your request to check if the user is verified
+//if the user is verified, then you dont have to do anything
+//if the user is not verified, then you have to run this line of code to show the verify button
+//$('#verify-button').removeClass("hidden");
+//then just double check that the buttons href is set to correct route

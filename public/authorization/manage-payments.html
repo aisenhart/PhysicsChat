@@ -8,7 +8,7 @@
 ">
 <head>
 	<link rel="stylesheet" href="/authorization/account.css" />
-	<title>Physics Chat | Account</title>
+	<title>Physics Chat | Payments</title>
 	<link href="/index.css" rel="stylesheet">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Bootstrap App Landing Template">
@@ -85,7 +85,7 @@
 			<label for="email-address">Email Address</label>
 			<div class="email-container">
 			  <input id="email-address" type="text" name="email" readonly/>
-			  <a id ="verify-button" class="hidden" href="/verify-email">Verify</a>
+			  <a id ="verify-text" class="hidden" href="/verify-email">Verify</a>
 			</div>
 
 			<label for="tier">Tier</label>
@@ -96,17 +96,26 @@
 			<input id="tokens-spent" type="text" name="tokens" readonly/>
 			<label for="user-balance">User Balance</label>
 			<input id="user-balance" type="text" name="balance" readonly/>
-			  <a href="/forgot-password">
+			
+			<a href="/forgot-password">
 				<button id="reset-btn">Reset Password</button>
 			  </a>
-			  <a href="https://billing.stripe.com/p/login/bIY5mrdbD1yGdoY4gg">
-				<button id="portal-btn" type="submit">Manage Subscription</button>
+			  
+			  <a href="https://billing.stripe.com/p/login/bIY5mrdbD1yGdoY4gg" target="_blank">
+				<button id="portal-btn">Manage Subscription</button>
 			  </a>
+			  
 
 
 		<script>
 			
-
+			//add event listener to reset password button
+			document.getElementById("reset-btn").addEventListener("click", function(){
+				window.location.href = "/forgot-password";
+			});
+			document.getElementById("request-btn").addEventListener("click", function(){
+				window.location.href = "/contact";
+			});
 
 		</script>
 

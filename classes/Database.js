@@ -92,13 +92,14 @@ class Database {
     }
 
     newUser(user, callback) {
-        this.db.query(`INSERT INTO users (ip, email, password, firstName, lastName, tier, balance, UID, warnings, completionsCount, usedTokens, orders, accountCreatedAt, adsWatched, adsClicked, banned) VALUES ('${user.getIp()}','${user.getEmail()}','${user.getPassword()}','${user.getFirstName()}','${user.getLastName()}','${user.getTier()}','${user.getBalance()}','${user.getUID()}','${user.getWarnings()}','${user.getCompletionsCount()}','${user.getUsedTokens()}','${user.getOrders()}','${user.getAccountCreatedAt()}','${user.getAdsWatched()}','${user.getAdsClicked()}','${user.getBanned()}')`, (err, result) => {
+        this.db.query(`INSERT INTO users (ip, email, password, firstName, lastName, tier, balance, UID, warnings, completionsCount, usedTokens, orders, accountCreatedAt, banned) VALUES ('${user.getIp()}','${user.getEmail()}','${user.getPassword()}','${user.getFirstName()}','${user.getLastName()}','${user.getTier()}','${user.getBalance()}','${user.getUID()}','${user.getWarnings()}','${user.getCompletionsCount()}','${user.getUsedTokens()}','${user.getOrders()}','${user.getAccountCreatedAt()}','${user.getBanned()}')`, (err, result) => {
             if (err) {
                 throw err;
             }
             callback(result);
         });
     }
+
     end() {
         this.db.end();
         console.log("STOPPED DATABASE");
@@ -351,12 +352,72 @@ class Database {
             callback(result);
         });
     }
-    
 
+    addBalance(email,amount,callback){
+        this.getUser(email,(user)=>{
+            user = user[0];
+            let newBalance = user.balance + amount;
+            this.db.query(`UPDATE users SET balance = '${newBalance}' WHERE email = '${email}'`, (err, result) => {
+                if (err) {
+                    throw err;
+                }
+                callback(result);
+            });
+        });
+    }
 
+    appendOrder(email,order,callback){
+        this.getUser(email,(user)=>{
+            user = user[0];
+            let newOrders = user.orders;
+            //string to json
+            let allOrders = JSON.parse(newOrders);
+            newOrders = allOrders.orders;
+            newOrders.push(order);
+            this.db.query(`UPDATE users SET orders = '${JSON.stringify(allOrders)}' WHERE email = '${email}'`, (err, result) => {
+                if (err) {
+                    throw err;
+                }
+                callback(result);
+            });
+        });
+    }
 
-    
+    generateEmailVerificationCode(email,callback){
+        let code = crypto.randomUUID();
+        this.db.query(`INSERT INTO emailVerification (email, code,created) VALUES ('${email}', '${code}', '${Date.now()}')`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result,code);
+        });
 
+    }
+
+    verifyEmailVerificationCode(email,code,callback){
+        this.db.query(`SELECT * FROM emailVerification WHERE email = '${email}' AND code = '${code}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            if(result.length>0){
+                this.db.query(`UPDATE users SET verified = 1 WHERE email = '${email}'`, (err, result) => {
+                    if (err) {
+                        throw err;
+                    }
+                    callback(result);
+                });
+            }
+        });
+    }
+
+    deleteEmailVerificationCode(email,code,callback){
+        this.db.query(`DELETE FROM emailVerification WHERE email = '${email}' AND code = '${code}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
 
 
 }

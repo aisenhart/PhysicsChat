@@ -1,5 +1,35 @@
-const stripe = require('stripe')('sk_test_51MiUmaLyXGv9FHExtWCByYnnoqjJwfme8lgeblXnAoGFyl3qwJYinunUz7zTdbjeJe1lTGd91hxLJtKajbP9g8iE00no5w3fcp');
+const stripe = require('stripe')(process.env.STRIPE_API);
+const productsJson = require('./products.json');
 module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
+
+
+ //TESTING_100_FREE
+
+  function fulfillOrder(customer, email, mode, subscription, product_id,transaction_id) {
+
+    let product = productsJson[product_id];
+
+    if(email == null) {
+      email = 'admin@physics-chat.com';
+    }
+ 
+    let order = {product:product_id,price:product['price'],email:email,mode:mode,subscription:subscription,transaction_id:transaction_id};
+
+    if(mode == 'payment') {
+      db.addBalance(email,product['token-amount'],function(result) {  
+        db.appendOrder(email,order,function(result) {
+          console.log('order added');
+        });
+      });
+
+
+    }
+
+  }
+
+
+
+
 
   function addRawBody(req, res, next) {
     req.setEncoding('utf8');
@@ -33,11 +63,11 @@ module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
         switch (event.type) {
 
           case 'checkout.session.completed':
-            console.log(event);
             let customer = event.data.object.customer; //customer id or null
             let customerEmail = event.data.object.customer_details.email; //customer email
             let mode = event.data.object.mode; // 'subscription' or 'payment'
             let subscription = event.data.object.subscription; //null if not subscription || sub_1MjEPFLyXGv9FHExxAoitqf7
+            let transaction_id = event.data.object.id; //cs_test_a1HeAeBDYzpLZtyhWSr24110Q7P37z9UbVHKt3yvJegrLauNn3Wxzv3JX8
             console.log(`
             customer: ${customer}
             ----------------
@@ -48,7 +78,6 @@ module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
             subscription: ${subscription}
             ----------------
             `);
-            console.log(event)
 
             let line_items = stripe.checkout.sessions.listLineItems(
               event.data.object.id,
@@ -57,7 +86,7 @@ module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
                 // asynchronously called
 
                 let product_id = lineItems.data[0].price.product;
-                console.log(product_id);
+                fulfillOrder(customer, customerEmail, mode, subscription, product_id,transaction_id);
 
               }
             );
@@ -75,9 +104,5 @@ module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
 
 
 }
-
-
-
-
 
 //C:\Users\andre\Desktop\stripe.exe listen --forward-to localhost:3000/webhook

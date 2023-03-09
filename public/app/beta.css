@@ -29,6 +29,59 @@ h1, h2, h3 {
   transition: linear 0.5s;
 }
 
+.alert-container {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  background-color: #007bff;
+  color: #fff;
+  z-index: 9999;
+  transition: top 0.5s ease-in-out;
+  border-radius: 10px;
+}
+
+.alert-container.hidden {
+  top: -100px;
+}
+
+.alert-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.alert-message .checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: rgba(16,89,255, 1);
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.5s ease;
+}
+.alert-message p {
+  font-size: 16px;
+  margin: 0;
+  color: #ffffff;
+}
+
+
+
+
+
+
+
+
 .textbox {
   width: 80%;
   height: 650px; /* Updated height */

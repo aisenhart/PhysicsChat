@@ -82,10 +82,11 @@
 
 
 
+<!-- MAIN SHOP STYLING -->
 
-
+<!--
   <div class="shop-container ">
-    <div class="shop-frame">
+	<div class="shop-frame">
       <div class="shop-nav">
         <ul class="shop-links">
           <li class="shop-li shop-subscriptions-active"><a class="shop-btn" style="color: #636363; text-decoration: none !important;">Subscriptions</a></li>
@@ -95,13 +96,14 @@
       <div>
 		<p style="  text-align: center;">To ensure that you receive your product, please use the email address associated with your account when checking out.</p>
         <div id="row-container">
+
           <div id="subscription-container" class="shop-table-container shop-subscriptions-active">
             <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
             <stripe-pricing-table pricing-table-id="prctbl_1MiWjNLyXGv9FHExrw6rEk74"
               publishable-key="pk_live_51MiUmaLyXGv9FHEx4gdiBVN4v1Le2D4K38aNfnZ3rBRit2qRyhpPFcx2Sak8yjlN2ikvpvJOfCsTq8hzKBNSxwyD00wuGQiISb">
             </stripe-pricing-table>
           </div>
-          <div id="one-time-container" class="shop-table-container shop-table-container-left shop-one-time-inactive">
+          <div id="one-time-container" class="shop-table-container shop-table-container-right shop-one-time-inactive">
             <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
             <stripe-pricing-table pricing-table-id="prctbl_1MiWmKLyXGv9FHExOAk6Y73T"
               publishable-key="pk_live_51MiUmaLyXGv9FHEx4gdiBVN4v1Le2D4K38aNfnZ3rBRit2qRyhpPFcx2Sak8yjlN2ikvpvJOfCsTq8hzKBNSxwyD00wuGQiISb">
@@ -119,21 +121,59 @@
 
 
     </div>
+</div>
+-->
+
+<!-- TEMORARY SHOP STYLING WHILE SUBSCRIPTIONS INACTIVE-->
+
+ <div class="shop-container ">
+<div class="shop-frame shop-frame-shrink">
+	<div class="shop-nav">
+	  <ul class="shop-links">
+		<li class="shop-li shop-one-time-inactive"><a class="shop-btn"style="color: #636363; text-decoration: none !important;"> Subscriptions (Disabled)</a></li>
+		<li class="shop-li shop-one-time-active"><a class="shop-btn"style="color: #636363; text-decoration: none !important;">Token Packs </a></li>
+	  </ul>
+	</div>
+	<div>
+	  <p style="  text-align: center;">To ensure that you receive your product, please use the email address associated with your account when checking out.</p>
+	  <div id="row-container">
+		<div id="one-time-container" class="shop-table-container shop-one-time-active" >
+		  <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+		  <stripe-pricing-table pricing-table-id="prctbl_1MiWmKLyXGv9FHExOAk6Y73T"
+			publishable-key="pk_live_51MiUmaLyXGv9FHEx4gdiBVN4v1Le2D4K38aNfnZ3rBRit2qRyhpPFcx2Sak8yjlN2ikvpvJOfCsTq8hzKBNSxwyD00wuGQiISb">
+		  </stripe-pricing-table>
+
+		</div>
+	  </div>
+   
+	</div>
+	<div class="shop-info">
+	  <a> <strong>Note!</strong> Token packs do not change your tier, they only provide you with additional tokens.</a>
+	  <p>By subscribing or purchasing, you agree to abide by all of our <a href="/tos"><strong>Terms of Service</strong></a></a>, <a href="/privacy">Policies</a>, and <a href="/disclaimer">Disclaimer</a>.</p>
+
+	</div>
+</div>
+
+
+
+
+
     <!-- partial -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
     <script>
-
+		//WHILE SUBSCRIPTIONS ARE INACTIVE KEEP THIS CODE COMMENTED OUT
+/*
       $(function () {
         $(".shop-btn").click(function () { 
           $(".shop-frame").toggleClass("shop-frame-shrink");
-          $(".shop-table-container").toggleClass("shop-table-container-left");
-          $(".shop-form-one-time").toggleClass("shop-form-one-time-left");
+          $("#subscription-container").toggleClass("shop-table-container-left");
+		  $("#one-time-container").toggleClass("shop-table-container-right");
           $(".shop-one-time-inactive").toggleClass("shop-one-time-active");
           $(".shop-subscriptions-active").toggleClass("shop-subscriptions-inactive");
           $(this).removeClass("shop-idle").addClass("shop-active");
         });
-      });
+      }); */
 
 
 

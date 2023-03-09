@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -14,7 +13,8 @@
 
   <nav class="header">
     <div class="nav-container">
-    <img class="img-fluid" src="../images/mainLogo-b@0.5x.png" alt="Logo" style="height: 40px; margin: 5px; margin-right: 10px;">
+      <img class="img-fluid" src="../images/mainLogo-b@0.5x.png" alt="Logo"
+        style="height: 40px; margin: 5px; margin-right: 10px;">
       <a class="navbar-brand" href="/">Physics-Chat</a>
   </nav>
 
@@ -37,9 +37,10 @@
       <div ng-app ng-init="checked = false">
         <form id="submitLogin" class="form-signin" name="form" required>
           <label for="email">Email</label>
-          <input class="form-styling" type="text" name="email" placeholder="" autocomplete="on" required/>
+          <input class="form-styling" type="text" name="email" placeholder="" autocomplete="on" required />
           <label for="password">Password</label>
-          <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="on" required/>
+          <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="on"
+            required />
 
           <div class="signin-incorrect-hidden">
             <p class="incorrect-text">Incorrect email or password</p>
@@ -68,58 +69,51 @@
           <label for="fullname">Full name</label>
           <input class="form-styling" type="text" name="fullname" placeholder="" required />
           <label for="email">Email (personal email reccomended)</label>
-          <input class="form-styling" type="text" name="email" placeholder="" autocomplete="on" required/>
+          <input class="form-styling" type="text" name="email" placeholder="" autocomplete="on" required />
           <label for="password">Password</label>
-          <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="on" required>
+          <input type="password" class="form-styling" type="text" name="password" placeholder="" autocomplete="on"
+            required>
           <label for="confirmpassword">Confirm password</label>
-          <input type="password" class="form-styling" type="text" name="confirmpassword" placeholder="" autocomplete="on" required>
+          <input type="password" class="form-styling" type="text" name="confirmpassword" placeholder=""
+            autocomplete="on" required>
           <div class="checkbox-container" style="margin-bottom: 5px;">
             <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required />
-            <label id="checkbox-label"for="termsCheckbox" style="font-size: 12px; padding: 5px;">I agree to the <a href="/tos">terms of service</a> and <a href="/disclaimer">disclaimer</a></label>
+            <label id="checkbox-label" for="termsCheckbox" style="font-size: 12px; padding: 5px;">I agree to the <a
+                href="/tos">terms of service</a> and <a href="/disclaimer">disclaimer</a></label>
           </div>
+          
           <div class="signup-incorrect-hidden">
             <p class="incorrect-text">Error</p>
           </div>
           <div class="btn-signup"> <a>Sign Up</a></div>
 
         </form>
+
+
         
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="success">
-          <svg width="270" height="270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 60 60" id="check" ng-class="checked ? 'checked' : ''">
-            <path fill="#ffffff" d="M40.61,23.03L26.67,36.97L13.495,23.788c-1.146-1.147-1.359-2.936-0.504-4.314
-                      c3.894-6.28,11.169-10.243,19.283-9.348c9.258,1.021,16.694,8.542,17.622,17.81c1.232,12.295-8.683,22.607-20.849,22.042
-                      c-9.9-0.46-18.128-8.344-18.972-18.218c-0.292-3.416,0.276-6.673,1.51-9.578" />
-          </svg>
-          <div class="successtext">
-            <p>Thanks for signing up!</p>
+          <div class="splash-container">
+            <div class="splash-header">
+              <h1>Welcome to Physics Chat!</h1>
+            </div>
+            <div class="splash-content">
+              <p>Thank you for signing up! Before you can start using our platform, please make sure to <strong>verify your email address</strong> by clicking the link that we sent to your inbox.</p>
+              <h3>Refer your friends and get rewarded!</h3>
+              <p>Invite your friends to join Physics Chat and receive exclusive discounts, tokens, and more. Keep an eye out for our referral program, which will be launching soon!</p>
+              <h3>Support:</h3>
+              <p>We are still in beta! If you run into any issues don't hesitate to cotnact us.</p>
+            </div>
+            <div class="splash-footer">
+              <a id="continue" href="/beta">Continue to Physics Chat</a>
+            </div>
           </div>
-          <button id="continue" href="/beta">Continue</button>
         </div>
-      </div>
 
-      <div>
+      <div >
         <div class="cover-photo">
-
           <div class="premium-status-container premium-status-container-hidden">
-            <a class = "premium-text">Premium</a>
+            <a class="premium-text">Premium</a>
           </div>
-
         </div>
         <h1 id="welcome-text" class="welcome">Welcome, {user}</h1>
         <a class="btn-go" href="/beta">LETSSS GOOO!!!</a>

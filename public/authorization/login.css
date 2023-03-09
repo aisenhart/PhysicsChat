@@ -43,7 +43,7 @@ body {
 }
 
 .frame-short {
-  height: 400px;
+  height: 350px;
   margin-top: 50px;
   box-shadow: 0px 2px 7px rgba(0,0,0,0.1);
 }
@@ -280,39 +280,6 @@ margin-bottom: 5px;
 }
 
 
-.success {
-  width: 80%;
-  height: 150px;
-  text-align: center;
-  position: relative;
-  top: -890px;
-  left: 450px;
-  opacity: 1000;
-  transition: all .8s .4s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-
-
-}
-
-.success-left {
-  transform: translateX(-406px);
-  opacity: 1;
-}
-
-.successtext {
-  color: #ffffff;
-	font-size: 16px;
-	font-weight: 300;
-  margin-top: -35px;
-  padding-left: 37px;
-  padding-right: 37px;
-}
-
-
 
 
 
@@ -375,7 +342,7 @@ label {
   text-decoration: none;
 }
 .btn-go-up {
-  top: -1200px;
+  top: -1170px;
   opacity: 1;
   pointer-events: all;
 }
@@ -396,6 +363,10 @@ label {
   margin-bottom: 20px;
   background-color: #1059FF;
 }
+.btn-signup a {
+  user-select: none;
+  cursor: pointer; 
+}
 
 .btn-signin {
   float: left;
@@ -405,6 +376,10 @@ label {
 	border: none;
 	border-radius: 20px;
   margin-top: -8px;
+}
+.btn-signin a {
+  user-select: none;
+  cursor: pointer; 
 }
 
 .btn-animate {
@@ -484,7 +459,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 }
 
 .welcome-left {
-  transform: translateY(-1240px);
+  transform: translateY(-870px);
   opacity: 1; 
 }
 
@@ -504,6 +479,12 @@ a.btn-signup:hover, a.btn-signin:hover {
   position: relative;
   text-align: center;
 }
+.cover-photo-down {
+  height: 170px;
+  top: -900px;
+  opacity: 1;
+  
+}
 .cover-photo-left {
   transform: translateX(-400px);
   opacity: 0;
@@ -513,7 +494,7 @@ a.btn-signup:hover, a.btn-signin:hover {
   opacity: 0;
 }
 .premium-status-container {
-  top: 50%;
+  top: 0%;
   position: relative;
   left: 0;
   right: 0;
@@ -537,12 +518,7 @@ a.btn-signup:hover, a.btn-signin:hover {
   text-align: center;
   }
 
-.cover-photo-down {
-  height: 170px;
-  top: -1300px;
-  opacity: 1;
-  
-}
+
 
 h1 {
   color: #636363;
@@ -562,32 +538,118 @@ h1 {
   cursor: pointer;
   
 }
-#check {
-  border: #0F4FE6 1px solid;
 
+
+.success {
+
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: -100px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  display: none;
 }
 
-#check path {
-  stroke: #202880 ;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-width: .85px;
-  stroke-dasharray: 60px 300px;
-  stroke-dashoffset: -166px;
-  fill: rgba(255,255,255, 1);
-  transition: stroke-dashoffset 2s ease .5s, fill 1.5s ease 1.0s;
-}
-#check.checked path {
-  stroke-dashoffset: 33px;
-  fill: rgba(255,255,255,.03);
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  animation:  1s ease-in-out;
 }
 
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
+.splash-header {
+  text-align: center;
+}
+
+
+.splash-content {
+  text-align: center;
+  padding: 0 5px;
+  margin-bottom:10px;
+}
+
+.splash-footer {
+  text-align: center;
+}
+
+@keyframes splash {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
-.checkbox-container input[type="checkbox"] {
+
+.splash-header h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  border-bottom: solid 2px #1059FF;
+}
+.splash-content h3 {
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.splash-content p {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+#continue {
+  display: inline-block;
+  background-color: #0F4FE6;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+}
+
+#continue:hover {
+  background-color: #202880;
+}
+
+.success-left {
+  top: -950px;
+  opacity: 1;
+  z-index: 1;
+  display: flex;
+}
+
+.success-left .success-splash {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.success-left .successtext {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+
+checkbox-container input[type="checkbox"] {
   display: inline-block;
   vertical-align: middle;
   margin-right: 5px;
@@ -597,6 +659,9 @@ h1 {
   display: inline-block;
   vertical-align: middle;
 }
+
+
+
 
 
 

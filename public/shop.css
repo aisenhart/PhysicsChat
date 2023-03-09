@@ -24,6 +24,8 @@ body {
   width: 100%;
   padding-top: 20px;
   padding-bottom: 100px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 #row-container {
@@ -32,13 +34,11 @@ body {
 }
 
 .shop-frame {
-  padding: 10px;
-  height: 870px;
-  min-width: 1000px;
-  max-width: 1500px;
+  padding: 5px;
+  height: 800px;
+  max-width: 1000px;
   background: white;
-  background-size: cover;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
@@ -51,13 +51,14 @@ body {
 }
 
 .shop-frame-shrink{
-  height: 760px ;
+  height: 700px;
   transition: all .5s ease;
 }
 
 .shop-table-container {
+  transform: scale(0.9);
   width: 100%;
-  height: 100%;
+  height: 70%;
   margin-top: 10px;
     margin-bottom: 30px;
     transition: all 0.5s ease;
@@ -68,10 +69,19 @@ body {
 }
 
 .shop-table-container-left {
-    transform: translateX(-400px);
+    transform: translateX(-800px);
     opacity: 0;
     height: 0px;
-    display: none !important;
+    transition: all 0.5s ease;
+
+  }
+
+.shop-table-container-right {
+    transform: translateX(800px);
+    opacity: 0;
+    height: 0px;
+    transition: all 0.5s ease;
+
   }
 
 
@@ -147,20 +157,6 @@ body {
 
 
 
-.shop-form-one-time {
-  width: 430px;
-  height: 375px;
-	font-size: 16px;
-	font-weight: 300;
-  padding-left: 37px;
-  padding-right: 37px;
-  padding-top: 20px;
-  position: relative;
-  top: -375px;
-  left: 400px;
-  opacity: 0;
-  transition: all .5s ease;
-}
 
 
 
