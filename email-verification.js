@@ -9,35 +9,19 @@ const blacklist = blacklistedEmails.split('\n');
 
 
 const html = `
-    <h1>Verify Your Email</h1>
-    <p>Click the link below to verify your email</p>
-    <a href="linkAutoFill">Verify Email</a>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h1 style="color: #007bff; font-size: 36px; font-weight: 600; margin: 40px 0 20px 0;">Verify Your Email</h1>
+        <p style="color: #4D4D4D; font-size: 18px; font-weight: 400; margin: 0 0 40px 0;">Please click the button below to verify your email address:</p>
+        <a href="linkAutoFill" style="display: inline-block; padding: 16px 32px; background-color: #007bff; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600; border-radius: 8px;">Verify Email</a>
+    </div>
     <style type="text/css">
-
-        h1 {
-            color: #000000;
-            font-size: 24px;
-            font-weight: 600;
-            margin: 0;
+        /* Reset default styles */
+        body, p {
+            margin: 5%;
             padding: 0;
         }
-
-        p { 
-            color: #000000;
-            font-size: 16px;
-            font-weight: 400;
-            margin: 0;
-            padding: 0;
-        }
-
-        a {
-            color: #000000;
-            font-size: 16px;
-            font-weight: 400;
-            margin: 0;
-            padding: 0;
-        }
-
+    </style>
+    <p style="font-size: 14px; color: #8D8D8D; margin-top: 40px; text-align: center;">This email was sent from the Physics Chat team.</p>
 `;
 
 
