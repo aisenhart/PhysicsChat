@@ -41,13 +41,12 @@ app.set('view engine', 'ejs');
 
 //import express routes from ./stripe.js
 require('./stripe')(express,bodyParser,app,db,process.env.STRIPE_SECRET_KEY,process.env.STRIPE_PUBLISHABLE_KEY,process.env.DOMAIN);
-
-
-
-
+const emailVerification = require('./email-verification')(express,app,db);
 
 //read tiers.json
 let tiers = require('./tiers.json');
+
+//read email verification routes
 
  
 //openai INIT 
@@ -60,9 +59,7 @@ const openai = new OpenAIApi(configuration);
 //let tokenizerCODEX = new GPT3Tokenizer.GPT3Tokenizer({type: "codex"});
 //
 
-
 // ------------------------------
-let starting_balance = 20.00;
 // ------------------------------
 
 
@@ -584,8 +581,10 @@ function newUser(ip,email,password,fullName){
   u1.setUsedTokens(0);
   u1.setWarnings(JSON.stringify({"warnings": []}));
   db.newUser(u1, (result) => {
+    emailVerification.sendVerificationEmail(email);
   });
   return u1.getAll();
+
   
 
 }

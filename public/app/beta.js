@@ -37,13 +37,16 @@ document.getElementById("submit").addEventListener("click", function () {
         setAlertText("user does not have enough tokens");
       } else if (response.error === "prompt is not acceptable") {
         setAlertText('prompt is not acceptable');
-      } else if (response.error === "error with OpenAI API"){
+      } else if (response.error === "error with OpenAI API") {
         setAlertText("OpenAIError");
+      }
+      else if (response.error === "prompt is empty") {
+        setAlertText("prompt is empty");
       }
       else {
         displayError(response.error);
       }
-    } 
+    }
     else {
       document.getElementById("text-area").value = text + response.completion;
       console.log(response.completion);
@@ -128,7 +131,7 @@ function setAlertText(type) {
     $('#alert-text').html('You are out of tokens, please <a style="color: #fff; text-decoration: underline" href="/shop">purchase more</a> to continue using the service');
     $('.alert-container').removeClass('hidden');
   } else if (type === 'email') {
-    $('#alert-text').text('Please verify your email address to continue');
+    $('#alert-text').html('Please <a style="color: #fff; text-decoration: underline" href="/account">verify</a> your email to continue');
     $('.alert-container').removeClass('hidden');
   } else if (type === 'request') {
     $('#alert-text').text('Your request cannot be processed at the moment, please try again later');
@@ -144,6 +147,9 @@ function setAlertText(type) {
     $('.alert-container').removeClass('hidden');
   } else if (type === 'user does not have enough tokens') {
     $('#alert-text').text('You do not have enough tokens');
+    $('.alert-container').removeClass('hidden');
+  } else if (type === 'prompt is empty') {
+    $('#alert-text').text('Please enter a prompt');
     $('.alert-container').removeClass('hidden');
   } else if (type === 'prompt is not acceptable') {
     $('#alert-text').html('The prompt you submitted is not acceptable and in violation of our <a style="color: #fff; text-decoration: underline" href="/tos">terms of service</a>');

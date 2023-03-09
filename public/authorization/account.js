@@ -76,3 +76,11 @@ function setUsernameText() {
   });
 };
 setUsernameText();
+
+
+//INSTRUCTIONS TO ADD VERIFY BUTTON FUNCTIONALITY
+//First make your request to check if the user is verified
+//if the user is verified, then you dont have to do anything
+//if the user is not verified, then you have to run this line of code to show the verify button
+//$('#verify-button').removeClass("hidden");
+//then just double check that the buttons href is set to correct route

@@ -383,6 +383,43 @@ class Database {
         });
     }
 
+    generateEmailVerificationCode(email,callback){
+        let code = crypto.randomUUID();
+        this.db.query(`INSERT INTO emailVerification (email, code,created) VALUES ('${email}', '${code}', '${Date.now()}')`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result,code);
+        });
+
+    }
+
+    verifyEmailVerificationCode(email,code,callback){
+        this.db.query(`SELECT * FROM emailVerification WHERE email = '${email}' AND code = '${code}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            if(result.length>0){
+                this.db.query(`UPDATE users SET verified = 1 WHERE email = '${email}'`, (err, result) => {
+                    if (err) {
+                        throw err;
+                    }
+                    callback(result);
+                });
+            }
+        });
+    }
+
+    deleteEmailVerificationCode(email,code,callback){
+        this.db.query(`DELETE FROM emailVerification WHERE email = '${email}' AND code = '${code}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+
+
 }
 
 
