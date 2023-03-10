@@ -6,6 +6,7 @@
 
 
 ">
+
 <head>
 	<title>Physics Chat | Beta</title>
 	<link rel="stylesheet" href="/app/beta.css" />
@@ -13,7 +14,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Bootstrap App Landing Template">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-	 
+
 	<!-- PLUGINS CSS STYLE -->
 	<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="/plugins/slick/slick.css">
@@ -22,12 +23,13 @@
 	<link rel="stylesheet" href="/plugins/aos/aos.css">
 
 </head>
-<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0" style="border-bottom: 2px solid gray; padding: 0;">
+<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0"
+	style="border-bottom: 2px solid gray; padding: 0;">
 	<div class="container">
 		<img class="img-fluid" src="images/mainLogo-b@0.5x.png" alt="Logo"
 			style="height: 40px; margin: 5px; margin-right: 10px;">
-			<a style="color: #343a40;" class="navbar-brand" href="/">Physics-Chat</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		<a style="color: #343a40;" class="navbar-brand" href="/">Physics-Chat</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="ti-menu"></span>
 		</button>
@@ -62,46 +64,48 @@
 			</li>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown active">
-					<a id="username-text" class="nav-link dropdown-toggle"  href="/login">Sign in</a>
+					<a id="username-text" class="nav-link dropdown-toggle" href="/login">Sign in</a>
 					<!-- Dropdown list -->
 					<ul class=" dropdown-menu">
-				<li><a id="app" class="dropdown-item active" href="/beta">App</a></li>
-				<li><a id="account" class="dropdown-item" href="/account">My Account</a></li>
-				<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
+						<li><a id="app" class="dropdown-item active" href="/beta">App</a></li>
+						<li><a id="account" class="dropdown-item" href="/account">My Account</a></li>
+						<li><a id="sign-out" class="dropdown-item" href="/sign-out">Sign Out</a></li>
 				</li>
 			</ul>
 			</ul>
 		</div>
 	</div>
 </nav>
-  
-  <body style="background: transparent;">
+
+<body style="background: transparent;">
 	<div class="alert-container hidden">
 		<div class="alert-message">
-		  <div class="checkmark">!</div>
-		  <p id="alert-text">Please verify your email address.</p>
+			<div class="checkmark">!</div>
+			<p id="alert-text">Please verify your email address.</p>
 		</div>
-	  </div>
+	</div>
 	<div class="textbox">
 		<h2>This is a Chat Beta</h2>
 		<h4 style="color:dimgray; font-size: medium;">
-			<a><strong>Free access is limited.</strong></a>
-			<a href="/contact" style="color:#2e7eed; text-decoration:none;">
-			  Contact us
-			</a> if you are interested in gaining access to premium features in exchange for beta testing.
-		</h4>
-		<h4 style="color:dimgray; font-size: medium;"> If you discover any problems, email us! We'll give you some tokens for your help.</h4>		
+			<a>Unfortunatly, <strong>free access is limited.</strong></a>
+			<a style="color:#2e7eed; text-decoration:underline;   cursor: pointer;">
+				<strong>Why?</strong>
+			</a><a> If you discover any problems, </a><a href="/contact"
+				style="color:#2e7eed; text-decoration:none;">
+				Contact us
+			</a>! We'll give you some
+			tokens for your help.</h4>
 		<textarea id="text-area" class="text-area"></textarea>
 		<div class="button-container">
 			<button id="submit" class="submit">Submit</button>
-			<button id="clear"class="clear">Clear</button>
+			<button id="clear" class="clear">Clear</button>
 			<div class="token-box">
 				Tokens: <span id="token-count"></span>
-			  </div>
-			
+			</div>
+
 			<div class="basic"></div>
 		</div>
-		  
+
 
 	</div>
 	<script src="/plugins/jquery/jquery.min.js"></script>
@@ -109,4 +113,3 @@
 </body>
 
 </html>
-
