@@ -48,6 +48,13 @@
         "subscription":true,
         "token-amount":10000,
         "price": 1
+    },
+
+    "prod_NTTUwFpJoGirWs":{
+        "name":"Test Subscription",
+        "subscription":true,
+        "token-amount":1000000,
+        "price": 1
     }
 
 }
