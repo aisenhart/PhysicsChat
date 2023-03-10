@@ -13,14 +13,15 @@ document.getElementById("clear").addEventListener("click", function () {
 
 
 
-
 // on submit click, post text-area contents to /ai 
 document.getElementById("submit").addEventListener("click", function () {
   var text = document.getElementById("text-area").value;
+  let maxTokens =$('#max-token-value').text();
+  maxTokens = parseInt(maxTokens);
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "/ai", true);
   xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({ prompt: text }));
+  xhr.send(JSON.stringify({ prompt: text, maxTokens: maxTokens}));
   xhr.onload = function () {
     var response = JSON.parse(xhr.responseText);
     console.log(response)
@@ -30,6 +31,7 @@ document.getElementById("submit").addEventListener("click", function () {
     else {
       document.getElementById("text-area").value = text + response.completion;
       console.log(response.completion);
+      doneTyping();
     }
     const basicScroller = document.querySelector('.basic');
     basicScroller.classList.remove('spin');
@@ -79,16 +81,31 @@ function setTokenCount() {
 }
 setTokenCount();
 let email = "test";
-function setUsernameText() {
+function getUserInfo() {
   $.ajax({
     url: '/get-user-info',
     type: 'GET',
     data: { email: email },
     success: function (data) {
       let firstName = data.firstName;
+      let maxTokens = data.tierMaxTokenRequest;
       $('#username-text').text(firstName);
       // add icon to link
       $('#username-text').append('<span><i class="ti-angle-down"></i></span>');
+      // set the max value on the input with the ID of max-token-usage to the max tokens the user can use
+      updateSlider('max-token-usage', 'max-token-value', maxTokens);
+      
+
+
+
+
+
+
+
+
+
+
+
     },
     error: function (data) {
       console.log("error");
@@ -102,7 +119,26 @@ function setUsernameText() {
     }
   });
 };
-setUsernameText();
+getUserInfo();
+
+
+
+function updateSlider(sliderId, valueId, maxTokens) {
+  let slider = document.getElementById(sliderId);
+  let valueSpan = document.getElementById(valueId);
+  slider.max = maxTokens;
+  slider.value = maxTokens / 2;
+  valueSpan.textContent = slider.value;
+  
+  slider.addEventListener('input', function () {
+    valueSpan.textContent = this.value;
+  });
+}
+
+
+
+
+
 
 function setAlertText(error) {
   const alertMessage = document.querySelector('.alert-message');
@@ -165,19 +201,58 @@ document.getElementById("close-btn").addEventListener("click", function () {
   $('#info-card').removeClass('card-show');
   $('#info-card').removeClass('card-animation');});
 
-  const maxTokenUsageSlider = document.getElementById("max-token-usage");
-const maxTokenValueSpan = document.getElementById("max-token-value");
 
-maxTokenUsageSlider.addEventListener("input", () => {
-  maxTokenValueSpan.textContent = maxTokenUsageSlider.value;
+
+
+
+//event listener for value of text area to change
+var typingTimer;                //timer identifier
+var doneTypingInterval = 2000;  //time in ms, 5 seconds for example
+var $input = $('#text-area');
+
+
+var sliderTimer;
+var sliderInterval = 500;
+var $slider = $('#max-token-usage');
+
+//on keyup, start the countdown
+$input.on('keyup', function () {
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(doneTyping, doneTypingInterval);
 });
 
-const maxTokenValue = document.getElementById('max-token-value');
-
-maxTokenValue.addEventListener('input', function () {
-  const value = this.innerText.trim();
-  const maxChars = 4;
-  if (value.length > maxChars) {
-    this.innerText = value.slice(0, maxChars);
-  }
+$slider.on('input', function () {
+  clearTimeout(sliderTimer);
+  sliderTimer = setTimeout(doneTyping, sliderInterval);
 });
+
+//on keydown, clear the countdown 
+$input.on('keydown', function () {
+  clearTimeout(typingTimer);
+});
+
+//user is "finished typing," do something
+function doneTyping () {
+  //make get request to server to get the prompt cost
+  //set body to the text in the text area
+  $.ajax({
+    url: '/get-prompt-cost',
+    type: 'POST',
+    data: { prompt: $('#text-area').val() },
+    success: function (data) {
+      //set span with id of estimated-token-cost to the cost
+      let finalCost = data.cost;
+      //get the value of the slider
+      let sliderValue = $('#max-token-value').text();
+      sliderValue = parseInt(sliderValue);
+      console.log(sliderValue);
+      finalCost = data.cost + sliderValue+ 10; //add 10 to account for error in estimated cost
+      $('#estimated-token-cost').text(finalCost);
+    },
+    error: function (data) {
+      console.log("error");
+      // error handling code 
+    }
+  })
+}
+

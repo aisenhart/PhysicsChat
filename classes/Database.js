@@ -448,6 +448,15 @@ class Database {
         });
     }
 
+    setTier(email, tier, callback){
+        this.db.query(`UPDATE users SET tier = '${tier}' WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+
 
 }
 

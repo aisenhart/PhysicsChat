@@ -21,9 +21,9 @@
 - [x] Finish Contact databse link
 - [x] Payment processing
 - [ ] Setup watching ads for tokens
-- [ ] tokens calculator
-- [ ] Desired word count slider
-- [ ] token limiter per request based on tier 
+- [x] tokens calculator
+- [x] Desired word count slider
+- [x] token limiter per request based on tier 
 
 Salesman suggestion:
 

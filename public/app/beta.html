@@ -108,20 +108,20 @@
 		  </a>! We'll give you some tokens for your help.
 		</h4>
 		<textarea id="text-area" class="text-area"></textarea>
+		<div class="token-cost">Estimated Cost: <span id="estimated-token-cost">0</span></div>
 		<div class="button-container">
-			<button id="submit" class="submit">Submit</button>
-			<button id="clear" class="clear">Clear</button>
-			<div class="token-box">
-			  Tokens: <span id="token-count"></span>
-			</div>
-			<div class="max-token-box">
-			  <a style="color: #fff;">Max Token Budget:</a>
-			  <input type="range" id="max-token-usage" min="1" max="2048" step="1" value="512" class="max-token-usage" />
-			  <span style="color: #fff;" contenteditable="true" id="max-token-value" class="max-token-value" >512 </span>
-			</div>
+		  <button id="submit" class="submit">Submit</button>
+		  <button id="clear" class="clear">Clear</button>
+		  <div class="token-box">
+			Balance: <span id="token-count"></span>
 		  </div>
-		  
-		  
+		  <div class="basic"></div>
+		  <div class="max-token-box">
+			<a style="color: #fff; margin-right: 10px;">Response Length:</a>
+			<input type="range" id="max-token-usage" min="1" max="2048" step="1" value="" class="max-token-usage" />
+			<span style="color: #fff;" contenteditable="false" id="max-token-value" class="max-token-value" >100</span> <a style="color: #fff; margin-left: 10px; margin-right: 10px;"> Tokens</a>
+		  </div>
+		</div>
 	  </div>
 	<script src="/plugins/jquery/jquery.min.js"></script>
 	<script src="/app/beta.js"></script>

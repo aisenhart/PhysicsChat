@@ -46,6 +46,7 @@ const sendVerificationEmail = require('./email-verification')
 
 //read tiers.json
 let tiers = require('./tiers.json');
+const e = require("express");
 
 //read email verification routes
 
@@ -194,7 +195,8 @@ app.get('/get-user-info',(req, res) => {
       "email": user.email, 
       "completionsCount": user.completionsCount,
       "usedTokens": user.usedTokens,
-      "verified": user.verified
+      "verified": user.verified,
+      "tierMaxTokenRequest": tiers[user.tier]['max_tokens']
     });
   });
 });
@@ -209,6 +211,10 @@ POST REQUESTS
 
 app.post('/ai', verify, async (req, res) => {
   let prompt = req.body.prompt;
+  let maxTokens = req.body.maxTokens;
+  console.log(prompt)
+  console.log(maxTokens);
+  console.log(calculateTokenCost(prompt));
 
   if(!prompt||prompt.length < 1){
     res.status(400).json({"error": "prompt is empty"});
@@ -308,7 +314,7 @@ app.post('/ai', verify, async (req, res) => {
       const response = openai.createChatCompletion({
         model: tiers[tier].engine,
         messages: [{role:"user",content:prompt}],
-        max_tokens: tiers[tier].max_tokens,
+        max_tokens: maxTokens,
         temperature: 0,
         user: user.UID
       }).catch((error) => {
@@ -317,7 +323,7 @@ app.post('/ai', verify, async (req, res) => {
         return;
       });
       response.then((data) => {
-        console.log(data);
+        console.log(data.data.usage);
         let completion = data.data.choices[0].message.content;
         res.json({"completion": completion});
         if(data.data.usage.completion_tokens>0){
@@ -612,10 +618,13 @@ app.post('/verify-email', (req, res) => {
   });
 });
 
-app.get('/prompt-token-cost', verify,(req, res) => {
+app.post('/get-prompt-cost',(req, res) => {
   if(req.body.prompt){
     res.json({"cost":calculateTokenCost(req.body.prompt)});
+  } else{
+    res.json({"cost":0});
   }
+    
 });
 
 
