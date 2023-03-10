@@ -164,3 +164,20 @@ document.getElementById("why-text").addEventListener("click", function () {
 document.getElementById("close-btn").addEventListener("click", function () {
   $('#info-card').removeClass('card-show');
   $('#info-card').removeClass('card-animation');});
+
+  const maxTokenUsageSlider = document.getElementById("max-token-usage");
+const maxTokenValueSpan = document.getElementById("max-token-value");
+
+maxTokenUsageSlider.addEventListener("input", () => {
+  maxTokenValueSpan.textContent = maxTokenUsageSlider.value;
+});
+
+const maxTokenValue = document.getElementById('max-token-value');
+
+maxTokenValue.addEventListener('input', function () {
+  const value = this.innerText.trim();
+  const maxChars = 4;
+  if (value.length > maxChars) {
+    this.innerText = value.slice(0, maxChars);
+  }
+});

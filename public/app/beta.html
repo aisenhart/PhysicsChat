@@ -95,30 +95,34 @@
 		</ul>
 		<div id="close-btn"><a>Close</a></div>
 	  </div>
-	<div class="textbox">
+	  <div class="textbox">
 		<h2>This is a Chat Beta</h2>
-		<h4 style="color:dimgray; font-size: medium;">
-			<a>Unfortunatly, <strong>free access is limited.</strong></a>
-			<a id="why-text">
-				<strong>Why?</strong>
-			</a><a> If you discover any problems, </a><a href="/contact"
-				style="color:#2e7eed; text-decoration:none;">
-				Contact us
-			</a>! We'll give you some
-			tokens for your help.</h4>
+		<h4 style="color: dimgray; font-size: medium;">
+		  <a>Unfortunately, <strong>free access is limited.</strong></a>
+		  <a id="why-text">
+			<strong>Why?</strong>
+		  </a>
+		  <a> If you discover any problems, </a>
+		  <a href="/contact" style="color:#2e7eed; text-decoration:none;">
+			Contact us
+		  </a>! We'll give you some tokens for your help.
+		</h4>
 		<textarea id="text-area" class="text-area"></textarea>
 		<div class="button-container">
 			<button id="submit" class="submit">Submit</button>
 			<button id="clear" class="clear">Clear</button>
 			<div class="token-box">
-				Tokens: <span id="token-count"></span>
+			  Tokens: <span id="token-count"></span>
 			</div>
-
-			<div class="basic"></div>
-		</div>
-
-
-	</div>
+			<div class="max-token-box">
+			  <a style="color: #fff;">Max Token Budget:</a>
+			  <input type="range" id="max-token-usage" min="1" max="2048" step="1" value="512" class="max-token-usage" />
+			  <span style="color: #fff;" contenteditable="true" id="max-token-value" class="max-token-value" >512 </span>
+			</div>
+		  </div>
+		  
+		  
+	  </div>
 	<script src="/plugins/jquery/jquery.min.js"></script>
 	<script src="/app/beta.js"></script>
 </body>
