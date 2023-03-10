@@ -412,7 +412,7 @@ app.post('/register', (req, res) => {
     //proxy_set_header  X-Real-IP $remote_addr;
 
     //get ip address from header 
-    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    let ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
     console.log('\n\n\n\n\n')
     console.log(ip);
     console.log('\n\n\n\n\n')
