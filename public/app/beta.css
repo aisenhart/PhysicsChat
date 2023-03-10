@@ -193,4 +193,101 @@ h1, h2, h3 {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
-            
+#why-text {
+  color:#2e7eed; 
+  text-decoration:underline;   
+  cursor: pointer;
+}
+#info-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#info-card h3 {
+  margin-top: 0;
+}
+
+#info-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+}
+
+#info-card ul li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+#info-card ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #555;
+}
+
+#why-text {
+  cursor: pointer;
+}
+
+.card-show {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.card-animation {
+  animation-name: card-anim;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes card-anim {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+#close-btn {
+  height: 40px;
+  width: fit-content;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #2e7eed;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+
+#close-btn:hover {
+  background-color: #0f3467;
+  transition: background-color 0.5s linear;
+}
+
+#close-btn a {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}

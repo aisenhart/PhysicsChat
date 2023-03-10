@@ -153,3 +153,14 @@ function setAlertText(error) {
     $('.alert-container').addClass('hidden');
   }, 5000);
 }
+
+
+//Info card
+document.getElementById("why-text").addEventListener("click", function () {
+  $('#info-card').addClass('card-show');
+  $('#info-card').addClass('card-animation');
+});
+
+document.getElementById("close-btn").addEventListener("click", function () {
+  $('#info-card').removeClass('card-show');
+  $('#info-card').removeClass('card-animation');});
