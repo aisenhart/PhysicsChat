@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const express = require('express');
-const GPT3Tokenizer = require('gpt3-tokenizer');
+const gptEncoder = require('gpt-3-encoder');
 //internal modules
 const sendReset  = require('./reset-password');
 const { Order } = require("./classes/Order");
@@ -612,6 +612,12 @@ app.post('/verify-email', (req, res) => {
   });
 });
 
+app.get('/prompt-token-cost', verify,(req, res) => {
+  if(req.body.prompt){
+    res.json({"cost":calculateTokenCost(req.body.prompt)});
+  }
+});
+
 
 
 app.get('/contact', (req, res) => {
@@ -677,11 +683,11 @@ function verify(req,res,next){
 }
 
 
-function calculateTokenCost(inputString, model){
-  if(model == "CODEX"){
-    let encoded = tokenizerCODEX.encode(inputString);
-  } else if(model == "GPT3"){
-    let encoded = tokenizerGPT3.encode(inputString);
-  }
+function calculateTokenCost(inputString){
+  let encoded = gptEncoder.encode(inputString);
   return encoded.length;
 }
+
+calculateTokenCost("Hello World");
+
+

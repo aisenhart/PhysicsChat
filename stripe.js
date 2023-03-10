@@ -15,14 +15,12 @@ module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
  
     let order = {product:product_id,price:product['price'],email:email,mode:mode,subscription:subscription,transaction_id:transaction_id};
 
-    if(mode == 'payment') {
+    if(mode) {
       db.addBalance(email,product['token-amount'],function(result) {  
         db.appendOrder(email,order,function(result) {
           console.log('order added');
         });
       });
-
-
     }
 
   }

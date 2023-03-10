@@ -12,6 +12,13 @@
     "max_tokens": 500,
     "engine": "gpt-3.5-turbo"
   },
+  "basic-test": {
+    "stripe_id":"prod_NTTUwFpJoGirWs",
+    "tokens": 10000,
+    "price": 1,
+    "max_tokens": 500,
+    "engine": "gpt-3.5-turbo"
+  },
   "premium": {
     "stripe_id":"prod_NTTXvxsyqwf0xb",
     "tokens": 15000,
