@@ -365,7 +365,8 @@ app.post('/login', (req, res) => {
           res.cookie('Authorization', accessToken,{maxAge:Date.now()+3600000,overwrite:true}).send({"success": "logged in"});
           //res.cookie('Authorization', accessToken, {secure: true}).send(accessToken);
 
-          let ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
+          let ip = req.connection.remoteAddress||req.headers['X-Real-IP'];
+
           //if new IP, update IP
           if(user.ip != ip){
             db.updateIP(email, ip);
@@ -412,7 +413,7 @@ app.post('/register', (req, res) => {
     //proxy_set_header  X-Real-IP $remote_addr;
 
     //get ip address from header 
-    let ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
+    let ip = req.connection.remoteAddress || req.headers['X-Real-IP'];
     console.log('\n\n\n\n\n')
     console.log(ip);
     console.log('\n\n\n\n\n')
