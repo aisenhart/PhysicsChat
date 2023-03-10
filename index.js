@@ -365,10 +365,10 @@ app.post('/login', (req, res) => {
           res.cookie('Authorization', accessToken,{maxAge:Date.now()+3600000,overwrite:true}).send({"success": "logged in"});
           //res.cookie('Authorization', accessToken, {secure: true}).send(accessToken);
 
-
+          let ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
           //if new IP, update IP
-          if(user.ip != req.ip){
-            db.updateIP(email, req.ip);
+          if(user.ip != ip){
+            db.updateIP(email, ip);
           }
           if(user.warnings.length > 0 || user.banned.banned){
             db.expireWarnings(email);
