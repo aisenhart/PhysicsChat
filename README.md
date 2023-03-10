@@ -19,7 +19,7 @@
 - [x] Add pop up for when user is out of tokens, direct them to shop.
 - [x] Account verification via email
 - [x] Finish Contact databse link
-- [ ] Payment processing
+- [x] Payment processing
 - [ ] Setup watching ads for tokens
 - [ ] tokens calculator
 - [ ] Desired word count slider
