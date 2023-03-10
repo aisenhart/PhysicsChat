@@ -24,11 +24,13 @@ $(function () {
       $(".signup-incorrect-hidden").toggleClass("signup-incorrect-show");
       $(".signup-incorrect-show").removeClass("signup-incorrect-hidden");
       $(".incorrect-text").text("Passwords do not match");
+      shakeButton("signup");
     } 
     else if (checkbox.checked == false) {
       $(".signup-incorrect-hidden").toggleClass("signup-incorrect-show");
       $(".signup-incorrect-show").removeClass("signup-incorrect-hidden");
       $(".incorrect-text").text("Please agree to the terms and conditions");
+      shakeButton("signup");
     }
     else {
       $.ajax({
@@ -58,8 +60,7 @@ $(function () {
           $(".signup-incorrect-show").removeClass("signup-incorrect-hidden");
           $(".incorrect-text").text(jqXHR.responseJSON.error);
           console.log(jqXHR.responseJSON.error);
-          //Make the button shake
-          $(".btn-signup").addClass("btn-animate-shake");
+          shakeButton("signup");
         },
       });
     }
@@ -121,11 +122,24 @@ $(function () {
 
       error: function (data) {
         //show the Incorrect Password message
+
         $(".signin-incorrect-hidden").toggleClass("signin-incorrect-show");
         $(".signin-incorrect-show").removeClass("signin-incorrect-hidden");
         //Make the button shake
-        $(".btn-animate").addClass("btn-animate-shake");
+        shakeButton("signin");
       },
     });
   });
 });
+
+
+function shakeButton(button) {
+  //Make the button shake
+  $(".btn-"+button).addClass("btn-animate-shake");
+  //wait 1 second and remove the shake class
+  setTimeout(function () {
+    $(".btn-"+button).removeClass("btn-animate-shake");
+  }, 1000);
+
+
+}
