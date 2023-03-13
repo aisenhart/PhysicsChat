@@ -272,9 +272,44 @@ h3 {
   background-color: #0f3467;
   transition: linear 0.5s;
 }
+
+.tooltip {
+  opacity: 0;
+  transition: opacity 0.3s;
+  visibility: hidden;
+  width: 240px;
+  background-color: #446694d2;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  transition : .7s;
+}
+
+#verify-button:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+#verify-button {
+  position: relative;
+  display: inline-block;
+}
+
 .hidden {
   display: none;
 }
+
+#verify-button:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
 
 .plan-information {
   display: flex;
