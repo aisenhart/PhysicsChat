@@ -776,3 +776,37 @@ button:focus {
 .google-map {
   position: relative;
 }
+
+.mobile-sign-in {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  color: #fff;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.mobile-sign-in:hover {
+  background-color: #0069d9;
+  text-decoration: none;
+  color: #fff;
+
+}
+
+.mobile-sign-in:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.mobile-sign-in a {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width: 991.98px) {
+  .mobile-sign-in {
+    display: none;
+  }
+}
