@@ -337,3 +337,67 @@ h1, h2, h3 {
   margin: 0;
   padding: 0;
 }
+
+@media only screen and (max-width: 767px) {
+  /* Style for text area */
+  .text-area {
+    width: 100%;
+    font-size: 14px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* Style for button container */
+  .button-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  /* Style for submit and clear buttons */
+  .submit,
+  .clear {
+    font-size: 12px;
+    margin-right: 2px;
+    margin-bottom: 10px;
+  }
+
+  /* Style for token box */
+  .token-box {
+    font-size: 12px;
+    margin-right: 2px;
+    margin-bottom: 10px;
+  }
+
+  /* Style for basic div */
+  .basic {
+    display: none;
+  }
+
+  /* Style for max token box */
+  .max-token-box {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Style for max token box label */
+  .max-token-box a {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  /* Style for max token usage slider */
+  .max-token-usage {
+    width: 100px;
+    margin-right: 10px;
+  }
+
+  /* Style for max token value span */
+  .max-token-value {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+}
