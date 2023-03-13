@@ -32,6 +32,10 @@ module.exports = function(express,bodyParser,app,db,ENDPOINT_SECRET,DOMAIN) {
         db.setTier(email,tier,function(result) {
           console.log('tier set');
         });
+        //email, stripeID, transactionID, transactionMade, subscriptionExpires, notes="", callback)
+        db.addSubscriber(email,product_id,transaction_id,Date.now(),Date.now() + 2592000000,'',function(result) { //add 30 days to current date
+          console.log('subscription added');
+        });
       }
 
       db.addBalance(email,product['token-amount'],function(result) {  

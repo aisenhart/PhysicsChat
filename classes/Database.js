@@ -457,6 +457,38 @@ class Database {
         });
     }
 
+    addSubscriber(email, stripeID, transactionID, transactionMade, subscriptionExpires, notes="", callback){
+        this.db.query(`INSERT INTO subscribers (email, stripeID, transactionID, transactionMade, subscriptionExpires, notes) VALUES ('${email}', '${stripeID}', '${transactionID}', '${transactionMade}', '${subscriptionExpires}', '${notes}')`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    removeSubscriber(email, callback){
+        this.db.query(`DELETE FROM subscribers WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    getSubscriber(email, callback){
+        this.db.query(`SELECT * FROM subscribers WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    getSubscribers(callback){
+        this.db.query(`SELECT * FROM subscribers`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
 
 }
 

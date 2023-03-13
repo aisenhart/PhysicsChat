@@ -640,6 +640,21 @@ app.get('*', function(req, res){
 });
 
 
+//every 1 hour check db.getSubscribers() and if subscriptionExpires < Date.now() then db.setTier(email,"free")
+setInterval(() => {
+  db.getSubscribers((result) => {
+    for(let i=0;i<result.length;i++){
+      if(result[i].subscriptionExpires < Date.now()){
+        db.setTier(result[i].email,"free",() => {
+          db.removeSubscriber(result[i].email,() => {
+            console.log("removed subscriber: " + result[i].email);
+          });
+        });
+      }
+    }
+  });
+}, 3600000);
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
