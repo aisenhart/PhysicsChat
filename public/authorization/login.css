@@ -326,7 +326,6 @@ label {
 .btn-go{
   position: relative;
   margin-right: auto;
-  top: -400px;
   float: left;
   padding: 8px;
   width: 83%;
@@ -339,7 +338,6 @@ label {
   font-size: 13px;
   text-align: center;
   color: #1059FF;
-  margin-top: -8px;
   opacity: 0;
   border: solid 3px #1059FF;
   transition: top 1.5s, ease 2.2s, opacity 1s ease 2s;
@@ -347,7 +345,7 @@ label {
   text-decoration: none;
 }
 .btn-go-up {
-  top: -1170px;
+  top: -1270px;
   opacity: 1;
   pointer-events: all;
 }
@@ -487,7 +485,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 }
 .cover-photo-down {
   height: 170px;
-  top: -900px;
+  top: -875px;
   opacity: 1;
   
 }
@@ -500,12 +498,11 @@ a.btn-signup:hover, a.btn-signin:hover {
   opacity: 0;
 }
 .premium-status-container {
+  height: auto;
   top: 0%;
   position: relative;
   left: 0;
   right: 0;
-  padding-top: 0px;
-  
 }
 .premium-status-container-hidden {
   height: 0px;
@@ -514,15 +511,14 @@ a.btn-signup:hover, a.btn-signin:hover {
 }
 .premium-status-container a {
 
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
   text-transform: uppercase;
   color: #ffffff;
   font-size: 35px;
   font-weight: 600;
   text-align: center;
-  }
+}
 
 
 
