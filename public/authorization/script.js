@@ -49,6 +49,8 @@ $(function () {
           $(".form-signup-left").toggleClass("form-signup-down");
           $(".success").toggleClass("success-left");
           $(".frame").toggleClass("frame-long");
+          $(".frame").toggleClass("frame-success");
+
           console.log(data);
         },
 
