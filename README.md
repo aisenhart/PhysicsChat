@@ -26,6 +26,8 @@
 - [x] token limiter per request based on tier 
 - [ ] Add a token code input for users to redeem codes
 
+
+
 Salesman suggestion:
 
     Free Tier (no subscription): 3000 tokens

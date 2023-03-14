@@ -96,25 +96,66 @@ $('#verify-button').click(function () {
     dataType: 'json',
     success: function(response) {
       // Handle success response
-      setAlertText('success',email);
+      setAlertText('success','Verification email sent to ' + email + '. Please check your email and click the link to verify your account.');
     },
     error: function(xhr, status, error) {
       // Handle error response
-      setAlertText('error', email);
+      setAlertText('error', 'There was an error sending the verification email.');
 
     }
   });
 });
 
 
+function copyReferralCode() {
+  // Get the referral code input element
+  var referralCodeInput = document.getElementById("referral-code");
+  console.log("code: " + referralCodeInput);
+
+  // Select the referral code text
+  referralCodeInput.select();
+  referralCodeInput.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the selected text to the clipboard
+  document.execCommand("copy");
+
+  // Deselect the text
+  referralCodeInput.setSelectionRange(0, 0);
+
+  // Show a message to the user indicating the referral code has been copied
+  setAlertText('referral','Referral link copied!');
+}
 
 
-//INSTRUCTIONS TO ADD VERIFY BUTTON FUNCTIONALITY
-//First make your request to check if the user is verified
-//if the user is verified, then you dont have to do anything
-//if the user is not verified, then you have to run this line of code to show the verify button
-//$('#verify-button').removeClass("hidden");
-//then just double check that the buttons href is set to correct route
+
+function setAlertText(status, message) {
+  const alertMessage = document.querySelector('.alert-message');
+  if (status === 'success') {
+    $('#alert-text').html(message);
+    $('.alert-container').removeClass('hidden'); 
+  } else if (status === 'error') {
+    $('#alert-text').html(message);
+    $('.alert-container').removeClass('hidden');
+  } else if (status === 'warning') {
+    $('#alert-text').html(message);
+    $('.alert-container').removeClass('hidden');
+  } else if (status === 'referral'){
+    $('#alert-text').html(message);
+    $('.alert-container').removeClass('hidden');
+  }
+  else {
+    $('#alert-text').html('Invalid status.');
+    $('.alert-container').removeClass('hidden');
+  }
+  setTimeout(function () {
+    $('.alert-container').addClass('hidden');
+  }, 5000);
+}
+
+
+
+/*
+
 
 function setAlertText(status, email) {
   const alertMessage = document.querySelector('.alert-message');
@@ -128,4 +169,4 @@ function setAlertText(status, email) {
   setTimeout(function () {
     $('.alert-container').addClass('hidden');
   }, 5000);
-}
+}*/
