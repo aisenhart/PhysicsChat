@@ -288,7 +288,10 @@ h3 {
   z-index: 1;
   transition : .7s;
 }
-
+#referral-button:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
 #verify-button:hover .tooltip {
   opacity: 1;
   visibility: visible;
