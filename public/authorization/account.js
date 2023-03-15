@@ -125,7 +125,7 @@ function copyReferralCode() {
   referralCodeInput.setSelectionRange(0, 0);
 
   // Show a message to the user indicating the referral code has been copied
-  setAlertText('referral','Referral link copied!');
+  setAlertText('referral','Referral code copied!');
 }
 
 
