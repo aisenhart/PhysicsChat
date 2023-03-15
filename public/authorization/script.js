@@ -19,6 +19,7 @@ $(function () {
     let confirmPassword = document.getElementsByName("confirmpassword")[0].value;
     let fullName = document.getElementsByName("fullname")[0].value;
     let checkbox = document.getElementById('termsCheckbox');
+    let referredByCode = document.getElementsByName("referral")[0].value;
 
     if (password != confirmPassword) {
       $(".signup-incorrect-hidden").toggleClass("signup-incorrect-show");
@@ -41,6 +42,7 @@ $(function () {
           password: password,
           fullname: fullName,
           confirmpassword: confirmPassword,
+          referredByCode: referredByCode,
         },
 
         //success function
@@ -108,6 +110,7 @@ $(function () {
       success: function (data) {
         console.log(data.success);
         //show the success message
+        /*
         $(".premium-status-container").removeClass("premium-status-container-hidden");
         $(".btn-animate").toggleClass("btn-animate-grow");
         $(".welcome").toggleClass("welcome-left");
@@ -119,7 +122,8 @@ $(function () {
         $(".forgot").toggleClass("forgot-left");
         $(".signin-incorrect-show").toggleClass("signin-incorrect-hidden");
         $(".signin-incorrect-hidden").removeClass("signin-incorrect-show");
-        console.log("success");
+        console.log("success");*/
+        window.location.href = "/beta";
       },
 
       error: function (data) {

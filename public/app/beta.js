@@ -37,7 +37,7 @@ document.getElementById("submit").addEventListener("click", function () {
     basicScroller.classList.remove('spin');
     setTokenCount();
   }
-
+  setTimeout(setTokenCount, 500);
 });
 
 
@@ -74,7 +74,11 @@ function setTokenCount() {
   xhr.send();
   xhr.onload = function () {
     var response = JSON.parse(xhr.responseText);
-    console.log(response)
+    console.log(response);
+    tokensInt = parseInt(response.tokens);
+    if(tokensInt < 0) {
+      response.tokens = 0;
+    }
     response.tokens = response.tokens.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     document.getElementById("token-count").innerHTML = response.tokens;
   }
@@ -95,13 +99,6 @@ function getUserInfo() {
       // set the max value on the input with the ID of max-token-usage to the max tokens the user can use
       updateSlider('max-token-usage', 'max-token-value', maxTokens);
       
-
-
-
-
-
-
-
 
 
 

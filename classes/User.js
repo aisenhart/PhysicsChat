@@ -19,11 +19,10 @@ class User{
     #tier;
     #Orders;
     #accountCreatedAt;
-    #adsWatched;
-    #adsClicked;
     #banned;
     #balance;
-
+    #referredByCode;
+    
     makeid(length) {
         let result           = '';
         let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -84,12 +83,6 @@ class User{
     getAccountCreatedAt(){
         return this.#accountCreatedAt;
     }
-    getAdsWatched(){
-        return this.#adsWatched;
-    }
-    getAdsClicked(){
-        return this.#adsClicked;
-    }
     getBanned(){
         return this.#banned;
     }
@@ -133,20 +126,20 @@ class User{
     setAccountCreatedAt(accountCreatedAt){
         this.#accountCreatedAt = accountCreatedAt;
     }
-    setAdsWatched(adsWatched){
-        this.#adsWatched = adsWatched;
-    }
-    setAdsClicked(adsClicked){
-        this.#adsClicked = adsClicked;
-    }
     setBanned(banned){
         this.#banned = banned;
     }
     getAll(){
-        return ({ip:this.#ip,email:this.#email,password:this.#password,firstName:this.#firstName,lastName:this.#lastName,tier:this.#tier,UID:this.#UID,warnings:this.#warnings,completionsCount:this.#completionsCount,usedTokens:this.#usedTokens,Orders:this.#Orders,accountCreatedAt:this.#accountCreatedAt,adsWatched:this.#adsWatched,adsClicked:this.#adsClicked,banned:this.#banned});
+        return ({ip:this.#ip,email:this.#email,password:this.#password,firstName:this.#firstName,lastName:this.#lastName,tier:this.#tier,UID:this.#UID,warnings:this.#warnings,completionsCount:this.#completionsCount,usedTokens:this.#usedTokens,Orders:this.#Orders,accountCreatedAt:this.#accountCreatedAt,banned:this.#banned,balance:this.#balance});
     }
     setBalance(balance){
         this.#balance = balance;
+    }
+    setReferredByCode(referredByCode){
+        this.#referredByCode = referredByCode;
+    }
+    getReferredByCode(){
+        return this.#referredByCode;
     }
 
 }

@@ -29,6 +29,7 @@ function getUserInfo() {
       let completions = data.completionsCount;
       let usedTokens = data.usedTokens;
       let verified = data.verified;
+      let referralCode = data.referralCode;
 
 
       //Filling out the form with the user's information----------------------------------------------------------------------------
@@ -46,6 +47,7 @@ function getUserInfo() {
       $('#user-balance').val(balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' Tokens');
       $('#beta-usage').val(completions + ' Completions');
       $('#tokens-spent').val(usedTokens.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' Tokens');
+      $('#referral-code').val(referralCode);
       //----------------------------------------------------------------------------------------------------------------------------
 
       //Set Username Text-----------------------------------------------------------------------------------------------------------

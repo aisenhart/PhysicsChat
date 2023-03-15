@@ -16,8 +16,12 @@ const { Warning } = require("./classes/Warning");
 const { Database } = require("./classes/Database");
 const crypto = require('crypto');
 const fetch = require("node-fetch");
+const trigger = require('./referral');
 
 
+
+
+ 
 const MODERATION_API_URL = `https://api.openai.com/v1/moderations`;
 
 //connect to database and setup class
@@ -196,7 +200,8 @@ app.get('/get-user-info',(req, res) => {
       "completionsCount": user.completionsCount,
       "usedTokens": user.usedTokens,
       "verified": user.verified,
-      "tierMaxTokenRequest": tiers[user.tier]['max_tokens']
+      "tierMaxTokenRequest": tiers[user.tier]['max_tokens'],
+      "referralCode": user.referralCode
     });
   });
 });
@@ -212,10 +217,6 @@ POST REQUESTS
 app.post('/ai', verify, async (req, res) => {
   let prompt = req.body.prompt;
   let maxTokens = req.body.maxTokens;
-  console.log(prompt)
-  console.log(maxTokens);
-  console.log(calculateTokenCost(prompt));
-
   if(!prompt||prompt.length < 1){
     res.status(400).json({"error": "prompt is empty"});
     return;
@@ -240,7 +241,10 @@ app.post('/ai', verify, async (req, res) => {
 
     if(user.balance <= 0){
       res.status(400).json({"error": "user has used up their tokens"});
-      return;
+      if(user.balance < 0){
+        db.setBalance(user.email, 0, () => {});
+      }
+        return;
     }
   
     //jsonify the banned object and warnings object
@@ -323,7 +327,6 @@ app.post('/ai', verify, async (req, res) => {
         return;
       });
       response.then((data) => {
-        console.log(data.data.usage);
         let completion = data.data.choices[0].message.content;
         res.json({"completion": completion});
         if(data.data.usage.completion_tokens>0){
@@ -365,7 +368,10 @@ app.post('/login', (req, res) => {
           res.cookie('Authorization', accessToken,{maxAge:Date.now()+3600000,overwrite:true}).send({"success": "logged in"});
           //res.cookie('Authorization', accessToken, {secure: true}).send(accessToken);
 
-          let ip = req.connection.remoteAddress||req.headers['X-Real-IP'];
+          let ip = req.connection.remoteAddress
+          if(req.headers['X-Real-IP']){
+            ip = req.headers['X-Real-IP'];
+          }
 
           //if new IP, update IP
           if(user.ip != ip){
@@ -413,14 +419,14 @@ app.post('/register', (req, res) => {
     //proxy_set_header  X-Real-IP $remote_addr;
 
     //get ip address from header 
-    let ip = req.connection.remoteAddress || req.headers['X-Real-IP'];
-    console.log('\n\n\n\n\n')
+    let ip = req.connection.remoteAddress
+    if(req.headers['X-Real-IP']){
+      ip = req.headers['X-Real-IP'];
+    }
+
     console.log(ip);
-    console.log('\n\n\n\n\n')
-
-
-
-    let returnValue = newUser(req.ip,req.body.email,req.body.password,req.body.fullname);
+    
+    let returnValue = newUser(req.ip,req.body.email,req.body.password,req.body.fullname,req.body.referredByCode);
     if(returnValue.UID!=undefined){
       //console.log(returnValue);
       let userCleaned = JSON.parse(JSON.stringify(returnValue));
@@ -583,6 +589,7 @@ app.get('/verify-email', (req, res) => {
             if(result){
                 res.redirect('/account');
                 db.deleteEmailVerificationCode(email,code,() => {});
+                trigger.trigger(db,email);
             } else {
                 res.send({'error':'Email not verified'});
             }
@@ -634,6 +641,10 @@ app.get('/contact', (req, res) => {
   res.sendFile(__dirname + '/public/contact.html');
 });
 
+app.get('/faq', (req, res) => {
+  res.sendFile(__dirname + '/public/faq.html');
+});
+
 
 app.get('*', function(req, res){
   res.sendFile(__dirname+'/public/404.html');
@@ -661,10 +672,28 @@ app.listen(port, () => {
 
  
 // Path: classes/User.js
-function newUser(ip,email,password,fullName){
+function newUser(ip,email,password,fullName,referredByCode){
   const hashedPassword = bcrypt.hashSync(password, 10);
   let tier = "free"; //free tier 
   //(ip,email,password,firstName,lastName,tier)
+
+  function makeReferralCode(){
+    let referralCode = crypto.randomBytes(5).toString('hex');
+    db.getUserByReferral(referralCode, (result) => {
+      if(result.length > 0){
+        makeReferralCode();
+      } else{
+        db.setReferralCode(email,referralCode,() => {});
+        return referralCode;
+      }
+    });
+  }
+
+  
+  let referralCode = makeReferralCode();
+
+  
+
   let firstName;
   let lastName;
   if(fullName.indexOf(" ") == -1){
@@ -685,8 +714,9 @@ function newUser(ip,email,password,fullName){
   u1.setUID(crypto.randomUUID());
   u1.setUsedTokens(0);
   u1.setWarnings(JSON.stringify({"warnings": []}));
-  db.newUser(u1, (result) => {
-  });
+  db.newUser(u1, (result) => {});
+  db.setReferredByCode(email, referredByCode, () => {});
+  db.setReferrals(email,JSON.stringify({"referrals": []}),() => {});
   sendVerificationEmail(db,email);
   return u1.getAll();
 
