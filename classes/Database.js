@@ -99,6 +99,7 @@ class Database {
             callback(result);
         });
     }
+    
 
     end() {
         this.db.end();
@@ -489,6 +490,67 @@ class Database {
             callback(result);
         });
     }
+    setReferralCode(email, referralCode, callback){
+        this.db.query(`UPDATE users SET referralCode = '${referralCode}' WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    setReferredByCode(email, referredByCode, callback){
+        this.db.query(`UPDATE users SET referredByCode = '${referredByCode}' WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    getUserByReferral(code, callback){
+        this.db.query(`SELECT * FROM users WHERE referralCode = '${code}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    setReferrals(email, referrals, callback){
+        this.db.query(`UPDATE users SET referrals = '${referrals}' WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+
+    }
+    addReferral(referrer, newUserEmail, callback){ //referrer is of type User
+        let referrals = JSON.parse(referrer.referrals);
+        referrals.referrals.push({email: newUserEmail, date: Date.now()});
+        this.setReferrals(referrer.email, JSON.stringify(referrals), (result)=>{});   
+        this.addBalance(referrer.email, 1500, (result)=>{}); //add $ to referrer's balance
+        this.addBalance(newUserEmail, 1500, (result)=>{}); //add $ to new user's balance
+        callback();
+
+    }
+    getReferrals(email, callback){
+        this.db.query(`SELECT referrals FROM users WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    getReferralCode(email, callback){
+        this.db.query(`SELECT referralCode FROM users WHERE email = '${email}'`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        });
+    }
+    
+    
+
 
 }
 
