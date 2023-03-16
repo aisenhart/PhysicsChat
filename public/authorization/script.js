@@ -128,6 +128,13 @@ $(function () {
 
       error: function (data) {
         //show the Incorrect Password message
+        //data.error to string
+        console.log(data)
+        let error = data.responseJSON.error;
+        console.log(error);
+        if(error.includes("banned")){
+          window.location.href="/banned";
+        }
 
         $(".signin-incorrect-hidden").toggleClass("signin-incorrect-show");
         $(".signin-incorrect-show").removeClass("signin-incorrect-hidden");

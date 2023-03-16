@@ -365,7 +365,19 @@ app.post('/login', (req, res) => {
       try{
         if(bcrypt.compareSync(req.body.password, user.password)){
           const accessToken = jwt.sign(userCleaned, process.env.ACCESS_TOKEN_SECRET);
-          res.cookie('Authorization', accessToken,{maxAge:Date.now()+3600000,overwrite:true}).send({"success": "logged in"});
+          user.banned = JSON.parse(user.banned);
+          user.warnings = JSON.parse(user.warnings);
+
+          console.log(user.banned.banned);
+
+          if(user.banned.banned==true){
+              res.status(400).json({"error": "user is banned"});
+              db.expireWarnings(email);
+              return;
+          } else{
+            res.cookie('Authorization', accessToken,{maxAge:Date.now()+3600000,overwrite:true}).send({"success": "logged in"});
+
+          }
           //res.cookie('Authorization', accessToken, {secure: true}).send(accessToken);
 
           let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -373,9 +385,6 @@ app.post('/login', (req, res) => {
           //if new IP, update IP
           if(user.ip != ip){
             db.updateIP(email, ip);
-          }
-          if(user.warnings.length > 0 || user.banned.banned){
-            db.expireWarnings(email);
           }
         } else{
           res.status(400).json({"error": "passwords do not match"});
@@ -420,7 +429,7 @@ app.post('/register', (req, res) => {
 
     console.log(ip);
     
-    let returnValue = newUser(req.ip,req.body.email,req.body.password,req.body.fullname,req.body.referredByCode);
+    let returnValue = newUser(ip,req.body.email,req.body.password,req.body.fullname,req.body.referredByCode);
     if(returnValue.UID!=undefined){
       //console.log(returnValue);
       let userCleaned = JSON.parse(JSON.stringify(returnValue));
@@ -629,6 +638,13 @@ app.post('/get-prompt-cost',(req, res) => {
     
 });
 
+app.get('/banned', (req, res) => {
+  res.send(`
+  <h1> If you are seeing this page, you have been banned from using this service. </h1>
+  <h2> If you believe this is a mistake, please contact us at
+  <a href="mailto:admin@physics-chat.com">admin@physics-chat.com</a>
+  `)
+});
 
 
 app.get('/contact', (req, res) => {
