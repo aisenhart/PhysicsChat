@@ -32,7 +32,7 @@ const db = new Database();
 db.connect();
 //web server variables
 const app = express();
-const port = 3002;
+const port = 3000;
 
 //body-parser
 
