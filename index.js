@@ -20,6 +20,7 @@ const trigger = require('./referral');
 
 
 
+let recentEvents =[];
 
  
 const MODERATION_API_URL = `https://api.openai.com/v1/moderations`;
@@ -31,7 +32,7 @@ const db = new Database();
 db.connect();
 //web server variables
 const app = express();
-const port = 3000;
+const port = 3002;
 
 //body-parser
 
@@ -333,6 +334,14 @@ app.post('/ai', verify, async (req, res) => {
           db.decrementBalance(user.email,data.data.usage.total_tokens);
         }
       });
+
+      recentEvents.push({
+        "firstName": user.firstName,
+        "event": "asked a question",
+        "time": new Date().toLocaleString()
+      });
+
+
    });
 });
 });
@@ -655,6 +664,14 @@ app.get('/faq', (req, res) => {
   res.sendFile(__dirname + '/public/faq.html');
 });
 
+app.get('/events', (req, res) => {
+  res.json({"events":recentEvents});
+  if(recentEvents.length > 10){
+    recentEvents = recentEvents.slice(0,10);
+  }
+});
+
+
 
 app.get('*', function(req, res){
   res.sendFile(__dirname+'/public/404.html');
@@ -728,6 +745,13 @@ function newUser(ip,email,password,fullName,referredByCode){
   db.setReferredByCode(email, referredByCode, () => {});
   db.setReferrals(email,JSON.stringify({"referrals": []}),() => {});
   sendVerificationEmail(db,email);
+
+  recentEvents.push({
+    "firstName": firstName,
+    "event": "just signed up!",
+    "time": new Date().toLocaleString()
+  });
+
   return u1.getAll();
 
   
