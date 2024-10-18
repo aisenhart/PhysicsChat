@@ -31,6 +31,16 @@ Welcome to **PhysicsChat**, an innovative AI-powered chatbot designed to support
   - Advanced Pack: $4 for 16000 tokens
   - Pro Pack: $8 for 50000 tokens
 
+
+
+
+## Preview
+
+<img width="1123" alt="image" src="https://github.com/user-attachments/assets/8c8848a0-99d0-4dd2-8ad7-4aca75297d4b">
+
+
+
+
 ## Installation and Setup
 
 To run PhysicsChat locally, create a `.env` file in the root directory and configure the following environment variables:
