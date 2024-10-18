@@ -70,7 +70,7 @@ We welcome contributions from the community. Please fork the repository and subm
 
 ## Contact
 
-For any inquiries or support requests, please reach out to our team at [support@example.com](mailto:support@example.com).
+Feel free to contact me directly at: (630)-280-4857
 
 ## License
 
