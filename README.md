@@ -78,9 +78,6 @@ npm start
 
 We welcome contributions from the community. Please fork the repository and submit a pull request if you have any improvements or new features to suggest.
 
-## Contact
-
-Feel free to contact me directly at: (630)-280-4857
 
 ## License
 
